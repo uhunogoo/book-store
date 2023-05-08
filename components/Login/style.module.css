@@ -1,0 +1,120 @@
+.DialogTitle {
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 1.22;
+  margin: 0;
+}
+
+.greeting {
+  padding: 7.5rem 3rem;
+}
+
+.form {
+  display: grid;
+  gap: 1.9rem;
+  margin: 0 auto;
+  margin-top: 1.9rem;
+  max-width: 326px;
+  width: 100%;
+}
+.group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+}
+.group label {
+  background: #fff;
+  color: var(--text-grey);
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.2rem;
+  position: absolute;
+  top: 0;
+  transform: translate(0.5rem, -50%);
+}
+.group input {
+  background: white;
+  text-align: left;
+  display: block;
+  border: 1px solid var(--text-grey);
+  line-height: 1;
+  padding: 0.7rem 0.6rem;
+  padding-bottom: 0.5rem;
+  padding-right: 2.5rem;
+  transition: 0.3s ease-out
+}
+.group input:focus {
+  border: 1px solid var(--background-green);
+}
+
+.visibilityHandle {
+  cursor: pointer;
+  aspect-ratio: 1;
+  display: grid;
+  opacity: 0.55;
+  place-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  transition: 0.3s ease-out;
+  height: 100%;
+  width: auto;
+}
+.visibilityHandle:hover,
+.visibilityHandle.active {
+  opacity: 1;
+}
+.visibilityHandle:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+
+.topRight {
+  background: none;
+  border: 0;
+  color: var(--text-grey);
+  font-size: 0.75rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+}
+a.topRight {
+  text-decoration: underline;
+}
+
+.bottom {
+  font-size: var(--text-small);
+  color: var(--text-grey);
+  display: grid;
+  gap: var(--text-size);
+  margin: 0 auto;
+  margin-top: var(--text-size);
+  max-width: 326px;
+  width: 100%;
+}
+
+
+.bottom h3 {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.social {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.7rem;
+}
+.social button {
+  color: var(--text-grey);
+  display: flex;
+  font-size: var(--text-small);
+  gap: 0.5em;
+  align-items: center;
+}

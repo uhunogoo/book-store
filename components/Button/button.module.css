@@ -1,0 +1,41 @@
+.button {
+  background: none;
+  border: 0;
+  position: relative;
+}
+.countNumber {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 10%);
+  font-size: 0.6rem;
+  background: hsl(0, 0%, 100%);
+  color: black;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000px;
+  font-weight: 400;
+  animation: fadeIn 500ms;
+}
+
+.default {
+  background: var(--background-green);
+  font-size: var(--text-size);
+  max-width: 166px;
+  margin: 0 auto;
+  padding: 0.125rem;
+  width: 100%;
+}
+.outline {
+  border: 2px solid var(--text-green);
+  color: var(--text-green);
+  font-size: var(--text-size);
+  max-width: 166px;
+  margin: 0 auto;
+  padding: 0.125rem;
+  width: 100%;
+}

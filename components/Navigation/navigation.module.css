@@ -1,0 +1,19 @@
+.topNavigation {
+  display: flex;
+  flex: 1;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  justify-content: space-between;
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+.delimiter {
+  background: var(--border-color);
+  width: 1px;
+}
+.link {
+  font-weight: 400;
+  font-size: var(--text-size);;
+  line-height: 1;
+  padding: 0.56em 0 0.465em;
+  transition: 0.2s ease-in-out;
+}

@@ -1,0 +1,28 @@
+.middleMenuWrapper {
+  align-items: center;
+  display: flex;
+  gap: 3.2rem;
+  padding: 1.5rem 0;
+  position: relative;
+}
+.logo {
+  height: auto;
+  max-width: 110px;
+}
+
+.headerSearch {
+  flex: 1;
+  align-self: stretch;
+  
+}
+
+.middleMenuButtons {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.middleMenuButtons button{
+  background: none;
+  border: 0;
+} 
