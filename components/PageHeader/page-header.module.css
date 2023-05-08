@@ -17,6 +17,8 @@
 }
 
 .middleMenuButtons {
+  align-self: stretch;
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 2.5rem;

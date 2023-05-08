@@ -117,8 +117,9 @@ a:hover {
   color: var(--text-green);
 }
 
-button,
-fieldset,
-input {
+input:focus {
+  outline: 1px solid var(--background-green);
+}
+fieldset {
   all: unset;
 }

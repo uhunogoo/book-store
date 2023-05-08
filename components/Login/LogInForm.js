@@ -27,7 +27,7 @@ function LogInForm({ handleSucces, forgetButton }) {
       <PasswordField password={password} setPassword={setPassword}>
         { forgetButton }
       </PasswordField>
-      <DialogClose asChild disabled={ !password|| !email }>
+      <DialogClose asChild disabled={ !password|| !email } >
         <Button
           type="submit"
           title="search button"

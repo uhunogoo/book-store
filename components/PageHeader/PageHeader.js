@@ -29,9 +29,9 @@ function PageHeader() {
           
           <DropDown data={ dropDown }/>
 
-          <SearchForm className={ styles.headerSearch }/>
 
           <div className={ styles.middleMenuButtons }>
+            <SearchForm className={ styles.headerSearch }/>
             <Button 
               title="cart button" 
               type="button"

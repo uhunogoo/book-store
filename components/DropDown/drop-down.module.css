@@ -1,3 +1,7 @@
+.dropContainer {
+  position: relative;
+  height: 100%;
+}
 .dropDown {
   bottom: 0;
   left: 0;
@@ -5,9 +9,12 @@
   padding: 1.5rem 1.2rem;
   position: absolute;
   transform: translateY(100%);
-  width: 100%;
+  transform: translateY(106.7%);
+  min-width: 600px;
+  /* width: 100%; */
   z-index: 2;
   animation: animateIn 0.4s ease-in-out;
+  will-change: clip-path;
 }
 .dropDown::before {
   background: white;
@@ -20,15 +27,14 @@
   width: 100%;
   z-index: -1;
   filter: drop-shadow( var(--drop-shadow) );
-  will-change: clip-path;
 }
 
 @keyframes animateIn {
   0% {
-    clip-path: inset(0 100% 100% 100%);
+    clip-path: inset(0 0 100% 0);
   }
   100% {
-    clip-path: inset(100% 100%);
+    clip-path: inset(0);
   }
 }
 
@@ -54,11 +60,11 @@
   transform-origin: 50% 10%;
   width: 0.85rem;
 }
-.dropDownButton:not(.active):hover .arrow {
+/* .dropDownButton:not(.active):hover .arrow {
   animation: wiggle 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   animation-fill-mode: forwards;
-}
-@keyframes wiggle {
+} */
+/* @keyframes wiggle {
   0% {
     transform: translateY(-25%);
   }
@@ -68,7 +74,7 @@
   100% {
     transform: translateY(-25%);
   }
-}
+} */
 .dropDownButton.active {
   color: #fefefe;
 }
@@ -81,10 +87,11 @@
 .list {
   column-gap: 2rem;
   column-count: 2;
+  column-width: 250px;
   font-size: var(--text-size);;
   line-height: 1;
   list-style: none;
-  width: 68%;
+  width: 100%;
 }
 .list li + li {
   margin-top: 1rem;

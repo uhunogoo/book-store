@@ -15,18 +15,20 @@ function DropDown({ data }) {
 
   return (
     <>
-      <Button
-        onClick={ handleClick }
-        title="user button" 
-        type="button"
-        className={ buttonClass }
-      >
-        Каталог
-        {' '}
-        <span className={ styles.arrow }></span>
-      </Button>
+      <div className={ styles.dropContainer }>
+        <Button
+          onClick={ handleClick }
+          title="user button" 
+          type="button"
+          className={ buttonClass }
+          >
+          Каталог
+          {' '}
+          <span className={ styles.arrow }></span>
+        </Button>
 
-      { dropDownStatus && <DropContent data={ data }/> }
+        { dropDownStatus && <DropContent data={ data }/> }
+      </div>
     </>
   );
 }
