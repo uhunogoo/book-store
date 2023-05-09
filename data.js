@@ -78,4 +78,52 @@ export const SITE_DATA = {
       link: '/'
     },
   ],
+  books: [
+    {
+      id: 0,
+      image: {
+        src: '/images/books/image-1.jpg',
+        title: 'Переконання'
+      },
+      title: 'Переконання',
+      subtitle: 'Роберт Чалдині',
+      price: 100
+    },
+    {
+      id: 1,
+      image: {
+        src: '/images/books/image-2.jpg',
+        title: 'Переконання'
+      },
+      title: 'Переконання',
+      subtitle: 'Роберт Чалдині',
+      price: 100
+    },
+    {
+      id: 2,
+      image: {
+        src: '/images/books/image-3.jpg',
+        title: 'Переконання'
+      },
+      title: 'Переконання',
+      subtitle: 'Роберт Чалдині',
+      price: 100
+    },
+    {
+      id: 3,
+      image: {
+        src: '/images/books/image-4.jpg',
+        title: 'Переконання'
+      },
+      title: 'Переконання',
+      subtitle: 'Роберт Чалдині',
+      price: 100
+    },
+  ],
+  top_selling: [
+    {id: 0},
+    {id: 1},
+    {id: 2},
+    {id: 3},
+  ]
 }

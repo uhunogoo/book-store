@@ -14,7 +14,8 @@ function Button({
   const id = React.useId();
   const visualClassName = styles[visual] ? styles[visual] : '';
   const delegatedClassName = className ? className : '';
-  const buttonClassName = `${styles.button} ${delegatedClassName} ${ visualClassName }`
+  const counterClass = (numOfItems > 0) ? styles.counter : ''; 
+  const buttonClassName = `${styles.button} ${delegatedClassName} ${ visualClassName } ${counterClass}`
 
   return (
     <button 

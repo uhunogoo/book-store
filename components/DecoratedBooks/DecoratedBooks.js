@@ -1,6 +1,7 @@
-function DecoratedBooks({ style }) {
+function DecoratedBooks({ style, className }) {
   return (
     <div
+      className={ className || '' }
       style={{
         height: '3.5rem',
         background: 'url(/books-pattern.jpg) repeat-x',

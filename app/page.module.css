@@ -2,3 +2,6 @@
   max-width: var(--max-width);
   min-height: 100vh;
 }
+p {
+  font-size: var(--text-size);
+}

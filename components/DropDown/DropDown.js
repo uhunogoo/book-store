@@ -1,17 +1,103 @@
 "use client";
 
 import React from 'react';
+import { gsap } from 'gsap';
+import { CSSTransition } from 'react-transition-group';
+
 import styles from './drop-down.module.css'
-import Button from '../Button/Button';
+
 import DecoratedBooks from '../DecoratedBooks/DecoratedBooks';
+import DropDownContent from './DropDownContent';
+import Button from '../Button/Button';
+
+gsap.registerEffect({
+  name: "openMenu",
+  effect(targets) {
+    const dropDown = targets;
+    const q = gsap.utils.selector(dropDown);  
+    const listItems = q('a');
+    gsap.set(listItems, { opacity: 1, yPercent: 0, rotate: '0deg' });
+    
+    const animation = gsap.timeline();
+    animation.fromTo(dropDown, {
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+    }, {
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      duration: 0.6 
+    });
+    animation.from(listItems, {
+      opacity: 0,
+      yPercent: 100,
+      rotate: '-5deg',
+      stagger: {
+        ease: 'sine.out',
+        each: 0.02,
+        grid: [2, 9],
+        from: 'start'
+      }
+    }, 0);
+    animation.from(q('.gsapBooks'), {
+      skewX: '10deg',
+      backgroundPositionX: '-=200px',
+      ease: 'power1',
+      duration: 1
+    }, '>-=50%');
+
+    return animation;
+  }
+});
+gsap.registerEffect({
+  name: "closeMenu",
+  effect(targets) {
+    const dropDown = targets;
+    const q = gsap.utils.selector(dropDown);  
+    const listItems = q('a');
+    const animation = gsap.timeline();
+    animation.fromTo(dropDown, { 
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+    }, { 
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+      duration: 0.6 
+    });
+    animation.to(listItems, {
+      opacity: 0,
+      yPercent: 100,
+      rotate: '-5deg',
+      stagger: {
+        each: 0.02,
+        grid: [2, 9],
+        from: 'end'
+      }
+    }, 0);
+
+    return animation;
+  }
+});
 
 function DropDown({ data }) {
+  const ctx = React.useMemo( () => gsap.context(() => {}), []);
+
   const [ dropDownStatus, setDropDownStatus ] = React.useState( false );
   const activeClass = dropDownStatus ? styles.active : ''
   const buttonClass = `${styles.dropDownButton} ${activeClass}`;
+  
   function handleClick() {
     setDropDownStatus( !dropDownStatus );
   }
+
+  React.useLayoutEffect(() => {
+    ctx.add('open', (node) => {
+      return gsap.effects['openMenu']( node, {});
+    });
+    ctx.add('close', (node) => {
+      return gsap.effects['closeMenu']( node, {});
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleOnEnter = (node) => ctx.open( node );
+  const handleOnExit = (node) => ctx.close( node );
 
   return (
     <>
@@ -27,25 +113,19 @@ function DropDown({ data }) {
           <span className={ styles.arrow }></span>
         </Button>
 
-        { dropDownStatus && <DropContent data={ data }/> }
+        <CSSTransition
+          in={ dropDownStatus }
+          unmountOnExit
+          onEnter={handleOnEnter}
+          onExit={handleOnExit}
+          timeout={600}
+        >
+          <DropDownContent data={ data }>
+            <DecoratedBooks className="gsapBooks" style={{ margin: '1.75rem -1.2rem -1.5rem -1.2rem' }} />
+          </DropDownContent>
+        </CSSTransition>
       </div>
     </>
-  );
-}
-
-function DropContent({ data }) {
-  const id = React.useId();
-  return (
-    <div key={id} className={ styles.dropDown }>
-      <ul className={styles.list}>
-        { data?.map( (item, id) => (
-          <li>
-            <a key={id} href='#'>{ item.title }</a>
-          </li>
-        ))}
-      </ul>
-      <DecoratedBooks style={{ margin: '1.35rem -1.2rem -1.5rem -1.2rem' }} />
-    </div>
   );
 }
 

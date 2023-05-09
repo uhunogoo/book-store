@@ -8,12 +8,10 @@
   min-height: 250px;
   padding: 1.5rem 1.2rem;
   position: absolute;
-  transform: translateY(100%);
   transform: translateY(106.7%);
   min-width: 600px;
   /* width: 100%; */
   z-index: 2;
-  animation: animateIn 0.4s ease-in-out;
   will-change: clip-path;
 }
 .dropDown::before {
@@ -27,15 +25,6 @@
   width: 100%;
   z-index: -1;
   filter: drop-shadow( var(--drop-shadow) );
-}
-
-@keyframes animateIn {
-  0% {
-    clip-path: inset(0 0 100% 0);
-  }
-  100% {
-    clip-path: inset(0);
-  }
 }
 
 .dropDownButton {
@@ -60,21 +49,7 @@
   transform-origin: 50% 10%;
   width: 0.85rem;
 }
-/* .dropDownButton:not(.active):hover .arrow {
-  animation: wiggle 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  animation-fill-mode: forwards;
-} */
-/* @keyframes wiggle {
-  0% {
-    transform: translateY(-25%);
-  }
-  50% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-25%);
-  }
-} */
+
 .dropDownButton.active {
   color: #fefefe;
 }
@@ -85,13 +60,23 @@
 
 
 .list {
-  column-gap: 2rem;
+  column-gap: 7.5rem;
   column-count: 2;
   column-width: 250px;
   font-size: var(--text-size);;
   line-height: 1;
   list-style: none;
-  width: 100%;
+  min-width: 676px;
+}
+.list li {
+  overflow: hidden;
+  position: relative;
+}
+.list a {
+  display: inline-block;
+  transform-origin: 100% 0;
+  transition: color 0.2s ease-in-out;
+  will-change: transform, opacity;
 }
 .list li + li {
   margin-top: 1rem;
