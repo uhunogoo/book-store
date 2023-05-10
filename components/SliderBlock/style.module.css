@@ -1,0 +1,17 @@
+.title {
+  color: var(--text-grey);
+  display: inline-block;
+  font-size: var(--text-size-title);
+  font-weight: normal;
+  margin-top: 3.2rem;
+}
+.title::first-letter {
+  color: var(--text-green);
+}
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  justify-content: space-between;
+  margin-top: var(--size-30);
+}

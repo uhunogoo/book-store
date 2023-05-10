@@ -1,0 +1,102 @@
+.card {
+  display: grid;
+  /* flex-direction: column; */
+}
+.card h3,
+.card h4 {
+  font-weight: normal;
+}
+.title {
+  font-size: var(--text-size);
+  margin-top: 1rem;
+}
+.subtitle {
+  font-size: var(--text-size);
+  color: var(--text-green);
+  margin-top: 0.25rem;
+}
+.footer {
+  align-self: end;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.price {
+  /* color: var(--text-dark); */
+  color: #747373;
+  font-size:var(--size-30);
+  line-height: 1;
+}
+.footer button {
+  aspect-ratio: 1;
+  display: flex;
+  place-items: center;
+  border: 1px solid var(--background-green);
+  background: transparent;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  position: relative;
+  padding: 0 0.5rem;
+  transition: background-color 0.3s ease-in-out;
+  width: 2.2rem;
+}
+.footer button img {
+  mix-blend-mode: plus-lighter;
+}
+
+.footer button:hover {
+  --text-green: #ffffff;
+  background: var(--background-green);
+}
+.topContainer {
+  position: relative;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  bottom: 0.4rem;
+  position: absolute;
+  right: 0;
+}
+
+.button {
+  aspect-ratio: 1;
+  border-radius: 200px;
+  background: white;
+  display: grid;
+  opacity: 0;
+  padding: 0.5rem;
+  place-items: center;
+  transform-origin: 50% 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  width: 2.2rem
+}
+.button svg {
+  display: block;
+  aspect-ratio: 1;
+  width: 100%;
+}
+.button:last-of-type {
+  transition-delay: 0.05s;
+}
+.topContainer {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+              /* filter 0.3s ease-in; */
+}
+
+
+.card:hover .topContainer {
+  /* filter: drop-shadow(var(--drop-shadow)); */
+  transform: translateY(-5%);
+}
+.card:hover .button {
+  transform: scale(1);
+  opacity: 0.85;
+}
+.card .button:hover {
+  opacity: 1;
+}

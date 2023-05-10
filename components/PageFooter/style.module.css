@@ -1,0 +1,18 @@
+.footer {
+  display: grid;
+  gap:var(--size-30);
+  grid-template-areas:
+    "column1 column2 column3 column4"
+    "bottom bottom bottom bottom";
+  padding: 3.125rem 0 1.7rem;
+}
+.title {
+  font-size: var(--text-size);
+  margin-bottom: 0.25em;
+}
+.footer ul {
+  list-style: none;
+}
+.footer li {
+  margin-top: 0.25em;
+}

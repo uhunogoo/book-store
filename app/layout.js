@@ -2,6 +2,7 @@ import './globals.css';
 import { Roboto } from 'next/font/google';
 import PageHeader from '@/components/PageHeader/PageHeader';
 import ContentWrapper from '@/components/ContentWrapper/ContentWrapper';
+import PageFooter from '@/components/PageFooter/PageFooter';
 
 const roboto = Roboto({ 
   subsets: ['cyrillic'],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
           {children}
         </ContentWrapper>
 
+        <PageFooter/>
       </body>
     </html>
   );

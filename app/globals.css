@@ -1,9 +1,13 @@
 :root {
   --text-size: 1.25rem;
+  --text-size-title: 2.5rem;
   --text-small: 0.875rem;
+
+  --size-30: 1.9rem;
 
   --background-green: #B0C589;
   
+  --danger: #C6230D;
   --text-green: #7D9947;
   --text-dark: #464646;
   --text-grey: #A0A0A0;
@@ -16,24 +20,6 @@
 
   --shadow-color: 0deg 0% 63%;
   --drop-shadow: 4px 8px 12px hsla(0, 0%, 23%, 0.3);
-  --shadow-elevation-low:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.3),
-    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.3),
-    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.3);
-  --shadow-elevation-medium:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.31),
-    0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.31),
-    2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.31),
-    5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.31);
-  --shadow-elevation-high:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.3),
-    1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.3),
-    2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.3),
-    4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.3),
-    7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.3),
-    11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.3),
-    17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.3),
-    25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.3);
 }
 
 * {
@@ -74,8 +60,10 @@ body,
   height: 100%;
 }
 body {
-  line-height: 1.5;
+  line-height: 1.15;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: auto;
 }
 img,
 picture,
@@ -99,6 +87,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: normal;
   overflow-wrap: break-word;
 }
 p {
@@ -111,6 +100,8 @@ p {
 
 button {
   cursor: pointer !important;
+  background: none;
+  border: 0;
 }
 
 a:hover {

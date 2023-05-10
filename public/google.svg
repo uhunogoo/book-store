@@ -13,8 +13,6 @@
 	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#EABA2D;}
 	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#CA4539;}
 </style>
-<g id="BACKGROUND">
-</g>
 <g id="OBJECTS">
 	<path class="st0" d="M32,0C14.3,0,0,14.3,0,32c0,13.9,8.9,25.8,21.3,30.2V37.5h-4.5v-8.1h4.5v-5.2c0-3.7,1.8-9.6,9.6-9.6l7.1,0v7.9
 		h-5.1c-0.8,0-2,0.4-2,2.2v4.8h7.3l-0.8,8.1h-6.4V64c0.4,0,0.8,0,1.2,0c17.7,0,32-14.3,32-32C64,14.3,49.7,0,32,0z"/>
@@ -38,7 +36,5 @@
 		<path class="st8" d="M32.6,14.5c4.3,0,8.1,1.5,11.1,4.3l8.3-8.3c-5-4.7-11.6-7.6-19.4-7.6c-11.4,0-21.2,6.5-26,16l9.7,7.5
 			C18.6,19.6,25,14.5,32.6,14.5z"/>
 	</g>
-</g>
-<g id="DESIGNED_BY_FREEPIK">
 </g>
 </svg>

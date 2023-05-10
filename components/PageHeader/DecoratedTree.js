@@ -8,7 +8,7 @@ function DecoratedTree({ location = 'left' }) {
   
   return (
     <div className={ `${ styles.container } ${ locationClass }` }>
-      <Image src="/decor-tree.svg" width={350} height={800} />
+      <Image src="/decor-tree.svg" width={350} height={800} alt="decor image" />
     </div>
   );
 }
