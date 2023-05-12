@@ -3,6 +3,7 @@ import styles from './style.module.css';
 import ContentWrapper from '../ContentWrapper/ContentWrapper';
 import DecoratedBooks from '../DecoratedBooks/DecoratedBooks';
 import { Facebook, Instagram, Pinterest, Twitter } from '../Icons/Icons';
+import Link from 'next/link';
 
 function PageFooter() {
   return (
@@ -34,7 +35,7 @@ function PageFooter() {
               <li>Наші магазини</li>
               <li>Істория Клубу</li>
               <li>Видавництво</li>
-              <li>Privacy Policy</li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
             </ul>
           </div>
           <div style={{ gridArea: 'column4' }}>

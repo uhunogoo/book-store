@@ -10,7 +10,7 @@
   position: absolute;
   transform: translateY(107.5%);
   z-index: 2;
-  filter: drop-shadow( var(--drop-shadow) );
+  /* filter: drop-shadow( var(--drop-shadow) ); */
 }
 
 /* .overlay.enter-done {
@@ -70,7 +70,7 @@
 }
 .list a {
   display: inline-block;
-  transform-origin: 100% 0;
+  /* transform-origin: 100% 0; */
   transition: color 0.2s ease-in-out;
   will-change: transform, opacity;
 }

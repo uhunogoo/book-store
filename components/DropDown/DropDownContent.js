@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './drop-down.module.css'
+import Link from 'next/link';
 
 function DropContent({ data, children, className = ''}, ref) {
   const newClassName = `${styles.dropDown} ${ className }`
@@ -9,7 +10,7 @@ function DropContent({ data, children, className = ''}, ref) {
         <ul className={styles.list}>
           {data?.map((item, id) => (
             <li key={id}>
-              <a href="#">{item.title}</a>
+              <Link href="/catalog">{item.title}</Link>
             </li>
           ))}
         </ul>

@@ -9,7 +9,7 @@ function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
       <h2 className={ styles.title }>
         { title }
       </h2>
-      <div className={ styles.row } {...delegated}>
+      <div className={ styles.row } >
         { listOfItems?.map(({id, ...props }, i) => (
           <div key={ i } className={ styles.rowItem } style={{ flex: `0 0 ${ 100 / countInView }%` }}>
             <ProductCard { ...props } />
