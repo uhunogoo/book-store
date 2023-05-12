@@ -1,4 +1,5 @@
-// "use client";
+"use client";
+import React from 'react';
 import Image from 'next/image';
 
 import styles from './page-header.module.css';
@@ -16,6 +17,8 @@ import { Cart, Favorite, User } from '../Icons/Icons';
 
 function PageHeader() {
   const { top_navigation, dropDown } = SITE_DATA;
+  const [open, setOpen] = React.useState(false);
+  
   const topLinks = top_navigation.length ? top_navigation : [];
   
   return (
@@ -49,13 +52,14 @@ function PageHeader() {
                 <Favorite width="40" height="34" />  
               </Button>
               <Modal
+                open={open} setOpen={setOpen}
                 trigger={
                   <Button title="user button" type="button">
                     <User  width="40" height="34" />
                   </Button>
                 }
               >
-                <Login />
+                <Login setOpen={setOpen}/>
               </Modal>
             </div>
 

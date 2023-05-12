@@ -11,12 +11,20 @@ export default function Page() {
     top_selling,
     week_authors, 
     new_books,
+    select_series,
+    recently_view,
+    series,
     authors,
     books 
   } = SITE_DATA;
   const topSelling = top_selling.list.map((book) => books[book.id] );
   const newBooks = new_books.list.map((book) => books[book.id] );
   const weekAuthors = week_authors.list.map((book) => authors[book.id] );
+  const selectedSeries = select_series.list.map((book) => series[book.id] );
+  const recentlyView = recently_view.list.map((book) => {
+    const { image } = books[book.id];
+    return { image };
+  } );
 
   return (
     <>
@@ -50,6 +58,18 @@ export default function Page() {
       <SliderBlock 
         title={ week_authors.title } 
         listOfItems={weekAuthors} 
+      />
+      <SliderBlock
+        countInView={3} 
+        title={ select_series.title } 
+        listOfItems={selectedSeries} 
+        maxWidth={350}
+        />
+      <SliderBlock 
+        countInView={6} 
+        style={{ '--col-gap': '1.25rem' }}
+        title={ recently_view.title } 
+        listOfItems={recentlyView} 
       />
 
     </>

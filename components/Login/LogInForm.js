@@ -1,11 +1,11 @@
+import React from 'react';
+
 import styles from './style.module.css';
 
-import React from 'react';
 import Button from '../Button/Button';
 import PasswordField from './PasswordField';
 import TextField from './TextField';
 import Form from '../Form/Form';
-import { DialogClose } from '@radix-ui/react-dialog';
 
 function LogInForm({ handleSucces, forgetButton }) {
   const [email, setEmail] = React.useState('');
@@ -27,16 +27,14 @@ function LogInForm({ handleSucces, forgetButton }) {
       <PasswordField password={password} setPassword={setPassword}>
         { forgetButton }
       </PasswordField>
-      <DialogClose asChild disabled={ !password|| !email } >
-        <Button
-          type="submit"
-          title="search button"
-          visual="default"
-          style={{ marginTop: '-0.5rem' }}
-        >
-          Вхід
-        </Button>
-      </DialogClose>
+      <Button
+        type="submit"
+        title="search button"
+        visual="default"
+        style={{ marginTop: '-0.5rem' }}
+      >
+        Вхід
+      </Button>
     </Form>
   );
 }

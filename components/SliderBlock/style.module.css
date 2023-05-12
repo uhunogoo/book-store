@@ -3,15 +3,21 @@
   display: inline-block;
   font-size: var(--text-size-title);
   font-weight: normal;
-  margin-top: 3.2rem;
+  margin-top: 4rem;
 }
 .title::first-letter {
   color: var(--text-green);
 }
 .row {
+  --col-gap: 2rem;
   display: flex;
   flex-wrap: nowrap;
-  flex: 1;
-  justify-content: space-between;
-  margin-top: var(--size-30);
+  margin: 0 calc( var(--col-gap) * -1);
+  margin-top: 3rem;
+}
+.rowItem {
+  padding: 0 var(--col-gap);
+}
+.rowItem > div{
+  height: 100%;
 }

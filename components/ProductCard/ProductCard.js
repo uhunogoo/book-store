@@ -2,13 +2,16 @@ import Image from 'next/image';
 
 import styles from './style.module.css';
 import Button from '../Button/Button';
-import { Cart, Favorite } from '../Icons/Icons';
+import { Favorite } from '../Icons/Icons';
 
 function ProductCard({ image, title, subtitle, price, ...delegated }) {
   if (!image) {
     console.error( 'please check your image prop' );
     return;
   }
+
+  const width = image.width ? image.width : 230 
+  const height = image.height ? image.height : 315 
 
   const nf = new Intl.NumberFormat("uk", {
     style: "currency",
@@ -24,16 +27,16 @@ function ProductCard({ image, title, subtitle, price, ...delegated }) {
       className={ styles.card }
     >
       <div className={styles.topContainer}>
-        <Image className={styles.productImage} src={ image.src } width={230} height={315} alt={ image.title } title={ `${ image.title }, зображення` } />
+        <Image
+          className={styles.productImage} 
+          src={ image.src } 
+          width={width} 
+          height={height} 
+          alt={ image.title } 
+          title={ `${ image.title }, зображення` } 
+        />
         {!!price && (
           <div className={ styles.actions }>
-            <Button 
-              className={ styles.button }
-              type="button" 
-              title="Додати до кошика"
-            >
-              <Cart />
-            </Button>
             <Button 
               className={ styles.button }
               title="Дадати в улюблене" 
@@ -55,9 +58,9 @@ function ProductCard({ image, title, subtitle, price, ...delegated }) {
           <div className={ styles.price }>
             <span>{ nf.format( price) }</span>
           </div>
-          {/* <Button type="button" title="Додати до кошика">
-            <Cart color={ 'var(--text-green)' }/>
-          </Button> */}
+          <Button title="Купити" visual="outline">
+            <span>Купити</span>
+          </Button>
         </div>
       )}
 

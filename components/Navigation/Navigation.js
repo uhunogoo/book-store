@@ -7,26 +7,28 @@ function Navigation({ children, navigationList = [], ...delegated }) {
   return (
     <nav {...delegated} >
       <ContentWrapper main={ false } className={ styles.topNavigation } >
-          { navigationList.map( ({ link, title }, id) => {
-            const isLastItem = (navigationList.length - 1) === id;
-            return (
-              <>
-                <Link 
-                  key={ title } 
-                  href={link} 
-                  className={styles.link}
-                  prefetch={false}
-                >
-                  { title }
-                </Link>
-                {!isLastItem && (
-                  <span className={ styles.delimiter } />
-                ) }
-              </>
-            );
-          }) }
+          { navigationList.map( ({ link, title }, id) => (
+            <NavigationItem key={ title } link={link} title={title}>
+              {( id > 0 ) && <span className={ styles.delimiter } /> }
+            </NavigationItem>
+          ) )}
         </ContentWrapper>
     </nav>
+  );
+}
+
+function NavigationItem({ title, link, children }) {
+  return (
+    <>
+      { children }
+      <Link
+        href={link} 
+        className={styles.link}
+        prefetch={false}
+      >
+        { title }
+      </Link>
+    </>
   );
 }
 

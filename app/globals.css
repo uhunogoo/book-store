@@ -20,6 +20,7 @@
 
   --shadow-color: 0deg 0% 63%;
   --drop-shadow: 4px 8px 12px hsla(0, 0%, 23%, 0.3);
+  --drop-shadow-md: 2px 4px 6px hsla(0, 0%, 23%, 0.3);
 }
 
 * {

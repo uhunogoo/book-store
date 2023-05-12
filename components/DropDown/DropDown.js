@@ -19,7 +19,7 @@ gsap.registerEffect({
     gsap.set(listItems, { opacity: 1, yPercent: 0, rotate: '0deg' });
     
     const animation = gsap.timeline();
-    animation.fromTo(dropDown, {
+    animation.fromTo(q('.gsapDorp'), {
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
     }, {
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
@@ -28,6 +28,7 @@ gsap.registerEffect({
     animation.from(listItems, {
       opacity: 0,
       yPercent: 100,
+      x: 40,
       rotate: '-5deg',
       stagger: {
         ease: 'sine.out',
@@ -53,7 +54,7 @@ gsap.registerEffect({
     const q = gsap.utils.selector(dropDown);  
     const listItems = q('a');
     const animation = gsap.timeline();
-    animation.fromTo(dropDown, { 
+    animation.fromTo(q('.gsapDorp'), { 
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
     }, { 
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
@@ -62,6 +63,7 @@ gsap.registerEffect({
     animation.to(listItems, {
       opacity: 0,
       yPercent: 100,
+      x: 20,
       rotate: '-5deg',
       stagger: {
         each: 0.02,
@@ -118,9 +120,9 @@ function DropDown({ data }) {
           unmountOnExit
           onEnter={handleOnEnter}
           onExit={handleOnExit}
-          timeout={600}
+          timeout={800}
         >
-          <DropDownContent data={ data }>
+          <DropDownContent data={ data } className="gsapDorp">
             <DecoratedBooks className="gsapBooks" style={{ margin: '1.75rem -1.2rem -1.5rem -1.2rem' }} />
           </DropDownContent>
         </CSSTransition>

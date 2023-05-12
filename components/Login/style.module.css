@@ -81,7 +81,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  transform: translateY(-100%);
+  transform: translateY(-1rem);
 }
 a.topRight {
   text-decoration: underline;
@@ -106,15 +106,16 @@ a.topRight {
 
 .social {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: 1.5rem;
   margin-top: 0.75rem;
   margin-bottom: 1.7rem;
 }
 .social button {
   color: var(--text-grey);
-  display: flex;
   font-size: var(--text-small);
-  gap: 0.5em;
-  align-items: center;
+  width: 2rem;
+}
+.social button svg {
+  width: 100%;
 }

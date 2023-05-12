@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
 import { DialogTitle } from '@radix-ui/react-dialog';
 
 import styles from './style.module.css';
@@ -10,8 +9,9 @@ import Button from '../Button/Button';
 import LogInForm from './LogInForm';
 import SignInForm from './SignInForm';
 import ForgetPassword from './ForgetPassword';
+import { Facebook, Google, Twitter } from '../Icons/Icons';
 
-function UserForm() {
+function UserForm({ setOpen }) {
   const [succes, setSucces] = React.useState( false );
   const [formType, setFormType] = React.useState( 'login' );
 
@@ -22,6 +22,7 @@ function UserForm() {
 
   function handleSucces(e) {
     e.preventDefault();
+    setOpen( false );
     setSucces( true );
   }
 
@@ -79,16 +80,13 @@ function UserForm() {
             </h3>
             <div className={styles.social}>
               <Button>
-                <Image src="/google.svg" height={20} width={20} alt="icon"/>
-                Google
+                <Google color={'var(--text-green)'} width={24} height={24} />
               </Button>
               <Button>
-                <Image src="/facebook.svg" height={20} width={20} alt="icon"/>
-                Facebook
+                <Facebook color={'var(--text-green)'} width={24} height={24} />
               </Button>
               <Button>
-                <Image src="/twitter.svg" height={20} width={20} alt="icon"/>
-                Twitter
+                <Twitter color={'var(--text-green)'} width={24} height={24} />
               </Button>
             </div>
           </div>

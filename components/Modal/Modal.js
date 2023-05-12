@@ -1,13 +1,14 @@
 "use client";
-import Image from 'next/image';
+
 import styles from'./modal.module.css';
 import * as Dialog from '@radix-ui/react-dialog';
 import Button from '../Button/Button';
 import DecoratedBooks from '../DecoratedBooks/DecoratedBooks';
+import { Close } from '../Icons/Icons';
 
-function Modal({ children, trigger, title }) {
+function Modal({ children, trigger, open, setOpen, title }) {
   return (
-    <Dialog.Root modal>
+    <Dialog.Root modal open={ open } onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         { trigger }
       </Dialog.Trigger>
@@ -22,7 +23,7 @@ function Modal({ children, trigger, title }) {
 
           <Dialog.Close asChild>
             <Button className={ styles.IconButton } aria-label="Close" title="Close modal">
-              <Image src="/close.svg" width={12} height={12} alt="close icon" />
+              <Close color={'var(--text-grey)'} />
             </Button>
           </Dialog.Close>
         </Dialog.Content>

@@ -177,6 +177,48 @@ export const SITE_DATA = {
       },
       title: 'Анна Тодд'
     },
+    {
+      id: 3,
+      image: {
+        src: '/images/authors/image-3.jpg',
+        title: 'Джоан Роулінг'
+      },
+      title: 'Джоан Роулінг'
+    },
+    {
+      id: 4,
+      image: {
+        src: '/images/authors/image-4.jpg',
+        title: 'Роберт Члдині'
+      },
+      title: 'Роберт Члдині'
+    },
+  ],
+  series: [
+    {
+      id: 1,
+      image: {
+        src: '/images/series/image-1.jpg',
+        title: 'Ведьмак',
+        width: 320,
+        height: 320,
+      },
+      title: 'Ведьмак',
+      subtitle: 'Анджей Сапковский',
+      price: 850
+    },
+    {
+      id: 2,
+      image: {
+        src: '/images/series/image-2.jpg',
+        title: 'Таймлесс',
+        width: 320,
+        height: 320,
+      },
+      title: 'Таймлесс',
+      subtitle: 'Керстин Гир',
+      price: 400
+    },
   ],
   top_selling: {
     title: "Топ",
@@ -201,8 +243,26 @@ export const SITE_DATA = {
     list: [
       {id: 0},
       {id: 1},
+      {id: 2},
+      {id: 3},
+    ]
+  },
+  select_series: {
+    title: "Серії",
+    list: [
       {id: 0},
       {id: 1},
+    ]
+  },
+  recently_view: {
+    title: "Переглянуті Вами",
+    list: [
+      {id: 0},
+      {id: 1},
+      {id: 4},
+      {id: 3},
+      {id: 5},
+      {id: 7},
     ]
   }
 }
