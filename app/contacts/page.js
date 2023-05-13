@@ -1,6 +1,10 @@
-import Image from 'next/image';
-import styles from './page.module.css'
 import Link from 'next/link';
+import Image from 'next/image';
+
+import styles from './page.module.css'
+
+import FormElement from './Form';
+import { Clock, LocationMarker, Mail, Phone } from 'components/Icons/Icons';
 
 export default function Page() {
   return (
@@ -9,41 +13,51 @@ export default function Page() {
       <div className={styles.row}>
         <div className={styles.image}>
           <Image 
-            src="/images/contacts/image-1.jpg" 
+            src="/images/contacts/map-image.png" 
             sizes="(max-width: 768px) 100vw" 
+            alt="карта магазинів"
+            style={{objectFit: "cover"}} 
             priority
-            alt="карта магазинів" 
             fill
           />
         </div>
-        <div className="text">
-          <div className="location">
+        <div className={styles.textColumn}>
+          <InformationBlock icon={ <LocationMarker color={'var(--text-green)'} /> }>
             <p>
               Вул. Шевченка 16а, м. Вінниця, Україна
             </p>
-          </div>
-          <div className="time">
+          </InformationBlock>
+          <InformationBlock icon={ <Clock color={'var(--text-green)'} /> } >
             <p>
               Час роботи:
             </p>
-            <p>
-              Пн - Пт: 9:00 - 20:00
-            </p>
-            <p>
-              Сб: 10:00 - 18:00
-            </p>
-            <p>
-              Нд: вихідний
-            </p>
-          </div>
-          <div className="phones">
+            <ul>
+              <li>
+                Пн - Пт: 9:00 - 20:00
+              </li>
+              <li>
+                Сб: 10:00 - 18:00
+              </li>
+              <li>
+                Нд: вихідний
+              </li>
+            </ul>
+          </InformationBlock>
+          
+          <InformationBlock  icon={ <Phone color={'var(--text-green)'} /> }>
             <Link href={'tel:+380630000000'}>
               +380 630 000 000
             </Link>
             <Link href={'tel:+380960000000'}>
               +380 960 000 000
             </Link>
-          </div>
+          </InformationBlock>
+
+          <InformationBlock  icon={ <Mail color={'var(--text-green)'} /> }>
+            <Link href={'mailto:bookway@gmail.com'}>
+              bookway@gmail.com
+            </Link>
+          </InformationBlock>
         </div>
       </div>
       <p>
@@ -58,6 +72,26 @@ export default function Page() {
       <p>
         Якщо Вас цікавлять питання реклами, співробітництва тощо, просимо заповнити контактну форму нижче або безпосередньо на електронну адресу магазину.
       </p>
+      <h2>
+        Заповніть форму для зв'язку з нами
+      </h2>
+      <FormElement className={ styles.form } />
     </main>
   );
 }
+
+function InformationBlock({ icon = false, children }) {
+  return (
+    <div className={ styles.informationBlock }>
+      {icon && (
+        <div className={ styles.icon }>
+          { icon }
+        </div>
+      )}
+      <div className={ styles.text }>
+        { children }
+      </div>
+    </div>
+  );
+}
+

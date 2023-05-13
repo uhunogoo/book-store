@@ -5,8 +5,9 @@
 }
 
 .main h1,
-.main h2 {
-  font-weight: 700;
+.main h2,
+.main h3 {
+  font-family: var(--roboto-bold);
 }
 .main h1 {
   font-size: 2.5rem;
@@ -18,7 +19,6 @@
   margin-top: 3rem;
 }
 .main h3 {
-  font-weight: 700;
   font-size: var(--text-size);
   margin-top: 1.5rem;
 }
@@ -27,7 +27,6 @@
 }
 .main p,
 .main ul {
-  font-weight: normal;
   line-height: 1.5;
   margin-top: 1.5em;
 }

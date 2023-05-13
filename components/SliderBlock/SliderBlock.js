@@ -1,7 +1,7 @@
 import React from 'react';
 // import { gsap } from 'gsap';
 import styles from './style.module.css';
-import ProductCard from '@/components/ProductCard/ProductCard';
+import ProductCard from 'components/ProductCard/ProductCard';
 
 function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
   return (

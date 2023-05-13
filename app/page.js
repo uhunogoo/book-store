@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { SITE_DATA } from '@/data';
 
-import Navigation from '@/components/Navigation/Navigation';
-import SliderBlock from '@/components/SliderBlock/SliderBlock';
-import Banner from '@/components/Banner/Banner';
+import Navigation from 'components/Navigation/Navigation';
+import SliderBlock from 'components/SliderBlock/SliderBlock';
+import Banner from 'components/Banner/Banner';
 
 export default function Page() {
   const { 

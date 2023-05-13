@@ -1,13 +1,13 @@
 "use client"
 import { SITE_DATA } from '@/data';
 
-import Button from '@/components/Button/Button'
+import Button from 'components/Button/Button'
 
 import styles from './page.module.css'
-import ProductCard from '@/components/ProductCard/ProductCard';
+import ProductCard from 'components/ProductCard/ProductCard';
 import { range } from '@/utils';
 import { gsap } from 'gsap';
-import SelectBlock from '@/components/SelectBlock/SelectBlock';
+import SelectBlock from 'components/SelectBlock/SelectBlock';
 import React from 'react';
 
 export default function Page({ perpage = 24 }) {

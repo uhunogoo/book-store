@@ -1,13 +1,35 @@
 import './globals.css';
 import { Roboto } from 'next/font/google';
-import PageHeader from '@/components/PageHeader/PageHeader';
-import ContentWrapper from '@/components/ContentWrapper/ContentWrapper';
-import PageFooter from '@/components/PageFooter/PageFooter';
+import PageHeader from 'components/PageHeader/PageHeader';
+import ContentWrapper from 'components/ContentWrapper/ContentWrapper';
+import PageFooter from 'components/PageFooter/PageFooter';
 
-const roboto = Roboto({ 
+// const fontsParameters = {
+//   subsets: ['cyrillic'],
+//   display: 'swap',
+//   style: 'normal',
+// }
+
+const roboto400 = Roboto({ 
   subsets: ['cyrillic'],
   display: 'swap',
-  weight: ['400', '700']
+  style: 'normal',
+  weight: '400',
+  variable: '--roboto'
+})
+const roboto400_italick = Roboto({ 
+  subsets: ['cyrillic'],
+  display: 'swap',
+  style: 'italic',
+  weight: '400',
+  variable: '--roboto-italic'
+})
+const roboto700 = Roboto({
+  subsets: ['cyrillic'],
+  display: 'swap',
+  style: 'normal',
+  weight: '700',
+  variable: '--roboto-bold'
 })
 
 export const metadata = {
@@ -16,9 +38,10 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const fontsVariables = `${ roboto400.variable } ${roboto400_italick.variable} ${roboto700.variable}`;
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={ fontsVariables }>
         
         <PageHeader />
 

@@ -20,7 +20,7 @@ export default function Page() {
           </p>
         </div>
         <div className={ styles.image }>
-          <Image src="/images/content/image-2.jpg" fill alt='image - 2' />
+          <Image src="/images/content/image-2.jpg" fill style={{objectFit: "cover"}} alt='image - 2' />
         </div>
       </div>
       <h2>
@@ -54,7 +54,7 @@ export default function Page() {
       </p>
       <div className={styles.row2}>
         <div className={ styles.image2 }>
-          <Image src="/images/content/image-3.jpg" fill alt='image - 3' />
+          <Image src="/images/content/image-3.jpg" fill style={{objectFit: "cover"}} alt='image - 3' />
         </div>
         <div style={{ gridArea: 'text-1' }}>
           <h2 className={styles.title}>

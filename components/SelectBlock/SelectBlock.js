@@ -4,30 +4,21 @@ import styles from './style.module.css';
 import React from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import Button from '../Button/Button';
+import Button from 'components/Button/Button';
 import { SITE_DATA } from '@/data';
-
-const initialToppings = {
-  anchovies: false,
-  chicken: false,
-  tomatoes: false,
-  anchovies: false,
-  chicken2: false,
-  anchovies2: false,
-  tomatoes2: false,
-  chicken5: false,
-  anchovies3: false,
-  tomatoes2: false,
-}
 
 function SelectBlock() {
   const {dropDown} = SITE_DATA;
   
-  const genres = {}; 
-  dropDown.forEach((genre) => {
-    genres[genre.title] = false;
+  const genres = React.useMemo(() => {
+    const genres = {};
+    dropDown.forEach((genre) => {
+      genres[genre.title] = false;
+      return genres;
+    });
+    
     return genres;
-  });
+  }, [dropDown]); 
 
   const [
     pizzaToppings,
