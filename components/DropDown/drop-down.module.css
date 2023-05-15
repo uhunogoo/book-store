@@ -67,12 +67,14 @@
 .list li {
   overflow: hidden;
   position: relative;
+  height: var(--text-size);
 }
 .list a {
-  display: inline-block;
+  display: block;
   /* transform-origin: 100% 0; */
   transition: color 0.2s ease-in-out;
-  will-change: transform, opacity;
+  /* will-change: transform; */
+  position: absolute;
 }
 .list li + li {
   margin-top: 1rem;

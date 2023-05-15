@@ -4,20 +4,13 @@ import styles from './style.module.css';
 import Button from '../Button/Button';
 import { Favorite } from '../Icons/Icons';
 import Link from 'next/link';
+import { currencyFormat } from '@/utils';
 
 function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
   if (!image) {
     console.error( 'please check your image prop' );
     return;
   }
-
-  const nf = new Intl.NumberFormat("uk", {
-    style: "currency",
-    currency: "UAH",
-    currencyDisplay: 'symbol',
-    maximumFractionDigits: 0,
-  });
-  
 
   return(
     <div
@@ -51,7 +44,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
       {!!price && (
         <div className={ styles.footer }>
           <div className={ styles.price }>
-            <span>{ nf.format( price) }</span>
+            <span>{ currencyFormat.format( price) }</span>
           </div>
           <Button title="Купити" visual="outline">
             <span>Купити</span>

@@ -1,0 +1,30 @@
+.h1 {
+  font-size: var(--size-30);
+}
+.h2 {
+  font-size: var(--text-size);
+  color: var(--text-green);
+}
+.product {
+  display: grid;
+  column-gap: 3.75rem;
+  grid-template-columns: 375px 1fr;
+}
+.row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+.productData {
+  display: flex;
+  justify-content: space-between;
+}
+.actions {
+  align-items: center;
+  display: flex;
+  gap: var(--size-30);
+  justify-content: flex-end;
+  margin-top: 4rem;
+}
+.actions button {
+  margin: 0;
+}

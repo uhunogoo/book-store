@@ -28,10 +28,10 @@ export default function Page() {
     return { image };
   } );
 
-  // inormation
+  // information
   function separate(target, array) {
     const newBooks = target.map((book) => {
-      const {inormation, ...data} = array[book.id];
+      const {information, ...data} = array[book.id];
       return data;
     });
     return newBooks;

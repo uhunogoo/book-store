@@ -23,7 +23,8 @@ gsap.registerEffect({
     const listItems = q('a');
     
     // Reset before animation start
-    gsap.set(listItems, { opacity: 1, yPercent: 0, x: 0, scaleY: 1, rotate: '0deg', transformOrigin: '0% 100%' });
+    gsap.config({ force3D: false });
+    gsap.set(listItems, { opacity: 1, yPercent: 0, x: 0, scale: 1, rotate: '0deg' });
     gsap.set(q('.gsapBooks'), { skewX: '0deg', backgroundPositionX: '-211px' });
     
     const animation = gsap.timeline();
@@ -105,8 +106,8 @@ function DropDown({ data }) {
 
   React.useLayoutEffect(() => {
     const animationParams = {
-      yPercent: 120,
-      scaleY: 1.4,
+      yPercent: 140,
+      scale: 1.1,
       transformOrigin: '0% 100%',
       bgX: 200
     };
