@@ -3,15 +3,13 @@ import Image from 'next/image';
 import styles from './style.module.css';
 import Button from '../Button/Button';
 import { Favorite } from '../Icons/Icons';
+import Link from 'next/link';
 
-function ProductCard({ image, title, subtitle, price, ...delegated }) {
+function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
   if (!image) {
     console.error( 'please check your image prop' );
     return;
   }
-
-  const width = image.width ? image.width : 230 
-  const height = image.height ? image.height : 315 
 
   const nf = new Intl.NumberFormat("uk", {
     style: "currency",
@@ -27,14 +25,11 @@ function ProductCard({ image, title, subtitle, price, ...delegated }) {
       className={ styles.card }
     >
       <div className={styles.topContainer}>
-        <Image
-          className={styles.productImage} 
-          src={ image.src } 
-          width={width} 
-          height={height} 
-          alt={ image.title } 
-          title={ `${ image.title }, зображення` } 
-        />
+        
+        <ProductImageWrapper slug={slug}>
+          <ProductImage image={ image }/>
+        </ProductImageWrapper>
+
         {!!price && (
           <div className={ styles.actions }>
             <Button 
@@ -65,6 +60,35 @@ function ProductCard({ image, title, subtitle, price, ...delegated }) {
       )}
 
     </div>
+  );
+}
+
+function ProductImageWrapper({ slug, children}) {
+  const isSlug = !!slug;
+  if (isSlug) {
+    return (
+      <Link href={`/${ slug }`}>
+        { children }
+      </Link>
+    );
+  }
+
+  return children;
+}
+
+function ProductImage({ image }) {
+  const width = image.width ? image.width : 230;
+  const height = image.height ? image.height : 315; 
+
+  return (
+    <Image
+      className={styles.productImage} 
+      src={ image.src } 
+      width={width} 
+      height={height} 
+      alt={ image.title } 
+      title={ `${ image.title }, зображення` } 
+    />
   );
 }
 

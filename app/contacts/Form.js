@@ -1,17 +1,26 @@
 "use client";
+
+import React from 'react';
 import Button from 'components/Button/Button';
 import styles from './style.module.css'
-import React from 'react';
 
 function FormElement({ ...delegated }) {
+  const form = React.useRef();
   const [comment, setComment] = React.useState('');
   const [name, setName] = React.useState('');
   const [surname, setSurName] = React.useState('');
   const [email, setEmail] = React.useState('');
 
   function handleSubmit(e) {
-    console.log( e )
-    // e.preventDefault();
+    e.preventDefault();
+
+    const needValidation = form.current.querySelectorAll('[required]');
+
+    if( needValidation.length ) {
+      needValidation.forEach( input => {
+        input.classList.remove( styles.invalid );
+      });
+    }
 
     setComment('');
     setSurName('');
@@ -20,80 +29,76 @@ function FormElement({ ...delegated }) {
   }
   
   React.useEffect(() => {
-    const nameInput = document.querySelector('#name-field');
-    function validation() {
-      console.log( 'wrong' )
-    } 
-    nameInput.addEventListener('invalid', validation);
+    const needValidation = form.current.querySelectorAll('[required]');
+
+
+    function validation(event) {
+      event.target.classList.add( styles.invalid );
+    }
+
+    if( needValidation.length ) {
+      needValidation.forEach( input => {
+        input.addEventListener('invalid', validation);
+      });
+    }
     
     return () => {
-      nameInput.removeEventListener('invalid', validation);
+      if( needValidation.lenght ) {
+        needValidation.forEach( input => {
+          input.removeEventListener('invalid', validation);
+        });
+      }
     }
-  }, []);
+  }, [ styles ]);
 
   return (
-    <form onSubmit={handleSubmit} className={ styles.form }>
+    <form ref={form} onSubmit={handleSubmit} className={ styles.form }>
 
       <div className={ styles.row }>
-        <fieldset name='name'>
-          <label htmlFor="name-field">
-            Ім'я:
-          </label>
-          <input
-            id="name-field"
-            required
-            placeholder="Ваше ім'я..."
-            value={name}
-            onChange={event => {
-              setName(event.target.value);
-            }}
-          />
-          <span className={ styles.error }>Введіть Ваше ім'я</span>  
-        </fieldset>
-        <fieldset>
-          <label htmlFor="surname-field">
-            Фамілія:
-          </label>
-          <input
-            id="surname-field"
-            placeholder="Ваша Фамілія..."
-            required
-            value={surname}
-            onChange={event => {
-              setSurName(event.target.value);
-            }}
-          />
-        </fieldset>
-      </div>
-      <fieldset>
-        <label htmlFor="email-field">
-          Пошта:
-        </label>
-        <input
-          id="email-field"
-          placeholder="Ваш email..."
+        <Fieldset 
+          id="name-field"
           required
-          value={email}
+          label="Ваше ім'я"
+          error="Ви забули вказати своє ім'я"
+          value={name}
           onChange={event => {
-            setEmail(event.target.value);
+            setName(event.target.value);
           }}
         />
-      </fieldset>
-      
-      <fieldset>
-        <label htmlFor="comment-field">
-          Ваше повідомлення:
-        </label>
-        <textarea
-          id="comment-field"
-          value={comment}
+        <Fieldset 
+          id="surname-field"
+          required
+          label="Ваша фамілія"
+          error="Ви забули вказати свою фамілію"
+          value={surname}
           onChange={event => {
-            setComment(
-              event.target.value
-            );
+            setSurName(event.target.value);
           }}
         />
-      </fieldset> 
+      </div>
+      <Fieldset 
+        id="email-field"
+        required
+        label="Пошта"
+        error="Ви забули вказати свій email"
+        value={email}
+        onChange={event => {
+          setEmail(event.target.value);
+        }}
+      />
+      <Fieldset
+        required
+        label="Ваше повідомлення"
+        error="Ви забули заповнити це поле"
+        tag="textarea"
+        rows={4}
+        value={comment}
+        onChange={event => {
+          setComment(
+            event.target.value
+          );
+        }}
+      />
 
       <Button 
         visual="default" 
@@ -104,6 +109,25 @@ function FormElement({ ...delegated }) {
       </Button>
     </form>
   )
+}
+function Fieldset({ id, label, error, tag, ...delegated }) {
+  const generatedId = React.useId();
+  const appliedId = id || generatedId;
+  const Tag = tag || 'input';
+
+  return (
+    <fieldset>
+      <Tag
+        id={ appliedId }
+        placeholder=""
+        {...delegated}
+      />
+      <label htmlFor={ appliedId }>
+        { label }:
+      </label>
+      { !!error && <span className={ styles.error }>{ error }</span>  }
+    </fieldset>
+  );
 }
 
 export default FormElement;

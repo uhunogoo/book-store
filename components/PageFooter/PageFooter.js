@@ -9,7 +9,7 @@ function PageFooter() {
   return (
     <>
       <DecoratedBooks style={{ marginTop: '5.25rem' }} />
-      <footer style={{ backgroundColor: 'var(--background-green)' }}>
+      <footer style={{ backgroundColor: 'hsl(var(--background-green))' }}>
         <ContentWrapper main={false} className={styles.footer}>
           <div style={{ gridArea: 'column1' }}>
             <h3 className={ styles.title }>Спосіб доставки</h3>

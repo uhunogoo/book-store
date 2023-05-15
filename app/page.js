@@ -17,14 +17,25 @@ export default function Page() {
     authors,
     books 
   } = SITE_DATA;
-  const topSelling = top_selling.list.map((book) => books[book.id] );
-  const newBooks = new_books.list.map((book) => books[book.id] );
-  const weekAuthors = week_authors.list.map((book) => authors[book.id] );
-  const selectedSeries = select_series.list.map((book) => series[book.id] );
+  
+  const topSelling = separate( top_selling.list, books );
+  const newBooks = separate( new_books.list, books );
+  const weekAuthors = separate( week_authors.list, authors );
+  const selectedSeries = separate( select_series.list, series );
+  
   const recentlyView = recently_view.list.map((book) => {
     const { image } = books[book.id];
     return { image };
   } );
+
+  // inormation
+  function separate(target, array) {
+    const newBooks = target.map((book) => {
+      const {inormation, ...data} = array[book.id];
+      return data;
+    });
+    return newBooks;
+  }
 
   return (
     <>

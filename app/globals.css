@@ -6,7 +6,7 @@
 
   --size-30: 1.9rem;
 
-  --background-green: #B0C589;
+  --background-green: 81deg,34%,65%;
   
   --danger: #C6230D;
   --text-green: #7D9947;
@@ -17,7 +17,6 @@
   --border-radius: 12px;
 
   --blackA9: hsla(0, 0%, 0%, 0.439);
-
 
   --shadow-color: 0deg 0% 63%;
   --drop-shadow: 4px 8px 12px hsla(0, 0%, 23%, 0.3);
@@ -119,7 +118,7 @@ a:hover {
 }
 
 input:focus {
-  outline: 1px solid var(--background-green);
+  outline: 1px solid nsl(var(--background-green));
 }
 fieldset {
   all: unset;

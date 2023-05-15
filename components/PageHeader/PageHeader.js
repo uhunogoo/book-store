@@ -14,6 +14,7 @@ import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
 import DecoratedTree from './DecoratedTree';
 import { Cart, Favorite, User } from '../Icons/Icons';
+import Link from 'next/link';
 
 function PageHeader() {
   const { top_navigation, dropDown } = SITE_DATA;
@@ -29,9 +30,11 @@ function PageHeader() {
           navigationList={ topLinks } 
         />
 
-        <div style={{ background: 'var(--background-green)' }}>
+        <div style={{ background: 'hsl(var(--background-green))' }}>
           <ContentWrapper main={ false } className={ styles.middleMenuWrapper }>
-            <Image className={styles.logo} src="/logo.png" width={220} height={87} alt="site logo" title="Oculus site logo" />
+            <Link href="/">
+              <Image className={styles.logo} src="/logo.png" width={220} height={87} priority alt="site logo" title="Oculus site logo" />
+            </Link>
             
             <DropDown data={ dropDown }/>
 

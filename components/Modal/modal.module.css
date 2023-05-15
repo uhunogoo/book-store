@@ -28,7 +28,7 @@
 }
 .DialogContent::before {
   box-sizing: unset;
-  border: 1px solid var(--background-green);
+  border: 1px solid hsl(var(--background-green));
   border-bottom: 0;
   content: '';
   display: block;

@@ -21,7 +21,7 @@
 }
 
 .default {
-  background: var(--background-green);
+  background: hsl(var(--background-green));
   font-size: var(--text-size);
   max-width: 166px;
   margin: 0 auto;

@@ -47,7 +47,7 @@
   transition: 0.3s ease-out
 }
 .group input:focus {
-  border: 1px solid var(--background-green);
+  border: 1px solid hsl(var(--background-green));
 }
 
 .visibilityHandle {
