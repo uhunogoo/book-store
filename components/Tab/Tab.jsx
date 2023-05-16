@@ -2,12 +2,14 @@
 
 import React from 'react';
 import Button from '../Button/Button';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { gsap } from 'gsap';
+import { animated, useTransition } from '@react-spring/web';
+
+import styles from './sstyle.module.css'
+import { useControls } from 'leva';
 
 function Tab({ tabs }) {
-  // const [ currentTab, setCurrentTab ] = React.useState({ id: 0, motion: 'next' });
   const [ currentTab, setCurrentTab ] = React.useState( 0 );
+  const [ direction, setDirection ] = React.useState('next');
 
   const [ tabsTitles, tabsContent ] = React.useMemo(() => {
     const titles = [];
@@ -20,37 +22,11 @@ function Tab({ tabs }) {
     return [ titles, contents ];
   }, [tabs]);
   
-  function handleVisibleTab(id) {
-    setCurrentTab( id );
-  }
-
-  // const handleOnEnter = (node) => {
-  //   const value = currentTab.motion === 'prev' ? 100 : -100;
-  //   gsap.set(node, { opacity: 0, xPercent: value });
-  // };
-
-  // const handleOnEntering = (node) => {
-  //   gsap.to(node, { opacity: 1, xPercent: 0, duration: 0.5 });
-  // };
-    
-  // const handleOnExit = (node) => {
-  //   gsap.set(node, { opacity: 1, xPercent: 0 });
-  // };
-  // const handleOnExiting = (node) => {
-  //   const value = currentTab.motion === 'prev' ? 100 : -100;
-  //   console.log( 'handleOnExiting' )
-  //   gsap.to(node, { opacity: 0, xPercent: value, duration: 0.2 });
-  // };
-  const handleOnEnter = (node) => {
-    console.log( 'enter: ' + currentTab )
-    // console.log( 'ent: ' + currentTab.motion )
-    // const value = currentTab.motion === 'prev' ? 100 : -100;
-    // gsap.from(node, { opacity: 0, xPercent: value, duration: 0.2 });
-  }
-  const handleOnExit = (node) => {
-    console.log( 'exit: ' + currentTab )
-    // console.log( 'ext: ' + currentTab.motion )
-    // gsap.to(node, { opacity: 0, xPercent: value, duration: 0.2 });
+  
+  function handleVisibleTab(newID) {
+    if ( newID === currentTab ) return;
+    setDirection(() => newID > currentTab ? 'next' : 'prev');
+    setCurrentTab( newID );
   }
 
   return (
@@ -67,29 +43,66 @@ function Tab({ tabs }) {
           </Button>
         )) }
       </div>
-      <div className="tabsContent">
-        <TransitionGroup>
-          {tabsContent.map((content, id) => (
-            currentTab === id && (
-              <CSSTransition 
-                // in={ currentTab === id }
-                key={id}
-                timeout={800}
-                onEnter={handleOnEnter}
-                onExit={handleOnExit}
-                // onEntering={handleOnEntering}
-                // onExiting={handleOnExiting}
-                // mountOnEnter
-                // unmountOnExit
-              >
-                <div className="content">{ content }</div>
-              </CSSTransition>
-            )
-          ))}
-        </TransitionGroup>
-      </div>
+      <TabContent tabsContent={ tabsContent } currentTab={currentTab} direction={ direction }/>
     </div>
   )
+}
+
+function TabContent({ tabsContent, currentTab, direction }) {
+  const d = direction === 'prev' ? -1 : 1;
+  const controls = useControls('Табуляція', {
+    scale: { value: 1.2, min: 0.8, max: 2, step: 0.1 },
+    x: { value: 30, min: -100, max: 100, step: 1 },
+    skew: { value: 5, min: -30, max: 30, step: 1 },
+    mass: { value: 0.8, min: 0.1, max: 2, step: 0.1 },
+    tension: { value: 600, min: 400, max: 1000, step: 1 },
+    friction: { value: 40, min: 20, max: 120, step: 1 },
+  })
+  const value = { 
+    scale: 1.2,
+    x: 30, 
+    skew: 5,
+    mass: 0.8,
+    tension: 600,
+    friction: 40,
+    ...controls
+  }
+
+  
+  const transitions = useTransition(currentTab, {
+    keys: currentTab,
+    exitBeforeEnter: true,
+    from: {  
+      filter: 'blur(0.7rem)',
+      opacity: 0,
+      transform: `scaleX(${value.scale}) skewX(${value.skew * 1.5* d}deg) translate3d(${value.x* d}%,0,0)` 
+    },
+    enter: {
+      filter: 'blur(0)',
+      opacity: 1,
+      transform: 'scaleX(1) skewX(0deg) translate3d(0%,0,0)' 
+    },
+    leave: { 
+      filter: 'blur(0.8rem)', 
+      opacity: 0,
+      transform: `scaleX(${value.scale}) skewX(${value.skew * 1.5* d}deg) translate3d(${-value.x * d}%,0,0)`,
+    },
+    config: {
+      mass: value.mass,
+      tension: value.tension,
+      friction: value.friction
+    }
+  });
+
+  return (
+    <div className={styles.wrapper}>
+      {transitions((style, i) => (
+        <animated.div key={i} style={ style } className={styles.content}>
+          { tabsContent[i] }
+        </animated.div>
+      ))}
+    </div>
+  );
 }
 
 export default Tab;
