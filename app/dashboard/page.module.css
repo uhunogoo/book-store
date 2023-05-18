@@ -1,0 +1,14 @@
+.main {
+  max-width: var(--max-width);
+  min-height: 100vh;
+}
+.content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 190px 1fr;
+}
+.container {
+  background: white;
+  filter: drop-shadow(var(--drop-shadow));
+  padding: 2rem;
+}
