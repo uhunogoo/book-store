@@ -28,7 +28,7 @@
 .date {
   justify-self: end;
   display: inline-block;
-  margin-top: var(--size-30);
+  margin-top: 1rem;
 }
 .topRow {
   align-items: center;

@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         
         <PageHeader />
 
-        <ContentWrapper>
+        <ContentWrapper style={{ minHeight: '100vh' }}>
           {children}
         </ContentWrapper>
 

@@ -6,6 +6,7 @@ import { useClickOutside } from '@/effects/useClickOutside';
 import { CartIcon } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
 import { CSSTransition } from 'react-transition-group';
+import CartContent from './CartContent';
 
 function Cart() {
   const ctx = React.useMemo( () => gsap.context(() => {}), []);
@@ -13,17 +14,15 @@ function Cart() {
   const ref = useClickOutside(setDropDownStatus);
 
   React.useLayoutEffect(() => {
-    // const animationParams = {
-    //   yPercent: 140,
-    //   scale: 1.1,
-    //   transformOrigin: '0% 100%',
-    //   bgX: 200
-    // };
     ctx.add('open', (node) => {
-      return gsap.from( node, { yPercent: '+=20', opacity: 0 });
+      gsap.set(node, { yPercent: 100, opacity: 1 });
+      return gsap.from( node, { yPercent: 120, opacity: 0 });
     });
     ctx.add('close', (node) => {
-      return gsap.to( node, { yPercent: '+=20', opacity: 0 });
+      return gsap.to( node, { yPercent: 120, opacity: 0 });
+    });
+    ctx.add(() => {
+      gsap.config({ force3D: true })
     });
 
     return () => ctx.revert();
@@ -49,7 +48,7 @@ function Cart() {
         timeout={500}
       >
         <div className={ styles.cart }>
-          Cart
+          <CartContent />
         </div>
       </CSSTransition>
     </div>

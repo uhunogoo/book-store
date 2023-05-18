@@ -4,9 +4,105 @@
 .cart {
   background: white;
   bottom: 0;
+  padding: 0.5rem 0.5rem;
   position: absolute;
   right: 0;
-  transform: translate(0, 100%);
   min-height: 400px;
-  min-width: 400px;
+  max-width: 475px;
+  z-index: 4;
+  width: 100vw;
+}
+
+.cartContent {
+  padding: 1rem 1rem;
+  border: 1px solid var(--text-green);
+}
+.cartContent h4{
+  color: var(--text-green);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1rem 80px 1fr;
+  gap: 1rem;
+  padding: var(--text-size) 0;
+  padding-top: 0;
+}
+.item ~ .item {
+  padding-top: var(--text-size);
+  border-top: 1px solid var(--text-grey);
+}
+.col-1 {
+  align-items: center;
+  display: grid;
+  position: relative;
+}
+.col-1 span{
+  color: var(--text-green);
+  display: block;
+  position: absolute;
+  top: 0;
+}
+.col-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  width: auto;
+}
+.row {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.row > div:last-of-type {
+  justify-self: end;
+}
+.titles span {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+}
+.titles span::after {
+  background: linear-gradient(90deg, transparent 0%, white 100%);
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2em;
+}
+.titles span + span{
+  color: var(--text-green);
+  margin-top: 0.3em;
+}
+.productSKU,
+.count span {
+  font-size: 0.75rem;
+}
+.count,
+.counter {
+  display: flex;
+}
+.count {
+  align-self: start;
+  align-items: center;
+  gap: 0.7rem;
+}
+.counter {
+  gap: 0.3rem;
+}
+.counter button {
+  font-size: 0.9rem;
+  transition: color 0.2s ease-in;
+}
+.counter div,
+.counter button:hover {
+  color: var(--text-green);
 }

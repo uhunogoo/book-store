@@ -44,9 +44,9 @@ function Comments() {
   );
 }
 
-function CommentContainer({ image, ...props }) {
+export function CommentContainer({ image, style, ...props }) {
   return (
-    <div className={styles.comment}>
+    <div className={styles.comment} style={...style}>
       <div className="image">
         <Image {...image} alt={props.name} />
       </div>
@@ -58,7 +58,7 @@ function CommentContainer({ image, ...props }) {
           </div>
           <Rating rating={props.rating} />
         </div>
-        <p>{props.comment}</p>
+        <p style={{ marginTop: '0.7rem' }}>{props.comment}</p>
         <div className={ styles.date }>{props.date}</div>
       </div>
     </div>

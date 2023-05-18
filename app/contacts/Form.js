@@ -2,15 +2,16 @@
 
 import React from 'react';
 import Button from 'components/Button/Button';
-import styles from './style.module.css'
+// import styles from './style.module.css'
+import Form from '/components/NewForm/Form';
+import { Fieldset, InputsRow } from '@/components/NewForm/Form';
 
-function FormElement({ ...delegated }) {
+function FormElement({ children, ...delegated }) {
   const form = React.useRef();
   const [comment, setComment] = React.useState('');
   const [name, setName] = React.useState('');
   const [surname, setSurName] = React.useState('');
   const [email, setEmail] = React.useState('');
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -18,7 +19,7 @@ function FormElement({ ...delegated }) {
 
     if( needValidation.length ) {
       needValidation.forEach( input => {
-        input.classList.remove( styles.invalid );
+        input.setAttribute('data-error', false);
       });
     }
 
@@ -27,34 +28,10 @@ function FormElement({ ...delegated }) {
     setEmail('');
     setName('');
   }
-  
-  React.useEffect(() => {
-    const needValidation = form.current.querySelectorAll('[required]');
-
-
-    function validation(event) {
-      event.target.classList.add( styles.invalid );
-    }
-
-    if( needValidation.length ) {
-      needValidation.forEach( input => {
-        input.addEventListener('invalid', validation);
-      });
-    }
-    
-    return () => {
-      if( needValidation.lenght ) {
-        needValidation.forEach( input => {
-          input.removeEventListener('invalid', validation);
-        });
-      }
-    }
-  }, [ styles ]);
 
   return (
-    <form ref={form} onSubmit={handleSubmit} className={ styles.form }>
-
-      <div className={ styles.row }>
+    <Form ref={form} handleSubmit={ handleSubmit } >
+      <InputsRow>
         <Fieldset 
           id="name-field"
           required
@@ -68,14 +45,14 @@ function FormElement({ ...delegated }) {
         <Fieldset 
           id="surname-field"
           required
-          label="Ваша фамілія"
-          error="Ви забули вказати свою фамілію"
+          label="Ваше прізвище"
+          error="Ви забули вказати своє прізвище"
           value={surname}
           onChange={event => {
             setSurName(event.target.value);
           }}
         />
-      </div>
+      </InputsRow>
       <Fieldset 
         id="email-field"
         required
@@ -107,27 +84,9 @@ function FormElement({ ...delegated }) {
       >
         Відправити
       </Button>
-    </form>
+    </Form>
   )
 }
-function Fieldset({ id, label, error, tag, ...delegated }) {
-  const generatedId = React.useId();
-  const appliedId = id || generatedId;
-  const Tag = tag || 'input';
 
-  return (
-    <fieldset>
-      <Tag
-        id={ appliedId }
-        placeholder=""
-        {...delegated}
-      />
-      <label htmlFor={ appliedId }>
-        { label }:
-      </label>
-      { !!error && <span className={ styles.error }>{ error }</span>  }
-    </fieldset>
-  );
-}
 
 export default FormElement;

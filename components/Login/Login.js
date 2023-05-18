@@ -10,10 +10,12 @@ import LogInForm from './LogInForm';
 import SignInForm from './SignInForm';
 import ForgetPassword from './ForgetPassword';
 import { Facebook, Google, Twitter } from '../Icons/Icons';
+import { useRouter } from 'next/navigation';
 
 function UserForm({ setOpen }) {
   const [succes, setSucces] = React.useState( false );
   const [formType, setFormType] = React.useState( 'login' );
+  const router = useRouter();
 
   function handleRegisterForm( value ) {
     const newValue = value === 'register' ? 'register' : 'resetPassword';
@@ -22,8 +24,12 @@ function UserForm({ setOpen }) {
 
   function handleSucces(e) {
     e.preventDefault();
-    setOpen( false );
     setSucces( true );
+  }
+  function handleLogin(e) {
+    e.preventDefault();
+    router.push('/dashboard');
+    setOpen( false );
   }
 
   if ( succes ) {
@@ -44,7 +50,7 @@ function UserForm({ setOpen }) {
       </DialogTitle>
 
       {formType === 'login' && (
-        <LogInForm handleSucces={ handleSucces } forgetButton={
+        <LogInForm handleSucces={ handleLogin } forgetButton={
           <a 
             href="#" 
             className={styles.topRight} 
