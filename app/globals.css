@@ -127,5 +127,7 @@ input:focus {
   outline: 1px solid nsl(var(--background-green));
 }
 fieldset {
-  all: unset;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }

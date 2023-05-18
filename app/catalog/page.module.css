@@ -54,6 +54,31 @@
 
 .pagination {
   display: flex;
-  margin-top: 2rem;
+  flex-direction: row-reverse;
+  margin-top: 3.5rem;
   justify-content: space-between;
+}
+.paginationButton {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+.paginationButton img {
+  transition: transform 0.2s ease-in-out;
+}
+.paginationButton:hover img {
+  animation: move 0.4s ease-in-out forwards;
+}
+@keyframes move {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0.3rem 0;
+  }
+  100% {
+    translate: 0 0;
+  }
 }

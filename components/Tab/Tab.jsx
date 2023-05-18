@@ -2,10 +2,9 @@
 
 import React from 'react';
 import Button from '../Button/Button';
-import { animated, useTransition } from '@react-spring/web';
+import { animated, config, useChain, useSpring, useSpringRef, useTransition } from '@react-spring/web';
 
-import styles from './sstyle.module.css'
-import { useControls } from 'leva';
+import styles from './style.module.css';
 
 function Tab({ tabs }) {
   const [ currentTab, setCurrentTab ] = React.useState( 0 );
@@ -31,16 +30,17 @@ function Tab({ tabs }) {
 
   return (
     <div className="tabs">
-      <div className="tabsRow">
+      <div className={ styles.tabsRow }>
         { tabsTitles.map((tab, id) => (
-          <Button
-            key={id} 
+          <TabNav
+            key={id}
+            text={ tab } 
             title={ tab } 
-            style={{ background: 'red', margin: '1rem', padding: '0.5rem' }}
+            className={ `${styles.button} ${currentTab === id ? styles.active : ''}` }
             onClick={ () => handleVisibleTab(id) }
           >
-            { tab }
-          </Button>
+            {( id > 0 ) && <span className={ styles.delimiter } /> }
+          </TabNav>
         )) }
       </div>
       <TabContent tabsContent={ tabsContent } currentTab={currentTab} direction={ direction }/>
@@ -48,57 +48,72 @@ function Tab({ tabs }) {
   )
 }
 
+function TabNav({ children, text, ...delegated }) {
+  return (
+    <>
+      { children }
+      <Button
+        {...delegated}
+      >
+        { text }
+      </Button>
+    </>
+  );
+}
+
 function TabContent({ tabsContent, currentTab, direction }) {
   const d = direction === 'prev' ? -1 : 1;
-  const controls = useControls('Табуляція', {
-    scale: { value: 1.2, min: 0.8, max: 2, step: 0.1 },
-    x: { value: 30, min: -100, max: 100, step: 1 },
-    skew: { value: 5, min: -30, max: 30, step: 1 },
-    mass: { value: 0.8, min: 0.1, max: 2, step: 0.1 },
-    tension: { value: 600, min: 400, max: 1000, step: 1 },
-    friction: { value: 40, min: 20, max: 120, step: 1 },
-  })
-  const value = { 
-    scale: 1.2,
-    x: 30, 
-    skew: 5,
-    mass: 0.8,
-    tension: 600,
-    friction: 40,
-    ...controls
-  }
-
+  const [status, setStatus] = React.useState(true); 
   
+
+  const testRef = useSpringRef();
+  const props = useSpring({
+    ref: testRef,
+    key: null,
+    from: {
+      filter: `blur(${status ? 0 : 0.5}rem)`,
+      transform: `translateX(${status ? 0 : 100 * d }px)`
+    },
+    to: {
+      filter: `blur(${status ? 0.5 : 0}rem)`,
+      transform: `translateX(${status ? 100 * d : 0 }px)` 
+    },
+  });
+  const transitionRef = useSpringRef();
   const transitions = useTransition(currentTab, {
-    keys: currentTab,
-    exitBeforeEnter: true,
-    from: {  
-      filter: 'blur(0.7rem)',
+    ref: transitionRef,
+    key: null,
+    from: {
       opacity: 0,
-      transform: `scaleX(${value.scale}) skewX(${value.skew * 1.5* d}deg) translate3d(${value.x* d}%,0,0)` 
+      transform: `translateX(${ 400 * d }px)`
     },
     enter: {
-      filter: 'blur(0)',
       opacity: 1,
-      transform: 'scaleX(1) skewX(0deg) translate3d(0%,0,0)' 
+      transform: 'translateX(0px)'
     },
-    leave: { 
-      filter: 'blur(0.8rem)', 
+    leave: {
       opacity: 0,
-      transform: `scaleX(${value.scale}) skewX(${value.skew * 1.5* d}deg) translate3d(${-value.x * d}%,0,0)`,
+      transform: `translateX(${ -400 * d }px)`
     },
-    config: {
-      mass: value.mass,
-      tension: value.tension,
-      friction: value.friction
+    config: config.default,
+    exitBeforeEnter: true,
+    onStart: () => {
+      setStatus( currentStatus => !currentStatus );
+    },
+    onDestroyed: () => {
+      setStatus( true );
     }
   });
+  
+  useChain( status ? [ testRef, transitionRef ] : [ transitionRef, testRef ], [0, 0]);
 
   return (
     <div className={styles.wrapper}>
       {transitions((style, i) => (
         <animated.div key={i} style={ style } className={styles.content}>
-          { tabsContent[i] }
+          <animated.div style={props}>
+            { tabsContent[i] }
+          </animated.div>
         </animated.div>
       ))}
     </div>

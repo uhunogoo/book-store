@@ -1,61 +1,60 @@
+"use client"
+
+import React from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 import styles from './style.module.css';
-import React from 'react';
 
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import Button from 'components/Button/Button';
-import { SITE_DATA } from '@/data';
+import { useClickOutside } from 'effects/useClickOutside';
+import Button from '../Button/Button';
 
-function SelectBlock() {
-  const {dropDown} = SITE_DATA;
-  
-  const genres = React.useMemo(() => {
-    const genres = {};
-    dropDown.forEach((genre) => {
-      genres[genre.title] = false;
-      return genres;
-    });
-    
-    return genres;
-  }, [dropDown]); 
 
-  const [
-    pizzaToppings,
-    setPizzaToppings
-  ] = React.useState(genres);
-  const toppingsList = Object.keys(genres);
+function SelectBlock({ data }) {
+  const generatedID = React.useId();
+  const [open, setOpen] = React.useState( false );
+  const [genre, setGenre] = React.useState( data[0].title );
+
+  const ref = useClickOutside( setOpen );
+
+  function handleOpen() {
+    setOpen( current => !current );
+  }
+
+  if (!data) return null;
 
   return (
-    <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger asChild>
-        <Button className={styles.IconButton} aria-label="Customise options">
-          Жанри
-        </Button>
-      </DropdownMenu.Trigger>
-
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.DropdownMenuContent} sideOffset={5}>
+    <div ref={ref} style={{ position: 'relative' }}>
+      <Button 
+        onClick={ handleOpen } 
+        className={styles.IconButton} 
+        aria-label="Customise options"
+      >
+        { genre }
+      </Button>
+      {open && (  
+        <div  
+          className={ styles.drop } 
+          style={{ maxHeight: '225px', height: `${35 * data.length}px` }}
+        >
           <ScrollArea.Root className={styles.ScrollAreaRoot}>
             <ScrollArea.Viewport className={styles.ScrollAreaViewport}>
-              <form>
+              <form key={generatedID} className={ styles.form }>
                 <fieldset>
-                  {toppingsList.map(option => (
-                    <div key={option}>
+                  {data.map(({title}) => (
+                    <div key={title}>
                       <input
-                        type="checkbox"
-                        id={option}
-                        value={option}
-                        checked={pizzaToppings[option] === true}
+                        type="radio"
+                        name="current-language"
+                        id={title}
+                        value={title}
+                        checked={title === genre}
                         onChange={event => {
-                          setPizzaToppings({
-                            ...pizzaToppings,
-                            [option]: event.target.checked,
-                          })
+                          setGenre(event.target.value);
+                          setOpen( false );
                         }}
                       />
-                      <label htmlFor={option}>
-                        {option}
+                      <label htmlFor={title} className={ title === genre ? styles.active : '' }>
+                        {title}
                       </label>
                     </div>
                   ))}
@@ -66,13 +65,10 @@ function SelectBlock() {
             <ScrollArea.Scrollbar className={styles.ScrollAreaScrollbar} orientation="vertical">
               <ScrollArea.Thumb className={styles.ScrollAreaThumb} />
             </ScrollArea.Scrollbar>
-            <ScrollArea.Corner className={styles.ScrollAreaCorner} />
           </ScrollArea.Root>
-
-          <DropdownMenu.Arrow className={styles.DropdownMenuArrow} />
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+        </div>
+      )}
+    </div>
   );
 }
 

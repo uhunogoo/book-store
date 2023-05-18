@@ -9,6 +9,7 @@ import styles from './drop-down.module.css'
 import DecoratedBooks from '../DecoratedBooks/DecoratedBooks';
 import DropDownContent from './DropDownContent';
 import Button from '../Button/Button';
+import { useClickOutside } from '@/effects/useClickOutside';
 
 gsap.registerEffect({
   name: "openMenu",
@@ -121,12 +122,14 @@ function DropDown({ data }) {
     return () => ctx.revert();
   }, []);
 
+  const ref = useClickOutside( setDropDownStatus );
+
   const handleOnEnter = (node) => ctx.open( node );
   const handleOnExit = (node) => ctx.close( node );
 
   return (
     <>
-      <div className={ styles.dropContainer }>
+      <div ref={ref} className={ styles.dropContainer }>
         <Button
           onClick={ handleClick }
           title="user button" 

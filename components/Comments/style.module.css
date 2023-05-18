@@ -1,0 +1,41 @@
+.more {
+  color: var(--text-grey);
+  display: block;
+  text-align: right;
+  text-decoration: underline;
+  max-width: 110px;
+  margin: 1rem 0 0 auto;
+  width: 100%;
+}
+.comment {
+  display: grid;
+  grid-template-areas: 'image text';
+  gap: 2rem;
+  padding: var(--text-size) 0;
+  padding-top: 0;
+}
+.comment ~ .comment{
+  padding-top: var(--text-size);
+  border-top: 1px solid var(--text-grey);
+}
+.image {
+  grid-area: image;
+}
+.commentBody {
+  grid-area: text;
+  display: grid;
+}
+.date {
+  justify-self: end;
+  display: inline-block;
+  margin-top: var(--size-30);
+}
+.topRow {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+}
+.date,
+.topRow h4{
+  color: var(--text-grey);
+}

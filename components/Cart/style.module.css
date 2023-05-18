@@ -1,0 +1,12 @@
+.dropContainer {
+  position: relative;
+}
+.cart {
+  background: white;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  transform: translate(0, 100%);
+  min-height: 400px;
+  min-width: 400px;
+}

@@ -13,7 +13,8 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
 import DecoratedTree from './DecoratedTree';
-import { Cart, Favorite, User } from '../Icons/Icons';
+import { Favorite, User } from '../Icons/Icons';
+import Cart from 'components/Cart/Cart';
 import Link from 'next/link';
 
 function PageHeader() {
@@ -40,25 +41,26 @@ function PageHeader() {
 
             <div className={ styles.middleMenuButtons }>
               <SearchForm className={ styles.headerSearch }/>
-              <Button 
+              <Cart />
+              {/* <Button 
                 title="cart button" 
                 type="button"
                 numOfItems={1}
               >
-                <Cart width="40" height="34" />  
-              </Button>
+                <Cart width="40" height="40" />  
+              </Button> */}
               <Button 
                 title="favorite button" 
                 type="button"
                 numOfItems={15}
               >
-                <Favorite width="40" height="34" />  
+                <Favorite width="40" height="40" />  
               </Button>
               <Modal
                 open={open} setOpen={setOpen}
                 trigger={
                   <Button title="user button" type="button">
-                    <User  width="40" height="34" />
+                    <User  width="40" height="40" />
                   </Button>
                 }
               >

@@ -8,6 +8,8 @@ import Button from 'components/Button/Button';
 import { Favorite } from 'components/Icons/Icons';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
 import Tab from 'components/Tab/Tab';
+import Rating from 'components/Rating/Rating';
+import Comments from 'components/Comments/Comments';
 
 const characterisctics = [
   'Код товару',
@@ -44,20 +46,28 @@ function Page({ params  }) {
     <>
       <h1 className={ styles.h1 }>{ book.title } </h1>
       <div className={ styles.product }>
-        <div className="gallery">
+        <div className={styles.gallery}>
+          <div className={ styles.galleryCol }>
+            <Image src='/images/gallery/image-1.jpg' width={98} height={124} alt="image - 1"/>
+            <Image src='/images/gallery/image-2.jpg' width={98} height={124} alt="image - 2"/>
+            <div className={ styles.galleryColLast }>
+              <span>більше</span>
+              <Image src='/images/gallery/image-3.jpg' width={98} height={124} alt="image - 3"/>
+            </div>
+          </div>
           <ProductImage image={book.image} />
         </div>
         <div className="info">
           <div className={ styles.productData }>
             <div>
-              <h2 className={ styles.h2 }>{ book.subtitle }</h2>
-              <p>
-                рейтинг { book.information.rating }
-              </p>
-              <button>20 відгуків</button>
+              <h2 className={ styles.h2 } style={{ marginBottom: '0.2rem' }}>{ book.subtitle }</h2>
+
+              <Rating rating={ book.information.rating } />
+              
+              <Button title="подивитись відгуки" style={{ marginTop: '0.2rem', textDecoration: 'underline' }}>20 відгуків</Button>
             </div>
             <div>
-              <span>{ currencyFormat.format( book.price ) }</span>
+              <span className={ styles.currency }>{ currencyFormat.format( book.price ) }</span>
             </div>
           </div>
 
@@ -68,17 +78,21 @@ function Page({ params  }) {
             <Button title="Додати в улюблене">
               <Favorite width={32} height={32} />
             </Button>
-            <Button visual="default" title="Додати до кошика">Купити</Button>
+            <Button visual="default" title="Додати до кошика">Замовити</Button>
           </div>
         </div>
       </div>
       
-      <SliderBlock 
-        countInView={6} 
-        style={{ '--col-gap': '1.25rem' }}
-        title="Також книги автора" 
-        listOfItems={fromThisAuthor} 
-      />
+      { fromThisAuthor.length > 0 &&( 
+        <SliderBlock 
+          countInView={6} 
+          style={{ '--col-gap': '1.25rem', marginTop: '1.5rem' }}
+          listOfItems={fromThisAuthor} 
+          title={
+            <h2 className={ styles.h2 } style={{ color: 'var(--text-dark)', marginTop: 'var(--text-size-title)'}}>Також книжки автора</h2>
+          } 
+        />
+      )}
       <Tab 
         tabs={[
           {
@@ -91,7 +105,7 @@ function Page({ params  }) {
           },
           {
             title: "Коментарі",
-            content: "Порожнеча"
+            content: <Comments />
           }
         ]}
       />
@@ -100,7 +114,6 @@ function Page({ params  }) {
 }
 
 function BookCharacterisctics({ information }) {
-  // console.log( information.characterisctics )
   return (<>
     {!!information && (
       information.characterisctics.map((char, i) => (

@@ -1,9 +1,0 @@
-.wrapper {
-  display: grid;
-  position: relative;
-}
-.content {
-  width: 100%;
-  position: relative;
-  will-change: transform, opacity, filter;
-}

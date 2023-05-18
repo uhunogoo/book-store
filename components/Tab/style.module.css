@@ -1,0 +1,46 @@
+.wrapper {
+  display: grid;
+  position: relative;
+}
+.content {
+  width: 100%;
+  position: relative;
+  will-change: transform, opacity, filter;
+}
+.tabsRow {
+  display: flex;
+  gap: var(--size-30);
+  margin: var(--size-30) 0;
+}
+.button {
+  color: var(--text-grey);
+  overflow: hidden;
+  padding: 0.3rem 0.3rem;
+  padding-left: 0;
+  position: relative;
+}
+.button::after {
+  background: var(--text-green);
+  top: 100%;
+  content: '';
+  display: block;
+  position: absolute;
+  transition: 0.2s ease-in;
+  transform: translateY(110%);
+  height: 1px;
+  width: 100%;
+}
+.active,
+.button:hover,
+.button:focus {
+  color: var(--text-green);
+}
+.active::after{
+  transform: translateY(-6px);
+}
+
+.delimiter {
+  background: #000;
+  align-self: stretch;
+  width: 1px;
+}

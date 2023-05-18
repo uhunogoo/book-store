@@ -3,7 +3,7 @@
 import React from 'react';
 import { gsap } from 'gsap';
 
-export function Cart({ color, ...props }) {
+export function CartIcon({ color, ...props }) {
   return (
     <Icon viewBox="0 0 24 24" color={color} {...props}>
       <path d="M17.8,15.9c-1.4,0-2.5,1-2.5,2.3c0,1.2,1.1,2.3,2.5,2.3c1.4,0,2.5-1,2.5-2.3C20.3,16.9,19.2,15.9,17.8,15.9z M17.8,19
@@ -152,8 +152,20 @@ export function LocationMarker({ color, ...props }) {
   );
 }
 
+export function Stars({ color, ...props }) {
+  return (
+    <Icon viewBox="0 0 120 24" color={color} {...props}>
+      <rect id="default" width="120" height="24"/>
+      <rect id="progress" width="120" height="24"/>
+      <path id="stars" d="M0,0v24h120V0H0z M18.2,21.1L12,16.6l-6.2,4.5l2.4-7.3L2,9.3h7.6L12,2.1l2.4,7.3H22l-6.2,4.5
+        L18.2,21.1z M42.2,21.1L36,16.6l-6.2,4.5l2.4-7.3L26,9.3h7.6L36,2.1l2.4,7.3H46l-6.2,4.5L42.2,21.1z M66.2,21.1L60,16.6l-6.2,4.5
+        l2.4-7.3L50,9.3h7.6L60,2.1l2.4,7.3H70l-6.2,4.5L66.2,21.1z M90.2,21.1L84,16.6l-6.2,4.5l2.4-7.3L74,9.3h7.6L84,2.1l2.4,7.3H94
+        l-6.2,4.5L90.2,21.1z M114.2,21.1l-6.2-4.5l-6.2,4.5l2.4-7.3L98,9.3h7.6l2.4-7.3l2.4,7.3h7.6l-6.2,4.5L114.2,21.1z"/>
+    </Icon>
+  );
+}
 
-function Icon({children, color = 'var(--text-dark)', ...props}) {
+export function Icon({children, color = 'var(--text-dark)', ...props}) {
   const ref = React.useRef();
   
   React.useEffect(() => {
