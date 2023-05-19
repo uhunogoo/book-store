@@ -52,7 +52,7 @@ export function Fieldset({ id, label, error, tag, ...delegated }) {
       />
       {!!label && (
         <label htmlFor={ appliedId }>
-          `${label}:`
+          {label}
         </label>
       )}
       { !!error && <span className={ styles.error }>{ error }</span>  }
