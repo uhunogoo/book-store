@@ -1,9 +1,12 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs'
 
 export default function Page() {
   return (
     <main className={styles.main}>
+      <BreadCrumbs array={[ 'Про нас' ]} style={{ marginBottom: '2rem' }}/>
+      
       <Image src="/images/content/image-1.jpg" width={2338} height={878} alt='image' />
       <h1>
         Про наш Клуб

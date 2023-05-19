@@ -28,7 +28,7 @@ function UserForm({ setOpen }) {
   }
   function handleLogin(e) {
     e.preventDefault();
-    router.push('/dashboard');
+    router.push('/dashboard/profile');
     setOpen( false );
   }
 

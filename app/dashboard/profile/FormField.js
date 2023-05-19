@@ -40,6 +40,7 @@ function FormField() {
             required
             label="Ваше ім'я"
             error="Ви забули вказати своє ім'я"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={name}
             onChange={event => {
               setName(event.target.value);
@@ -50,6 +51,7 @@ function FormField() {
             required
             label="Ваше прізвище"
             error="Ви забули вказати своє прізвище"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={surname}
             onChange={event => {
               setSurName(event.target.value);
@@ -58,20 +60,22 @@ function FormField() {
         </InputsRow>
         <InputsRow>
           <Fieldset 
-            id="name-field"
+            id="phone-field"
             required
             label="Номер телефону"
             error="Ви забули вказати номер телефону"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={phone}
             onChange={event => {
               setPhone(event.target.value);
             }}
           />
           <Fieldset 
-            id="surname-field"
+            id="adress-field"
             required
             label="Адреса електронної пошти"
             error="Ви забули вказати свій email"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={email}
             onChange={event => {
               setEmail(event.target.value);
@@ -80,20 +84,22 @@ function FormField() {
         </InputsRow>
         <InputsRow>
           <Fieldset 
-            id="name-field"
+            id="date-field"
             required
             label="День народження"
             error="Ви забули вказати дату свого народження"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={birth}
             onChange={event => {
               setBirth(event.target.value);
             }}
           />
           <Fieldset 
-            id="surname-field"
+            id="city-field"
             required
             label="Звідки Ви"
             error="Ви забули вказати звідки Ви"
+            style={{ borderColor: 'var(--border-grey)' }}
             value={city}
             onChange={event => {
               setCity(event.target.value);

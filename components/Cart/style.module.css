@@ -22,13 +22,22 @@
   font-size: 1.5rem;
   margin-bottom: 2rem;
 }
-
+.itemsList {
+  container-type: inline-size;
+  container-name: card;
+}
 .item {
   display: grid;
-  grid-template-columns: 1rem 80px 1fr;
+  grid-template-columns: 1rem 19% 1fr;
   gap: 1rem;
   padding: var(--text-size) 0;
   padding-top: 0;
+  position: relative;
+}
+@container card (min-width: 600px) {
+  .item {
+    grid-template-columns: 1rem 110px 1fr;
+  }
 }
 .item ~ .item {
   padding-top: var(--text-size);
@@ -44,6 +53,9 @@
   display: block;
   position: absolute;
   top: 0;
+}
+.col-2 img {
+  width: 100%;
 }
 .col-3 {
   display: flex;
@@ -94,6 +106,9 @@
   align-self: start;
   align-items: center;
   gap: 0.7rem;
+}
+.price {
+  font-size: 2rem;
 }
 .counter {
   gap: 0.3rem;

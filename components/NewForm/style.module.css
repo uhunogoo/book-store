@@ -38,6 +38,7 @@
   position: absolute;
   top: 0;
   transform: translate(0.5rem, -50%);
+  z-index: 2;
 }
 
 .error {
@@ -59,7 +60,7 @@
   color: red;
   animation: wiggle 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
-.form [data-error="true"]:invalid ~ .error {
+.form [data-error="true"]:invalid ~ span {
   opacity: 1;
 }
 .form [data-error="true"]:focus,

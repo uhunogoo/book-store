@@ -4,7 +4,7 @@ import styles from './style.module.css';
 import Button from 'components/Button/Button';
 const COMMENTS = [
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: {
       src: '/user.jpg',
       height: 100,
@@ -18,7 +18,7 @@ const COMMENTS = [
     date: '2 вересня 2023',
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: {
       src: '/user.jpg',
       height: 100,

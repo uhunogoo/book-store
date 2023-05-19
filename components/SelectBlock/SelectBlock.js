@@ -13,7 +13,7 @@ function SelectBlock({ data }) {
   const generatedID = React.useId();
   const [open, setOpen] = React.useState( false );
   const [genre, setGenre] = React.useState( data[0].title );
-
+  const buttonClass = open ? `${ styles.IconButton } ${ styles.opened }` : styles.IconButton;
   const ref = useClickOutside( setOpen );
 
   function handleOpen() {
@@ -26,7 +26,7 @@ function SelectBlock({ data }) {
     <div ref={ref} style={{ position: 'relative' }}>
       <Button 
         onClick={ handleOpen } 
-        className={styles.IconButton} 
+        className={ buttonClass } 
         aria-label="Customise options"
       >
         { genre }

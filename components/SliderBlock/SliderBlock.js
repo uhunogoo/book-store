@@ -1,10 +1,19 @@
+'use client'
 import React from 'react';
-// import { gsap } from 'gsap';
+
+// Swiper 
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
 import styles from './style.module.css';
+
 import ProductCard from 'components/ProductCard/ProductCard';
 
 function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
   const isText = typeof title === 'string';
+
   return (
     <>
       {isText ? (
@@ -14,13 +23,23 @@ function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
       ) : (
         title
       ) }
-      <div className={ styles.row } {...delegated}>
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={ countInView }
+        modules={[Navigation]}
+        navigation={true}
+        autoHeight
+        className={ `gsapSwiper ${styles.row}` }
+        {...delegated}
+      >
         { listOfItems?.map(({id, ...props }, i) => (
-          <div key={ i } className={ styles.rowItem } style={{ flex: `0 0 ${ 100 / countInView }%` }}>
-            <ProductCard { ...props } />
-          </div>
+          <SwiperSlide key={ i } style={{ alignSelf: 'stretch' }}>
+            <div className={ styles.rowItem } >
+              <ProductCard { ...props } />
+            </div>
+          </SwiperSlide>
         )) }
-      </div>
+      </Swiper>
     </>
   );
 }

@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  align-items: stretch;
+  max-width: 510px;
+  width: 100%;
+}
+.form  fieldset {
+  flex: 1;
+}
+.form input {
+  --border-grey: #C4C4C4; 
+  border: 1px solid #C4C4C4;
+  border-right: 0;
+  display: block;
+  height: 100%;
+  padding-left: 1rem;
+  width: 100%;
+}
+.form  button {
+  background: #C4C4C4;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+}

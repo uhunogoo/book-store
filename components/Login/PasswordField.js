@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import TextInput from '../TextInput/TextInput';
 
-function PasswordField({ password, setPassword, children, ...delegated }) {
+function PasswordField({ password, info, setPassword, children, ...delegated }) {
   const [passwordVisibility, setPasswordVisibility] =
     React.useState(false);
 
@@ -19,6 +19,7 @@ function PasswordField({ password, setPassword, children, ...delegated }) {
         required={true}
         {...delegated}
         placeholder=""
+        data-error="false"
         type={passwordVisibility ? 'text' : 'password'}
         value={password}
         minLength={8}

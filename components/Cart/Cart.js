@@ -37,20 +37,27 @@ function Cart() {
 
   return (
     <div ref={ref} className={styles.dropContainer}>
-      <Button title="cart button" type="button" onClick={ handleClick } numOfItems={1}>
+      <Button 
+        title="cart button" 
+        type="button" 
+        onClick={ handleClick } 
+        numOfItems={1}
+      >
         <CartIcon width="40" height="40" />
       </Button>
-      <CSSTransition
-        in={ dropDownStatus }
-        unmountOnExit
-        onEnter={handleOnEnter}
-        onExit={handleOnExit}
-        timeout={500}
-      >
-        <div className={ styles.cart }>
-          <CartContent />
-        </div>
-      </CSSTransition>
+      <div style={{position: 'absolute', right: 0, bottom: '-1.5rem'}}>
+        <CSSTransition
+          in={ dropDownStatus }
+          unmountOnExit
+          onEnter={handleOnEnter}
+          onExit={handleOnExit}
+          timeout={500}
+        >
+          <div className={ styles.cart }>
+            <CartContent />
+          </div>
+        </CSSTransition>
+      </div>
     </div>
   );
 }

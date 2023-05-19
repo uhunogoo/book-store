@@ -1,12 +1,12 @@
-import { SITE_DATA } from "@/data";
-import Image from "next/image";
+import Image from 'next/image';
+import { range } from '@/utils';
+import { SITE_DATA } from '@/data';
 
-const { CommentContainer } = require("@/components/Comments/Comments");
-const { range } = require("@/utils");
+import { CommentContainer } from 'components/Comments/Comments';
 
 const COMMENTS = [
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: {
       src: '/photo.jpg',
       height: 50,
@@ -31,7 +31,7 @@ function CommentsBlock() {
   return(
     <>
       {range(9).map(item => 
-        <div style={{
+        <div key={item} style={{
           display: 'grid',
           gap: '1.5rem',
           gridTemplateColumns: '74px 1fr',

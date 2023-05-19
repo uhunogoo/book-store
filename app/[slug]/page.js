@@ -10,6 +10,7 @@ import SliderBlock from 'components/SliderBlock/SliderBlock';
 import Tab from 'components/Tab/Tab';
 import Rating from 'components/Rating/Rating';
 import Comments from 'components/Comments/Comments';
+import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
 
 const characterisctics = [
   'Код товару',
@@ -44,6 +45,8 @@ function Page({ params  }) {
 
   return (
     <>
+      <BreadCrumbs array={[ 'Каталог', book.title ]} style={{ marginBottom: '2rem' }}/>
+    
       <h1 className={ styles.h1 }>{ book.title } </h1>
       <div className={ styles.product }>
         <div className={styles.gallery}>

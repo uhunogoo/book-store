@@ -5,10 +5,13 @@ import styles from './page.module.css'
 
 import FormElement from './Form';
 import { Clock, LocationMarker, Mail, Phone } from 'components/Icons/Icons';
+import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
 
 export default function Page() {
   return (
     <main className={styles.main}>
+      <BreadCrumbs array={[ 'Контакти' ]} style={{ marginBottom: '2rem' }}/>
+      
       <h1>Контакти</h1>
       <div className={styles.row}>
         <div className={styles.image}>

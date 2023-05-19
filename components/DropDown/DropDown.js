@@ -108,7 +108,7 @@ function DropDown({ data }) {
   React.useLayoutEffect(() => {
     const animationParams = {
       yPercent: 140,
-      scale: 1.1,
+      scale: 1.02,
       transformOrigin: '0% 100%',
       bgX: 200
     };

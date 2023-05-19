@@ -423,6 +423,7 @@ export const SITE_DATA = {
       {id: 1},
       {id: 2},
       {id: 3},
+      {id: 4},
     ]
   },
   new_books: {
@@ -432,6 +433,7 @@ export const SITE_DATA = {
       {id: 5},
       {id: 6},
       {id: 7},
+      {id: 1},
     ]
   },
   week_authors: {
@@ -441,6 +443,7 @@ export const SITE_DATA = {
       {id: 1},
       {id: 2},
       {id: 3},
+      {id: 0},
     ]
   },
   select_series: {
@@ -449,6 +452,7 @@ export const SITE_DATA = {
       {id: 0},
       {id: 1},
       {id: 2},
+      {id: 0},
     ]
   },
   recently_view: {
@@ -460,6 +464,8 @@ export const SITE_DATA = {
       {id: 3},
       {id: 5},
       {id: 7},
+      {id: 2},
+      {id: 6},
     ]
   }
 }

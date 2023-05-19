@@ -12,7 +12,7 @@ import Counter from './Counter';
 import { currencyFormat } from '@/utils';
 
 const COUNT = 3;
-function CartContent() {
+function CartContent({ ...delegated }) {
   const { books } = SITE_DATA;
   const newBooksList = React.useMemo(() => {
     const booksList = [];
@@ -32,9 +32,9 @@ function CartContent() {
   }, [books]);
 
   return (
-    <div className={styles.cartContent}>
+    <div className={styles.cartContent} {...delegated}>
       <h4>Кошик:</h4>
-      <div className="itemsList">
+      <div className={styles.itemsList}>
         <Scroll>
           {newBooksList.map(({ id, ...props }, i) => (
             <CartItem key={id} id={i} {...props} />
@@ -98,7 +98,7 @@ function CartItem({ id, ...props }) {
           <Close height={20} width={20} />
         </Button>
       </div>
-      <div className="col-2">
+      <div className={styles['col-2']}>
         <Link href={`/${props.slug}`}>
           <Image
             src={props.image.src}
@@ -123,7 +123,7 @@ function CartItem({ id, ...props }) {
 
         <div className={ styles.row }>
           <div className={styles.productSKU}>Код товару: 123456</div>
-          <div className="price">{currencyFormat.format(props.price)}</div>
+          <div className={ styles.price }>{currencyFormat.format(props.price)}</div>
         </div>
       </div>
     </div>

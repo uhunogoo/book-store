@@ -39,8 +39,7 @@
   height: 0.6em;
   width: 0.6em;
 }
-.IconButton:focus::after,
-.IconButton:active::after {
+.opened::after {
   transform: translateY(-15%) rotate(135deg);
 } 
 .drop {

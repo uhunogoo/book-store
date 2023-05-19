@@ -1,0 +1,15 @@
+.breadCrumbs {
+  display: flex;
+  margin: -0.5rem 0 -2rem;
+}
+.breadCrumbs span {
+  color: var(--text-grey);
+  font-size: 0.8rem;
+}
+.breadCrumbs span + span {
+  border: 0;
+  border-left: 1px solid var(--text-grey);
+  display: block;
+  padding-left: 0.7rem;
+  margin-left: 0.7rem;
+}

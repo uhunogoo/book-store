@@ -12,3 +12,18 @@
   filter: drop-shadow(var(--drop-shadow));
   padding: 2rem;
 }
+.navigation ul {
+  list-style-type: none;
+  border-left: 1px solid var(--text-green);
+}
+.navigation ul a {
+  display: block;
+  background: transparent;
+  border-bottom: 1px solid var(--border-color);
+  transition: 0.2s ease-in;
+  padding: 0.4rem 1rem;
+  font-size: var(--text-size);
+}
+.navigation ul a:hover {
+  border-bottom: 1px solid var(--text-green);
+}

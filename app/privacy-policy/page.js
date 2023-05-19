@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import styles from './page.module.css'
+import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs'
 
 export default function Page() {
   return (
     <main className={styles.main}>
+      <BreadCrumbs array={[ 'Політика конфеденційності' ]} style={{ marginBottom: '2rem' }}/>
+      
       <h1>
         Політика конфеденційності
       </h1>

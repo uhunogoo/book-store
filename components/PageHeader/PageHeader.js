@@ -42,13 +42,6 @@ function PageHeader() {
             <div className={ styles.middleMenuButtons }>
               <SearchForm className={ styles.headerSearch }/>
               <Cart />
-              {/* <Button 
-                title="cart button" 
-                type="button"
-                numOfItems={1}
-              >
-                <Cart width="40" height="40" />  
-              </Button> */}
               <Button 
                 title="favorite button" 
                 type="button"
