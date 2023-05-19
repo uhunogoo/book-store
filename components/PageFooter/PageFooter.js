@@ -23,9 +23,9 @@ function PageFooter() {
           <div style={{ gridArea: 'column2' }}>
             <h3 className={ styles.title }>Допомога?</h3>
             <ul>
-              <li>Доставка, оплата</li>
+              <li><Link href="/delivery">Доставка, оплата</Link></li>
               <li>Правила Клубу</li>
-              <li>Клубна картка</li>
+              <li><Link href="/dashboard/club-card">Клубна картка</Link></li>
               <li>Повернення товару</li>
             </ul>
           </div>

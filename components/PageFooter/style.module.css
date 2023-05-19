@@ -16,3 +16,9 @@
 .footer li {
   margin-top: 0.25em;
 }
+.footer li a {
+  transition: color 0.2s ease-in;
+}
+.footer li a:hover {
+  color: white;
+}

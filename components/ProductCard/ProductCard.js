@@ -53,7 +53,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
       {!!price && (
         <div className={ styles.footer }>
           <div className={ styles.price }>
-            <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat.format( price) }</span>
+            <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat( price) }</span>
           </div>
           <Button title="Купити" visual="outline">
             <span>Купити</span>
@@ -88,6 +88,7 @@ function ProductImage({ image }) {
       src={ image.src } 
       width={width} 
       height={height} 
+      style={{ height: 'auto', width: '100%' }}
       alt={ image.title } 
       title={ `${ image.title }, зображення` } 
     />

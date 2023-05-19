@@ -10,7 +10,7 @@
 .tabsRow {
   display: flex;
   gap: var(--size-30);
-  margin: var(--size-30) 0;
+  margin: 4.5rem 0 var(--size-30);
 }
 .button {
   color: var(--text-grey);

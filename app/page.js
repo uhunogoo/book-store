@@ -74,7 +74,6 @@ export default function Page() {
         countInView={3} 
         title={ select_series.title } 
         listOfItems={selectedSeries} 
-        maxWidth={350}
         />
       <SliderBlock 
         countInView={6} 

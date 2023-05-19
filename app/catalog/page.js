@@ -27,7 +27,7 @@ export default function Page({ perpage = 24 }) {
 
   return (
     <main className={styles.main}>
-      <BreadCrumbs array={[ 'Каталог' ]}/>
+      <BreadCrumbs array={[ {text: 'Каталог', src: '/catalog'} ]}/>
       <div className={ styles.topBar }>
         <h1>
           Каталог

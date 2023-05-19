@@ -5,7 +5,7 @@ import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs'
 export default function Page() {
   return (
     <main className={styles.main}>
-      <BreadCrumbs array={[ 'Політика конфеденційності' ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs array={[ {text: 'Політика конфеденційності', src: '/privacy-policy'} ]} style={{ marginBottom: '2rem' }}/>
       
       <h1>
         Політика конфеденційності

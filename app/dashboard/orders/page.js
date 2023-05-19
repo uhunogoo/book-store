@@ -48,7 +48,7 @@ export default function Page() {
         </div>
         <div>
           <span style={{ fontFamily: 'var(--rochester)' }}>
-            { currencyFormat.format(450) }
+            { currencyFormat(450) }
           </span>
         </div>
         <div>
@@ -87,7 +87,7 @@ export default function Page() {
         </div>
         <div>
           <span style={{ fontFamily: 'var(--rochester)' }}>
-            { currencyFormat.format(450) }
+            { currencyFormat(450) }
           </span>
         </div>
         <div>
@@ -127,7 +127,7 @@ export default function Page() {
         </div>
         <div>
           <span style={{ fontFamily: 'var(--rochester)' }}>
-            { currencyFormat.format(743) }
+            { currencyFormat(743) }
           </span>
         </div>
         <div>

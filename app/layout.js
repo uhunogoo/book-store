@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import ContentWrapper from 'components/ContentWrapper/ContentWrapper';
 import PageHeader from 'components/PageHeader/PageHeader';
 import PageFooter from 'components/PageFooter/PageFooter';
+import Scroll from '@/components/Scroll/Scroll';
 
 const roboto400 = Roboto({ 
   subsets: ['cyrillic'],
@@ -37,14 +38,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={ fontsVariables }>
-        
-        <PageHeader />
+        <Scroll style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
+          <PageHeader />
 
-        <ContentWrapper style={{ minHeight: '60vh' }}>
-          {children}
-        </ContentWrapper>
+          <ContentWrapper style={{ minHeight: '60vh' }}>
+            {children}
+          </ContentWrapper>
 
-        <PageFooter/>
+          <PageFooter/>
+        </Scroll>
       </body>
     </html>
   );

@@ -74,7 +74,7 @@ function CartContent({ ...delegated }) {
                 fontSize: 'var(--text-size)',
                 fontFamily: 'var(--rochester)'
               }}>
-                {currencyFormat.format(400)}
+                {currencyFormat(400)}
               </span>
             </div>
           </div>
@@ -146,7 +146,7 @@ function CartItem({ id, ...props }) {
 
         <div className={ styles.row }>
           <div className={styles.productSKU}>Код товару: <span style={{fontFamily: 'var(--rochester)'}}>123456</span></div>
-          <div className={ styles.price } style={{ color: 'var(--text-grey)', fontFamily: 'var(--rochester)' }}>{currencyFormat.format(props.price)}</div>
+          <div className={ styles.price } style={{ color: 'var(--text-grey)', fontFamily: 'var(--rochester)' }}>{currencyFormat(props.price)}</div>
         </div>
       </div>
     </div>

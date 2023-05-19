@@ -55,7 +55,16 @@ function Page({ params  }) {
 
   return (
     <>
-      <BreadCrumbs array={[ 'Каталог', book.title ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs array={[ 
+        {
+          text: 'Каталог',
+          src: '/catalog'
+        }, 
+        {
+          text: book.title,
+          src: '/' + book.slug 
+        }
+      ]} style={{ marginBottom: '2rem' }}/>
     
       <h1 className={ styles.h1 }>{ book.title } </h1>
       <div className={ styles.product }>
@@ -84,7 +93,7 @@ function Page({ params  }) {
               </Button>
             </div>
             <div>
-              <span style={{fontFamily: 'var(--rochester)'}} className={ styles.currency }>{ currencyFormat.format( book.price ) }</span>
+              <span style={{fontFamily: 'var(--rochester)'}} className={ styles.currency }>{ currencyFormat( book.price ) }</span>
             </div>
           </div>
 

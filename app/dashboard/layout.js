@@ -14,7 +14,7 @@ const rochester400 = Rochester({
 export default function DashboardLayout({ children }) {
   return (
     <section className={rochester400.variable}>
-      <BreadCrumbs array={[ 'Особистий кабінет' ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs array={[ {text: 'Особистий кабінет', src: '/profile'} ]} style={{ marginBottom: '2rem' }}/>
       <h1 style={{ color: 'var(--text-green)', margin: '2rem 0 2.5rem' }}>Особистий кабінет</h1>
       <div className={ styles.content }>
         <aside>
@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }) {
                 <Link href="/dashboard/profile">Профіль</Link>
               </li>
               <li>
-                <Link href="/dashboard/clubCard">Клубна Картка</Link>
+                <Link href="/dashboard/club-card">Клубна Картка</Link>
               </li>
               <li>
                 <Link href="/dashboard/orders">Мої замовлення</Link>

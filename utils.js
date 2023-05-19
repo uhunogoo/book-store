@@ -10,9 +10,4 @@ export const range = (start, end, step = 1) => {
   return output;
 };
 
-export const currencyFormat = new Intl.NumberFormat("uk", {
-  style: "currency",
-  currency: "UAH",
-  currencyDisplay: 'symbol',
-  maximumFractionDigits: 0,
-}); 
+export const currencyFormat = ( value ) => value + ' ₴';

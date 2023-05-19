@@ -383,12 +383,12 @@ export const SITE_DATA = {
       id: 1,
       image: {
         src: '/images/series/image-1.jpg',
-        title: 'Ведьмак',
+        title: 'Відьмак',
         width: 336,
         height: 417,
       },
-      title: 'Ведьмак',
-      subtitle: 'Анджей Сапковский',
+      title: 'Відьмак',
+      subtitle: 'Анджей Сапковський',
       price: 850
     },
     {
