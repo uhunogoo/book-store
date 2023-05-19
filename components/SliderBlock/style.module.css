@@ -13,15 +13,11 @@
   --swiper-navigation-sides-offset: -0.1rem;
   --swiper-navigation-color: var(--text-grey);
   margin: 0 calc( var(--col-gap) * -1);
-  margin-top: 3rem;
+  padding-top: 3rem;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-/* .row div[class$="slide"] {
-  flex: 0 0 300px;
-  align-self: stretch;
-} */
 .row > div[class$="disabled"] {
   opacity: 0;
 }

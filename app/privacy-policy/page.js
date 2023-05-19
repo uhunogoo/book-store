@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './page.module.css'
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs'
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs'
 
 export default function Page() {
   return (

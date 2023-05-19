@@ -15,7 +15,7 @@ export default function Page() {
         <div>
           <span>Моя знижка:</span>
         </div>
-        <div className={ styles.dicount }>
+        <div className={ styles.dicount } style={{ fontFamily: 'var(--rochester)' }}>
           20%
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function Page() {
           <span>
             Ваш рейтинг:
           </span>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             8.1
           </span>
         </div>

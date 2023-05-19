@@ -1,10 +1,19 @@
 import Link from 'next/link';
 import styles from './page.module.css'
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
+
+import { Rochester } from 'next/font/google';
+const rochester400 = Rochester({
+  subsets: ['latin'],
+  display: 'swap',
+  style: 'normal',
+  weight: '400',
+  variable: '--rochester'
+});
 
 export default function DashboardLayout({ children }) {
   return (
-    <section>
+    <section className={rochester400.variable}>
       <BreadCrumbs array={[ 'Особистий кабінет' ]} style={{ marginBottom: '2rem' }}/>
       <h1 style={{ color: 'var(--text-green)', margin: '2rem 0 2.5rem' }}>Особистий кабінет</h1>
       <div className={ styles.content }>

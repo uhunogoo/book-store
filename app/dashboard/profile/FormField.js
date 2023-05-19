@@ -1,5 +1,5 @@
 'use client'
-import Form, { Fieldset, InputsRow } from '@/components/NewForm/Form';
+import Form, { Fieldset, InputsRow } from '@/components/Form/Form';
 import React from 'react';
 
 function FormField() {

@@ -2,6 +2,16 @@ import Image from 'next/image';
 import Rating from '../Rating/Rating';
 import styles from './style.module.css';
 import Button from 'components/Button/Button';
+
+import { Rochester } from 'next/font/google';
+const rochester400 = Rochester({
+  subsets: ['latin'],
+  display: 'swap',
+  style: 'normal',
+  weight: '400',
+  variable: '--rochester'
+});
+
 const COMMENTS = [
   {
     id: Math.random(),
@@ -46,7 +56,7 @@ function Comments() {
 
 export function CommentContainer({ image, style, ...props }) {
   return (
-    <div className={styles.comment} style={...style}>
+    <div className={`${rochester400.variable} ${styles.comment}`} style={...style}>
       <div className="image">
         <Image {...image} alt={props.name} />
       </div>
@@ -59,7 +69,7 @@ export function CommentContainer({ image, style, ...props }) {
           <Rating rating={props.rating} />
         </div>
         <p style={{ marginTop: '0.7rem' }}>{props.comment}</p>
-        <div className={ styles.date }>{props.date}</div>
+        <div className={ styles.date } style={{fontFamily: 'var(--rochester)'}}>{props.date}</div>
       </div>
     </div>
   );

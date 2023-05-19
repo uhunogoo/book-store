@@ -5,14 +5,12 @@ import styles from './page.module.css'
 
 import FormElement from './Form';
 import { Clock, LocationMarker, Mail, Phone } from 'components/Icons/Icons';
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 
 export default function Page() {
   return (
-    <main className={styles.main}>
+    <section className={styles.main}>
       <BreadCrumbs array={[ 'Контакти' ]} style={{ marginBottom: '2rem' }}/>
-      
-      <h1>Контакти</h1>
       <div className={styles.row}>
         <div className={styles.image}>
           <Image 
@@ -79,7 +77,7 @@ export default function Page() {
         Заповніть форму для зв'язку з нами
       </h2>
       <FormElement className={ styles.form } />
-    </main>
+    </section>
   );
 }
 

@@ -2,11 +2,11 @@ import styles from './style.module.css';
 
 import React from 'react';
 import Button from '../Button/Button';
-import PasswordField from './PasswordField';
-import TextField from './TextField';
-import Form from '../Form/Form';
+import PasswordField from '../Form/PasswordField';
+import Form, { Fieldset } from '../Form/Form';
 
 function SignInForm({ handleSucces }) {
+  const form = React.useRef();
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -14,26 +14,55 @@ function SignInForm({ handleSucces }) {
   return (
     <>
       <Form
-        className={ styles.form }
+        ref={form}
         handleSubmit={ handleSucces }
+        style={{
+          padding: 0,
+          filter: 'none',
+          display: 'grid',
+          gap: '1.9rem',
+          margin: '0 auto',
+          marginTop: '1.9rem',
+          maxWidth: '326px',
+          width: '100%',
+        }}
       >
-        <TextField
+        <Fieldset
+          required
           label="Ім'я"
+          error="Перевірте це поле"
+          type="text"
           placeholder=""
           value={userName}
-          setValue={setUserName}
+          onChange={event => {
+            setUserName(
+              event.target.value
+            );
+          }}
         />
-
-        <TextField
-          type="email"
+        <Fieldset
+          required
           label="Адреса електронної пошти"
+          error="Перевірте це поле"
+          type="email"
           placeholder=""
           value={email}
-          setValue={setEmail}
+          onChange={event => {
+            setEmail(
+              event.target.value
+            );
+          }}
         />
-
-        <PasswordField password={password} setPassword={setPassword}>
+        <PasswordField 
+          required
+          error="Перевірте це поле"
+          password={password} 
+          setPassword={setPassword}
+        >
           <span className={styles.topRight}>Не менше 8 символів</span>
+          <span className={ styles.error }>
+            Перевірте це поле
+          </span>
         </PasswordField>
 
         <Button

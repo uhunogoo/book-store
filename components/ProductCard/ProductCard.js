@@ -1,5 +1,14 @@
 import Image from 'next/image';
 
+import { Rochester } from 'next/font/google';
+const rochester400 = Rochester({
+  subsets: ['latin'],
+  display: 'swap',
+  style: 'normal',
+  weight: '400',
+  variable: '--rochester'
+});
+
 import styles from './style.module.css';
 import Button from '../Button/Button';
 import { Favorite } from '../Icons/Icons';
@@ -15,7 +24,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
   return(
     <div
       {...delegated} 
-      className={ styles.card }
+      className={ `${rochester400.variable} ${styles.card}` }
     >
       <div className={styles.topContainer}>
         
@@ -44,7 +53,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
       {!!price && (
         <div className={ styles.footer }>
           <div className={ styles.price }>
-            <span>{ currencyFormat.format( price) }</span>
+            <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat.format( price) }</span>
           </div>
           <Button title="Купити" visual="outline">
             <span>Купити</span>

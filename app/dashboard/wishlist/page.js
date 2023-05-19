@@ -2,9 +2,9 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import styles from './style.module.css';
 import { range } from '@/utils';
-import { CartIcon, Close } from '@/components/Icons/Icons';
+import { CartIcon, Close } from 'components/Icons/Icons';
 import { SITE_DATA } from '@/data';
-import Button from '@/components/Button/Button';
+import Button from 'components/Button/Button';
 
 export default function Page() {
   const { books } = SITE_DATA;

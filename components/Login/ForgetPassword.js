@@ -1,16 +1,17 @@
 import styles from './style.module.css';
 
 import React from 'react';
-import { DialogClose, DialogDescription } from '@radix-ui/react-dialog';
+import { DialogDescription } from '@radix-ui/react-dialog';
 
 import Button from '../Button/Button';
-import TextField from './TextField';
-import PasswordField from './PasswordField';
-import Form from '../Form/Form';
+import PasswordField from '../Form/PasswordField';
+import Form, { Fieldset } from '../Form/Form';
 
 const SECURE = 1111; 
 
 function ForgetPassword({ handleSucces }) {
+  const form = React.useRef();
+  const formFinal = React.useRef();
   const [email, setEmail] = React.useState('');
   const [ messageWasRead, setMessageWasRead ] = React.useState( false );
   
@@ -30,10 +31,17 @@ function ForgetPassword({ handleSucces }) {
     <>
       { (!messageWasRead || !formSubmited) && (
         <Form
-          className={ styles.form }
+          ref={form}
           handleSubmit={ handleSubmit }
           style={{
-            marginBottom: '1.7rem'
+            padding: 0,
+            filter: 'none',
+            display: 'grid',
+            gap: '1.9rem',
+            margin: '0 auto 1.7rem',
+            marginTop: '1.9rem',
+            maxWidth: '326px',
+            width: '100%',
           }}
         >
           { !formSubmited && <StartFlow email={email} setEmail={setEmail} /> }
@@ -44,10 +52,17 @@ function ForgetPassword({ handleSucces }) {
         
       { messageWasRead && formSubmited && (
         <Form 
-          className={ styles.form }
+          ref={formFinal}
           handleSubmit={ handleSucces }
           style={{
-            marginBottom: '1.7rem'
+            padding: 0,
+            filter: 'none',
+            display: 'grid',
+            gap: '1.9rem',
+            margin: '0 auto 1.7rem',
+            marginTop: '1.9rem',
+            maxWidth: '326px',
+            width: '100%',
           }}
         >
           <ResetPassword />
@@ -64,12 +79,18 @@ function StartFlow({ email, setEmail }) {
         Введіть email щоб ми відправили вам код підтвердження:
       </DialogDescription>
 
-      <TextField
+      <Fieldset
         type="email"
+        required
         label="Адреса електронної пошти"
+        error="Перевірте це поле"
         placeholder=""
         value={email}
-        setValue={setEmail}
+        onChange={event => {
+          setEmail(
+            event.target.value
+          );
+        }}
       />
   
       <Button
@@ -87,7 +108,7 @@ function ResetMessage({ email, handleMessage }) {
   return (
     <>
       <DialogDescription>
-        Код підтвердження "{ SECURE }" було успішно відправлено на email: { email }
+        Код підтвердження було успішно відправлено на email: { email }
       </DialogDescription>
       <Button
         visual="outline"
@@ -111,12 +132,18 @@ function ResetPassword() {
       <DialogDescription>
         Створіть новий пароль:
       </DialogDescription>
-      <TextField
+      <Fieldset
         type="text"
+        required
         label="Код підтвердження"
+        error="Перевірте це поле"
         placeholder=""
         value={virification}
-        setValue={setVerification}
+        onChange={event => {
+          setVerification(
+            event.target.value
+          );
+        }}
       />
       <PasswordField 
         label="Новий пароль"

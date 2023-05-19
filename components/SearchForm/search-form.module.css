@@ -4,6 +4,9 @@
   align-self: stretch;
   
 }
+.search fieldset {
+  height: 100%;
+}
 .searchInput {
   background: white;
   border: 0;

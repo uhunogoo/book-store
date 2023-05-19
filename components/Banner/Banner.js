@@ -1,7 +1,17 @@
+import { Rochester } from 'next/font/google';
+const rochester400 = Rochester({
+  subsets: ['latin'],
+  display: 'swap',
+  style: 'normal',
+  weight: '400',
+  variable: '--rochester'
+});
+
 function Banner() {
   const accent = {
     color: 'var(--danger)',
-    fontWeight: '700'
+    fontWeight: '700',
+    fontFamily: 'var(--rochester)'
   };
   return (
     <div style={{
@@ -10,7 +20,7 @@ function Banner() {
       padding: '1.9rem 1.2rem',
       marginTop: 'var(--size-30)'
     }}>
-      <p>
+      <p className={ rochester400.variable }>
         Встигніть отримати картку до <span style={accent}>1.07</span> та отримайте <span style={ accent }>-5%</span> знижки на всю Вашу покупку!
       </p>
     </div>

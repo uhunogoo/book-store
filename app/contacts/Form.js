@@ -3,8 +3,8 @@
 import React from 'react';
 import Button from 'components/Button/Button';
 // import styles from './style.module.css'
-import Form from '/components/NewForm/Form';
-import { Fieldset, InputsRow } from '@/components/NewForm/Form';
+import Form from '/components/Form/Form';
+import { Fieldset, InputsRow } from '@/components/Form/Form';
 
 function FormElement({ children, ...delegated }) {
   const form = React.useRef();

@@ -1,4 +1,4 @@
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs'
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs'
 import styles from './page.module.css'
 
 export default function Page() {

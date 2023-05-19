@@ -6,7 +6,7 @@ import { animated, config, useChain, useSpring, useSpringRef, useTransition } fr
 
 import styles from './style.module.css';
 
-function Tab({ tabs }) {
+function Tab({ tabs, ...delegated}) {
   const [ currentTab, setCurrentTab ] = React.useState( 0 );
   const [ direction, setDirection ] = React.useState('next');
 
@@ -29,7 +29,7 @@ function Tab({ tabs }) {
   }
 
   return (
-    <div className="tabs">
+    <div {...delegated}>
       <div className={ styles.tabsRow }>
         { tabsTitles.map((tab, id) => (
           <TabNav

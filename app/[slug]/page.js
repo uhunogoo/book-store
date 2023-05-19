@@ -2,15 +2,25 @@ import React from 'react';
 import Image from 'next/image';
 import { SITE_DATA } from '@/data';
 
+import { Rochester } from 'next/font/google';
+const rochester400 = Rochester({
+  subsets: ['latin'],
+  display: 'swap',
+  style: 'normal',
+  weight: '400',
+  variable: '--rochester'
+});
+
 import styles from './style.module.css';
+
 import { currencyFormat } from '@/utils';
-import Button from 'components/Button/Button';
-import { Favorite } from 'components/Icons/Icons';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
-import Tab from 'components/Tab/Tab';
-import Rating from 'components/Rating/Rating';
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import Comments from 'components/Comments/Comments';
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
+import { Favorite } from 'components/Icons/Icons';
+import Button from 'components/Button/Button';
+import Rating from 'components/Rating/Rating';
+import Tab from 'components/Tab/Tab';
 
 const characterisctics = [
   'Код товару',
@@ -58,32 +68,47 @@ function Page({ params  }) {
               <Image src='/images/gallery/image-3.jpg' width={98} height={124} alt="image - 3"/>
             </div>
           </div>
-          <ProductImage image={book.image} />
+          <div className={styles.sliderMain}>
+            <ProductImage  image={book.image} />
+          </div>
         </div>
-        <div className="info">
+        <div className={ rochester400.variable }>
           <div className={ styles.productData }>
             <div>
               <h2 className={ styles.h2 } style={{ marginBottom: '0.2rem' }}>{ book.subtitle }</h2>
 
               <Rating rating={ book.information.rating } />
               
-              <Button title="подивитись відгуки" style={{ marginTop: '0.2rem', textDecoration: 'underline' }}>20 відгуків</Button>
+              <Button title="подивитись відгуки" style={{ fontSize: '1rem',marginTop: '0.2rem', color: 'var(--text-grey)', textDecoration: 'underline' }}>
+                <span style={{fontFamily: 'var(--rochester)'}}>20</span> відгуків
+              </Button>
             </div>
             <div>
-              <span className={ styles.currency }>{ currencyFormat.format( book.price ) }</span>
+              <span style={{fontFamily: 'var(--rochester)'}} className={ styles.currency }>{ currencyFormat.format( book.price ) }</span>
             </div>
           </div>
 
           <p style={{ marginTop: '1rem' }}>
             { book.information.shortDescription }
           </p>
-          <div className={ styles.actions }>
-            <Button title="Додати в улюблене">
-              <Favorite width={32} height={32} />
-            </Button>
-            <Button visual="default" title="Додати до кошика">Замовити</Button>
-          </div>
         </div>
+      </div>
+      <div className={ styles.actions }>
+        <Button title="Додати в улюблене">
+          <Favorite width={32} height={32} />
+        </Button>
+        <Button 
+          visual="default" 
+          title="Додати до кошика" 
+          style={{ 
+            paddingLeft: '5.25rem', 
+            paddingRight: '5.25rem', 
+            maxWidth: 'none',
+            flex: 0
+          }}
+        >
+          Замовити
+        </Button>
       </div>
       
       { fromThisAuthor.length > 0 &&( 
@@ -142,12 +167,13 @@ function BookDescription({ information }) {
   </>);
 }
 
-function ProductImage({ image }) {
+function ProductImage({ image, ...delegated }) {
   const width = image.width ? image.width : 230;
   const height = image.height ? image.height : 315; 
 
   return (
     <Image
+      {...delegated}
       src={ image.src } 
       width={width} 
       height={height} 

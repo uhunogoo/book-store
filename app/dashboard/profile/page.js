@@ -31,12 +31,12 @@ export default function Page() {
           <div style={{ marginTop: 'var(--size-30)' }}>
             <span>Дата реєстрації:</span>
             {' '}
-            <span>01.06.2020</span>
+            <span style={{ fontFamily: 'var(--rochester)' }}>01.06.2020</span>
           </div>
           <div style={{ marginTop: '0.5rem' }}>
             <span>Номер клубної картки:</span>
             {' '}
-            <span>4567890908</span>
+            <span style={{ fontFamily: 'var(--rochester)' }}>4567890908</span>
           </div>
           <div style={{ 
               marginTop: '0.5rem', 
@@ -46,7 +46,7 @@ export default function Page() {
           }}>
             <span>Оцінки та відгуки:</span>
             {' '}
-            <span>9</span>
+            <span style={{ fontFamily: 'var(--rochester)' }}>9</span>
             {' '}
             <Button 
               title="показати" 
@@ -84,7 +84,7 @@ export default function Page() {
             <span>
               Ваш рейтинг:
             </span>
-            <span>
+            <span style={{ fontFamily: 'var(--rochester)' }}>
               8.1
             </span>
           </div>

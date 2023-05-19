@@ -1,21 +1,22 @@
 'use client'
 import React from 'react';
-import Button from '@/components/Button/Button';
-import { Fieldset } from '@/components/NewForm/Form';
+import Button from 'components/Button/Button';
+import Form, { Fieldset } from '@/components/Form/Form';
 
 import styles from './style.module.css';
 import { currencyFormat } from '@/utils';
 
 export default function Page() {
+  const form = React.useRef(); 
   const [orderSku, setOrderSku] = React.useState('');
   return (
     <>
-      <form className={ styles.form }>
+      <Form ref={form} className={ styles.form }>
         <Fieldset
           id="surname-field"
           required
           placeholder="Введіть код замовлення "
-          error="Ви забули вказати звідки Ви"
+          error="Перевірте це поле"
           style={{ borderColor: 'var(--border-grey)' }}
           value={orderSku}
           onChange={(event) => {
@@ -23,7 +24,7 @@ export default function Page() {
           }}
         />
         <Button title="Відстежити">Відстежити</Button>
-      </form>
+      </Form>
       <h2 style={{ fontSize: 'var(--text-size)', marginTop: '1.7rem' }}>Мої замовлення:</h2>
       <div style={{
         display: 'flex',
@@ -32,7 +33,7 @@ export default function Page() {
         marginTop: '1rem'
       }}>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <div>
+          <div style={{ fontFamily: 'var(--rochester)' }}>
             1
           </div>
           <div>
@@ -41,12 +42,12 @@ export default function Page() {
           </div>
         </div>
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             05.05.2022
           </span>
         </div>
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             { currencyFormat.format(450) }
           </span>
         </div>
@@ -70,7 +71,7 @@ export default function Page() {
         marginTop: '1rem'
       }}>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <div>
+          <div style={{ fontFamily: 'var(--rochester)' }}>
             2
           </div>
           <div>
@@ -80,12 +81,12 @@ export default function Page() {
         </div>
 
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             05.05.2022
           </span>
         </div>
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             { currencyFormat.format(450) }
           </span>
         </div>
@@ -110,7 +111,7 @@ export default function Page() {
         marginBottom: '130px'
       }}>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <div>
+          <div style={{ fontFamily: 'var(--rochester)' }}>
             3
           </div>
           <div>
@@ -120,12 +121,12 @@ export default function Page() {
           </div>
         </div>
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             09.3.2023
           </span>
         </div>
         <div>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             { currencyFormat.format(743) }
           </span>
         </div>

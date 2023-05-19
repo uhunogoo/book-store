@@ -2,30 +2,52 @@ import React from 'react';
 
 import styles from './style.module.css';
 
-import Button from '../Button/Button';
-import PasswordField from './PasswordField';
-import TextField from './TextField';
-import Form from '../Form/Form';
+import Button from 'components/Button/Button';
+import PasswordField from '@/components/Form/PasswordField';
+import Form, { Fieldset } from '@/components/Form/Form';
 
 function LogInForm({ handleSucces, forgetButton }) {
+  const form = React.useRef();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   return (
-    <Form 
+    <Form
+      ref={form}
       handleSubmit={ handleSucces }
-      className={ styles.form }
+      style={{
+        padding: 0,
+        filter: 'none',
+        display: 'grid',
+        gap: '1.9rem',
+        margin: '0 auto',
+        marginTop: '1.9rem',
+        maxWidth: '326px',
+        width: '100%',
+      }}
     >
-      <TextField
-        type="email"
+      <Fieldset
+        required
         label="Адреса електронної пошти"
-        placeholder=""
+        error="Перевірте це поле"
+        type="email"
         value={email}
-        setValue={setEmail}
+        placeholder=""
+        onChange={event => {
+          setEmail(
+            event.target.value
+          );
+        }}
       />
-
-      <PasswordField password={password} setPassword={setPassword}>
+      <PasswordField 
+        error="Перевірте це поле"
+        password={password} 
+        setPassword={setPassword}
+      >
         { forgetButton }
+        <span className={ styles.error }>
+          Перевірте це поле
+        </span>
       </PasswordField>
       <Button
         type="submit"

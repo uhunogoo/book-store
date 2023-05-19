@@ -21,7 +21,7 @@ function Counter({ exist = 1, className}) {
         >
         -
       </Button>
-      <div>
+      <div style={{ fontFamily: 'var(--rochester)' }}>
         { count }
       </div>
       <Button

@@ -384,8 +384,8 @@ export const SITE_DATA = {
       image: {
         src: '/images/series/image-1.jpg',
         title: 'Ведьмак',
-        width: 320,
-        height: 320,
+        width: 336,
+        height: 417,
       },
       title: 'Ведьмак',
       subtitle: 'Анджей Сапковский',
@@ -396,8 +396,8 @@ export const SITE_DATA = {
       image: {
         src: '/images/series/image-2.jpg',
         title: 'Таймлесс',
-        width: 320,
-        height: 320,
+        width: 336,
+        height: 417,
       },
       title: 'Таймлесс',
       subtitle: 'Керстин Гир',
@@ -408,8 +408,8 @@ export const SITE_DATA = {
       image: {
         src: '/images/series/image-3.jpg',
         title: 'Гаррі Поттер',
-        width: 320,
-        height: 320,
+        width: 336,
+        height: 417,
       },
       title: 'Гаррі Поттер',
       subtitle: 'Джоан Роулінг',

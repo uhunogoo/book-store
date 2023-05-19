@@ -1,5 +1,5 @@
 'use client';
-import { Icon } from '@/components/Icons/Icons';
+import { Icon } from 'components/Icons/Icons';
 import {animated, useSpring } from '@react-spring/web';
 
 

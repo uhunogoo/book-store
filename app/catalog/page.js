@@ -9,9 +9,9 @@ import { SITE_DATA } from '@/data';
 import styles from './page.module.css'
 import Button from 'components/Button/Button'
 import ProductCard from 'components/ProductCard/ProductCard';
-import SelectBlock from '@/components/SelectBlock/SelectBlock';
-import SliderBlock from '@/components/SliderBlock/SliderBlock';
-import BreadCrumbs from '@/components/BreadCrumbs/BreadCrumbs';
+import SelectBlock from 'components/SelectBlock/SelectBlock';
+import SliderBlock from 'components/SliderBlock/SliderBlock';
+import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 
 
 const SORTING = [ {title: 'Топ'}, {title: 'За новизною'}, {title: 'За популярністю'} ];

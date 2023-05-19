@@ -2,7 +2,7 @@ import styles from './style.module.css';
 
 import React from 'react';
 import Image from 'next/image';
-import TextInput from '../TextInput/TextInput';
+import { Fieldset } from './Form';
 
 function PasswordField({ password, info, setPassword, children, ...delegated }) {
   const [passwordVisibility, setPasswordVisibility] =
@@ -13,20 +13,19 @@ function PasswordField({ password, info, setPassword, children, ...delegated }) 
   }
 
   return (
-    <fieldset className={styles.group}>
-      <TextInput
-        label="Пароль"
-        required={true}
-        {...delegated}
-        placeholder=""
-        data-error="false"
-        type={passwordVisibility ? 'text' : 'password'}
-        value={password}
-        minLength={8}
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
+    <Fieldset 
+      label="Пароль"
+      required={true}
+      {...delegated}
+      placeholder=""
+      data-error="false"
+      type={passwordVisibility ? 'text' : 'password'}
+      value={password}
+      minLength={8}
+      onChange={(event) => {
+        setPassword(event.target.value);
+      }}
+    >
 
       <VisibilityToggle
         passwordVisibility={passwordVisibility}
@@ -34,7 +33,7 @@ function PasswordField({ password, info, setPassword, children, ...delegated }) 
       />
 
       {children}
-    </fieldset>
+    </Fieldset>
   );
 }
 

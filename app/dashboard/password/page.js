@@ -1,12 +1,12 @@
 'use client'
 import React from "react";
 
-import Button from "@/components/Button/Button";
-import PasswordField from "@/components/Login/PasswordField";
-import Form from "@/components/NewForm/Form";
+import Button from "components/Button/Button";
+import PasswordField from "@/components/Form/PasswordField";
+import Form from "@/components/Form/Form";
 
 import styles from './styles.module.css';
-import Rating from "@/components/Rating/Rating";
+import Rating from "components/Rating/Rating";
 import Image from "next/image";
 
 export default function Page() {
@@ -66,7 +66,7 @@ export default function Page() {
           <span>
             Ваш рейтинг:
           </span>
-          <span>
+          <span style={{ fontFamily: 'var(--rochester)' }}>
             8.1
           </span>
         </div>

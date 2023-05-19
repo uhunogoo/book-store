@@ -43,7 +43,7 @@ function Proposition({ type = 'danger', title, sale, date }) {
     }}>
       <span 
         style={{
-          fontSize: 'var(--text-small)'
+          fontSize: 'var(--text-small)',
         }}
       >
         { title }
@@ -51,6 +51,7 @@ function Proposition({ type = 'danger', title, sale, date }) {
       <span
         style={{
           fontSize: '2rem',
+          fontFamily: 'var(--rochester)',
           color: 'hsl(7, 87%, 41%)'
         }}
       >
@@ -61,7 +62,7 @@ function Proposition({ type = 'danger', title, sale, date }) {
           fontSize: '0.7rem'
         }}
       >
-        до { date }
+        до <span style={{fontFamily: 'var(--rochester)'}}>{ date }</span>
       </span>
     </div>
   );
