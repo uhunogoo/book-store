@@ -114,7 +114,7 @@ function Page({ params  }) {
       { fromThisAuthor.length > 0 &&( 
         <SliderBlock 
           countInView={6} 
-          style={{ '--col-gap': '1.25rem', marginTop: '1.5rem' }}
+          style={{ '--col-gap': '1.25rem', paddingTop: '1rem' }}
           listOfItems={fromThisAuthor} 
           title={
             <h2 className={ styles.h2 } style={{ color: 'var(--text-dark)', marginTop: 'var(--text-size-title)'}}>Також книжки автора</h2>
