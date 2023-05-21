@@ -46,7 +46,7 @@ function CartContent({ ...delegated }) {
       <div className={styles.itemsList}>
         <Scroll>
           {newBooksList.map(({ id, ...props }, i) => (
-            <CartItem key={id} id={i} {...props} />
+            <CartItem key={i} id={i} {...props} />
           ))}
         </Scroll>
       </div>

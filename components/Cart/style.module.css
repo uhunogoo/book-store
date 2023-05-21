@@ -3,19 +3,59 @@
 }
 .cart {
   background: white;
-  bottom: 0;
   padding: 0.5rem 0.5rem;
   position: absolute;
+  bottom: -1.5rem;
   right: 0;
-  min-height: 400px;
+  translate: 0 100%;
   max-width: 475px;
-  z-index: 4;
   width: 100vw;
 }
 
+.lineRight,
+.lineLeft,
+.lineTop,
+.lineBottom {
+  background: var(--text-green);
+  position: absolute;
+}
+
+.lineTop,
+.lineBottom {
+  height: 1px;
+  left: 0.5rem;
+  right: 0.5rem;
+}
+.lineRight,
+.lineLeft {
+  background: var(--text-green);
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+}
+
+.lineTop {
+  top: 0.5rem;
+  transform-origin: 0 50%;
+}
+.lineBottom {
+  bottom: 0.5rem;
+  transform-origin: 100% 50%;
+}
+
+.lineRight {
+  right: 0.5rem;
+  transform-origin: 50% 0%;
+}
+.lineLeft {
+  left: 0.5rem;
+  transform-origin: 50% 100%;
+}
+
 .cartContent {
+  position: relative;
   padding: 1rem 1rem;
-  border: 1px solid var(--text-green);
 }
 .cartContent h4{
   color: var(--text-green);

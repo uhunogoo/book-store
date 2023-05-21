@@ -4,8 +4,8 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 function Scroll({children, ...delegated}) {
   return (
-    <ScrollArea.Root className={styles.ScrollAreaRoot} {...delegated}>
-      <ScrollArea.Viewport className={styles.ScrollAreaViewport}>
+    <ScrollArea.Root className={styles.ScrollAreaRoot} type='scroll' {...delegated}>
+      <ScrollArea.Viewport className={styles.ScrollAreaViewport} >
         { children }
       </ScrollArea.Viewport>
 
