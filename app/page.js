@@ -40,6 +40,7 @@ export default function Page() {
   return (
     <>
       <Image 
+        priority
         src={'/images/banners/banner-1.jpg'} 
         alt="banner image"
         width={2270}
