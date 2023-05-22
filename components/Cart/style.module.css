@@ -2,14 +2,28 @@
   position: relative;
 }
 .cart {
-  background: white;
+  background: hsla(0, 0%, 100%, 0.95);
   padding: 0.5rem 0.5rem;
+  backdrop-filter: blur(0.5rem);
   position: absolute;
   bottom: -1.5rem;
   right: 0;
   translate: 0 100%;
   max-width: 475px;
   width: 100vw;
+  z-index: 4;
+}
+
+.summary {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.currency {
+  color: var(--text-green); 
+  font-size: var(--text-size);
+  font-family: var(--rochester);
 }
 
 .lineRight,
@@ -37,11 +51,11 @@
 
 .lineTop {
   top: 0.5rem;
-  transform-origin: 0 50%;
+  transform-origin: 0% 50%;
 }
 .lineBottom {
   bottom: 0.5rem;
-  transform-origin: 100% 50%;
+  transform-origin: 0% 50%;
 }
 
 .lineRight {
@@ -50,7 +64,7 @@
 }
 .lineLeft {
   left: 0.5rem;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 0%;
 }
 
 .cartContent {
@@ -66,11 +80,16 @@
   container-type: inline-size;
   container-name: card;
 }
+.itemsList > div ~ div .item {
+  padding-top: var(--text-size);
+  border-top: 1px solid var(--text-grey);
+}
 .item {
   display: grid;
   grid-template-columns: 1rem 19% 1fr;
   gap: 1rem;
   padding: var(--text-size) 0;
+  transition: background 0.2s ease-in;
   padding-top: 0;
   position: relative;
 }
@@ -79,10 +98,7 @@
     grid-template-columns: 1rem 110px 1fr;
   }
 }
-.item ~ .item {
-  padding-top: var(--text-size);
-  border-top: 1px solid var(--text-grey);
-}
+
 .col-1 {
   align-items: center;
   display: grid;
@@ -96,6 +112,7 @@
 }
 .col-2 img {
   width: 100%;
+  transition: 0.3s ease-out;
 }
 .col-3 {
   display: flex;
@@ -146,6 +163,7 @@
   align-self: start;
   align-items: center;
   gap: 0.7rem;
+  transform-origin: 100% 0%;
 }
 .price {
   font-size: 2rem;
@@ -160,4 +178,44 @@
 .counter div,
 .counter button:hover {
   color: var(--text-green);
+}
+
+/* animations */
+/* .item:hover {
+  background: hsla(0, 0%, 92%, 0.2);
+} */
+.item:hover img {
+  scale: 1.02;
+  translate: -7% 0;
+}
+/* .item:hover .count {
+  animation: scale 0.3s ease-out;
+} */
+@keyframes scale {
+  0% {
+    scale: 1;
+    translate: 0 0;
+  }
+  50% {
+    scale: 1.1;
+    translate: 0 -50%;
+  }
+  100% {
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+
+/* Cart bottom */
+.buttonsBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.back {
+  display: flex;
+  gap: 0.5em;
+  color: var(--text-grey);
 }

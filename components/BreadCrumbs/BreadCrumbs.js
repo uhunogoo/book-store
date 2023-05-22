@@ -5,7 +5,7 @@ export default function BreadCrumbs({array = [], ...delegated}) {
   if (array.length === 0) return;
   
   return (<>
-    <div className={styles.breadCrumbs} {...delegated}>
+    <nav aria-label="Breadcrumbs" className={styles.breadCrumbs} {...delegated}>
       <Link href="/">Головна</Link>
       { array.map(({text, src}, i) => {
         const isLast = i === (array.length - 1);
@@ -14,6 +14,6 @@ export default function BreadCrumbs({array = [], ...delegated}) {
         }
         return <Link key={i} href={src}>{ text }</Link>;
       } )}
-    </div>
+    </nav>
   </>);
 }

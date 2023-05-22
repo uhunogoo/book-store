@@ -15,7 +15,7 @@ function Button({
   const visualClassName = styles[visual] ? styles[visual] : '';
   const delegatedClassName = className ? className : '';
   const counterClass = (numOfItems > 0) ? styles.counter : ''; 
-  const buttonClassName = `${styles.button} ${delegatedClassName} ${ visualClassName } ${counterClass}`
+  const buttonClassName = `${delegatedClassName} ${ visualClassName } ${counterClass}`
 
   return (
     <button 

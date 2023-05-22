@@ -1,7 +1,3 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-
 import { Rochester } from 'next/font/google';
 const rochester400 = Rochester({
   subsets: ['latin'],
@@ -11,17 +7,23 @@ const rochester400 = Rochester({
   variable: '--rochester'
 });
 
-import { Close } from 'components/Icons/Icons';
+import React from 'react';
+import Image from 'next/image';
+
+
+import { animated, easings, useSpring, useSpringRef, useSprings } from '@react-spring/web';
+
 import Button from 'components/Button/Button';
 import Scroll from 'components/Scroll/Scroll';
 
 import styles from './style.module.css';
+
 import { SITE_DATA } from '@/data';
-import Counter from './Counter';
 import { currencyFormat } from '@/utils';
+import CartItem from './CartItem';
 
 const COUNT = 3;
-function CartContent({ ...delegated }) {
+function CartContent({ status = true, ...delegated }) {
   const { books } = SITE_DATA;
   const newBooksList = React.useMemo(() => {
     const booksList = [];
@@ -39,66 +41,52 @@ function CartContent({ ...delegated }) {
 
     return booksList;
   }, [books]);
+  
+  const titleAnimation = useSpring({
+    from: { opacity: status ? 0 : 1, y: status ? 10 : 0,scale:  status ? 0.98 : 1,},
+    to: { opacity: status ? 1 : 0, y: status ? 0 : 10,scale:  status ? 1 : 0.98, },
+    delay: status ? 500 : 0,
+    config: {
+      duration: 400,
+      easing: status ? easings.easeOutQuad : easings.easeOutSine,
+    }
+  });
 
   return (
     <div className={`${rochester400.variable} ${styles.cartContent}`} {...delegated}>
-      <h4>Кошик:</h4>
-      <div className={styles.itemsList}>
-        <Scroll>
-          {newBooksList.map(({ id, ...props }, i) => (
-            <CartItem key={i} id={i} {...props} />
-          ))}
-        </Scroll>
-      </div>
-      <div className={ styles.cartFooter }>
-        <div style={{
-          display: 'grid',
-          placeItems: 'end',
-          marginTop: '1rem'
-        }}>
-          <div style={{ display: "flex", gap: '1rem' }}>
-            <div>
-              <span>Кіл-ть:</span>{' '}
-              <span style={{ 
-                color: 'var(--text-green)', 
-                fontSize: 'var(--text-size)',
-                fontFamily: 'var(--rochester)'
-              }}>
-                3
-              </span>
-            </div>
-            <div>
-              <span>Всього:</span>{' '}
-              <span style={{ 
-                color: 'var(--text-green)', 
-                fontSize: 'var(--text-size)',
-                fontFamily: 'var(--rochester)'
-              }}>
-                {currencyFormat(400)}
-              </span>
-            </div>
+      <AnimatedBlocks status={status}>
+        <h4>Кошик:</h4>
+        <div className={styles.itemsList}>
+          <AnimatedBlocks status={status}>
+            {newBooksList.map(({ id, ...props }, i) => (
+              <CartItem key={id + i} id={i} {...props} />
+            ))}
+          </AnimatedBlocks>
+        </div>
+      </AnimatedBlocks>
+
+      {/* Cart footer */}
+      <animated.div className={ styles.cartFooter } style={titleAnimation}>
+        <div className={ styles.summary }>
+          <div>
+            <span>Кіл-ть:</span>{' '}
+            <span className={styles.currency}> 3 </span>
+          </div>
+          <div>
+            <span>Всього:</span>{' '}
+            <span className={styles.currency} > {currencyFormat(400)} </span>
           </div>
         </div>
-        <div style={{
-          display: "flex",
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: '1rem'
-        }}>
-          <Button title="Повернутись" 
-            style={{
-              display: "flex",
-              gap: '0.5em',
-              color: 'var(--text-grey)'
-            }}
-          >
+        
+        <div className={styles.buttonsBlock}>
+          <Button title="Повернутись" className={styles.back}>
             <Image src="/next-arrow.svg" width={13} height={13} alt='arrow' style={{transform: 'scale(-1)'}}/>
             <span>Повернутись</span>
           </Button>
 
           <Button 
             visual="default" 
-            title="Додати до кошика" 
+            title="Оформити замовлення" 
             style={{
               margin: 0,
               background: 'hsl(var(--background-green))'
@@ -107,50 +95,42 @@ function CartContent({ ...delegated }) {
             Замовити
           </Button>
         </div>
-      </div>
+      </animated.div>
     </div>
   );
 }
 
-function CartItem({ id, ...props }) {
-  return (
-    <div className={ styles.item }>
-      <div className={ styles['col-1'] }>
-        <span style={{ fontFamily: 'var(--rochester)' }}>{id + 1}</span>
-        <Button>
-          <Close height={20} width={20} />
-        </Button>
-      </div>
-      <div className={styles['col-2']}>
-        <Link href={`/${props.slug}`}>
-          <Image
-            src={props.image.src}
-            width={props.image.width || 80 }
-            height={props.image.height || 112 }
-            alt={props.title}
-          />
-        </Link>
-      </div>
-      <div className={styles['col-3']}>
-        <div className={ styles.row }>
-          <div className={ styles.titles }>
-            <span>{props.title}</span>
-            <span>{props.subtitle}</span>
-          </div>
-
-          <div className={styles.count}>
-            <span>Кіл-ть:</span>
-            <Counter className={ styles.counter }/>
-          </div>
-        </div>
-
-        <div className={ styles.row }>
-          <div className={styles.productSKU}>Код товару: <span style={{fontFamily: 'var(--rochester)'}}>123456</span></div>
-          <div className={ styles.price } style={{ color: 'var(--text-grey)', fontFamily: 'var(--rochester)' }}>{currencyFormat(props.price)}</div>
-        </div>
-      </div>
-    </div>
+function AnimatedBlocks({ status, children }) {
+  const items = React.Children.toArray(children);
+  const time = 200;
+  const [trail, api] = useSprings(
+    items.length,
+    (i) => ({
+      opacity: status ? 1 : 0,
+      y: status ? 0 : 15,
+      scale: status ? 1 : 0.98,
+      from: { opacity: 0, y: 15, scale: 0.98 },
+      delay: status ? delay(i) : delay((items.length - 1 ) - i),
+      config: {
+        duration: 300,
+        easing: status ? easings.easeOutQuad : easings.easeOutSine,
+      },
+    }),
+    [status]
   );
+
+  function delay(i) {
+    const d = 100 + (time * i);
+    return d;
+  }
+
+  return (<>
+    {trail.map( ({ ...style }, index) => (
+      <animated.div key={index} style={{willChange: 'transform, opacity', ...style}}>
+        { items[index] }
+      </animated.div>
+    ))}
+  </>)
 }
 
 export default CartContent;
