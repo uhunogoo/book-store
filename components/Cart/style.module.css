@@ -112,6 +112,7 @@
 }
 .col-2 img {
   width: 100%;
+  transform-origin: 100% 100%;
   transition: 0.3s ease-out;
 }
 .col-3 {
@@ -179,30 +180,48 @@
 .counter button:hover {
   color: var(--text-green);
 }
+.item svg line,
+.item svg path {
+  transition: fill 0.2s ease-in, stroke 0.2s ease-in;
+}
 
 /* animations */
-/* .item:hover {
-  background: hsla(0, 0%, 92%, 0.2);
-} */
+.item:hover {
+  --icon-color: var(--danger);
+}
+.item:hover svg path {
+  transform-origin: 50% 50%;
+  animation: scale 0.4s ease-out 0.3s;
+  animation-fill-mode: forwards;
+}
+.item:hover svg {
+  animation: rotate 0.8s ease-out 0.3s;
+}
 .item:hover img {
   scale: 1.02;
-  translate: -7% 0;
+  translate: -5% 0;
 }
-/* .item:hover .count {
-  animation: scale 0.3s ease-out;
-} */
-@keyframes scale {
+@keyframes rotate {
   0% {
-    scale: 1;
-    translate: 0 0;
-  }
-  50% {
-    scale: 1.1;
-    translate: 0 -50%;
+    rotate: 0;
   }
   100% {
+    rotate: 180deg;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
     scale: 1;
-    translate: 0 0;
+    opacity: 1;
+  }
+  50% {
+    scale: 1.5;
+    opacity: 0;
+  }
+  50.00001% {
+    scale: 0;
+    opacity: 0;
   }
 }
 

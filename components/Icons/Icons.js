@@ -165,25 +165,31 @@ export function Stars({ color, ...props }) {
   );
 }
 
-export function Icon({children, color = 'var(--text-dark)', ...props}) {
+export function Icon({children, color = 'var(--text-dark)', style,  ...props}) {
   const ref = React.useRef();
-  
+  const ctx = React.useMemo(() => gsap.context(() => {}))
   React.useEffect(() => {
-    const ctx = gsap.context(() => {
-      const q = gsap.utils.selector( ref.current );
+    ctx.add(() => {
+      // gsap.fromTo( ref.current, { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, scale: 1 });
+      gsap.set( ref.current, { autoAlpha: 1 });
       
-      gsap.set( q('path'), { fill: color });
-      if ( q('line').length ) {
-        gsap.set( q('line'), { stroke: color });
+      gsap.set( ctx.selector('path'), { fill: color });
+      if ( ctx.selector('line').length ) {
+        gsap.set( ctx.selector('line'), { stroke: color });
       }
 
     }, ref.current);
 
     return () => ctx.revert();
-  }, []);
+  }, [ctx]);
 
   return (
-    <svg ref={ref} {...props} version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      version="1.1" xmlns="http://www.w3.org/2000/svg"
+      ref={ref} 
+      {...props} 
+      style={{ visibility: 'hidden', opacity: 0, ...style }} 
+    >
       { children }
     </svg>
   )

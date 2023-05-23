@@ -12,7 +12,7 @@ function CartItem({ id, ...props }) {
       <div className={ styles['col-1'] }>
         <span style={{ fontFamily: 'var(--rochester)' }}>{id + 1}</span>
         <Button title="видалити товар" role="button">
-          <Close height={20} width={20} />
+          <Close height={20} width={20} color={'var(--icon-color, var(--text-dark))'} />
         </Button>
       </div>
       <div className={styles['col-2']}>
