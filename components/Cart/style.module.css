@@ -80,10 +80,18 @@
   container-type: inline-size;
   container-name: card;
 }
-.itemsList > div ~ div .item {
+.itemsList .item ~ .item {
   padding-top: var(--text-size);
-  border-top: 1px solid var(--text-grey);
 }
+.separate {
+  border: 0;
+  background: var(--text-grey);
+  transform-origin: 0% 50%;
+  margin: 0;
+  height: 1px;
+  width: 100%;
+}
+
 .item {
   display: grid;
   grid-template-columns: 1rem 19% 1fr;
@@ -191,11 +199,11 @@
 }
 .item:hover svg path {
   transform-origin: 50% 50%;
-  animation: scale 0.4s ease-out 0.3s;
+  animation: scale 0.4s ease-out 0.2s;
   animation-fill-mode: forwards;
 }
 .item:hover svg {
-  animation: rotate 0.8s ease-out 0.3s;
+  animation: rotate 0.8s ease-out 0.2s;
 }
 .item:hover img {
   scale: 1.02;
@@ -206,7 +214,7 @@
     rotate: 0;
   }
   100% {
-    rotate: 180deg;
+    rotate: -180deg;
   }
 }
 @keyframes scale {
@@ -216,7 +224,7 @@
     opacity: 1;
   }
   50% {
-    scale: 1.5;
+    scale: 1.2;
     opacity: 0;
   }
   50.00001% {

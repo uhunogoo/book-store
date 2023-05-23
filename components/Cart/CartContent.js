@@ -10,17 +10,18 @@ const rochester400 = Rochester({
 import React from 'react';
 import Image from 'next/image';
 
-
-import { animated, easings, useSpring, useSpringRef, useSprings } from '@react-spring/web';
-
-import Button from 'components/Button/Button';
-import Scroll from 'components/Scroll/Scroll';
+// import Scroll from 'components/Scroll/Scroll';
 
 import styles from './style.module.css';
-
 import { SITE_DATA } from '@/data';
 import { currencyFormat } from '@/utils';
+
+import Button, { MotionButton } from 'components/Button/Button';
 import CartItem from './CartItem';
+
+
+import { motion } from 'framer-motion';
+import OrderButton from '../Button/OrderButton';
 
 const COUNT = 3;
 function CartContent({ status = true, ...delegated }) {
@@ -42,32 +43,32 @@ function CartContent({ status = true, ...delegated }) {
     return booksList;
   }, [books]);
   
-  const titleAnimation = useSpring({
-    from: { opacity: status ? 0 : 1, y: status ? 10 : 0,scale:  status ? 0.98 : 1,},
-    to: { opacity: status ? 1 : 0, y: status ? 0 : 10,scale:  status ? 1 : 0.98, },
-    delay: status ? 500 : 0,
-    config: {
-      duration: 400,
-      easing: status ? easings.easeOutQuad : easings.easeOutSine,
-    }
-  });
+  const itemVariants = {
+    open: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: "spring", bounce: 0, duration: 0.4 }
+    },
+    closed: { opacity: 0, scale: 0.96, y: 10, transition: { type: "spring", bounce: 0, duration: 0.4 } },
+    hover: { 
+      background: 'white', 
+      transition: { type: "spring", bounce: 0, duration: 0.4 } 
+    },
+  }
 
   return (
     <div className={`${rochester400.variable} ${styles.cartContent}`} {...delegated}>
-      <AnimatedBlocks status={status}>
-        <h4>Кошик:</h4>
-        <div className={styles.itemsList}>
-          <AnimatedBlocks status={status}>
-            {newBooksList.map(({ id, ...props }, i) => (
-              <CartItem key={id + i} id={i} {...props} />
-            ))}
-          </AnimatedBlocks>
-        </div>
-      </AnimatedBlocks>
+      <motion.h4 variants={itemVariants}>Кошик:</motion.h4>
+      <div className={styles.itemsList}>
+        {newBooksList.map(({ id, ...props }, i) => (
+          <CartItem key={i +'-'+ props.title } id={i} variants={ itemVariants } {...props} />
+        ))}
+      </div>
 
       {/* Cart footer */}
-      <animated.div className={ styles.cartFooter } style={titleAnimation}>
-        <div className={ styles.summary }>
+      <div className={ styles.cartFooter }>
+        <motion.div className={ styles.summary } variants={ itemVariants }>
           <div>
             <span>Кіл-ть:</span>{' '}
             <span className={styles.currency}> 3 </span>
@@ -76,61 +77,27 @@ function CartContent({ status = true, ...delegated }) {
             <span>Всього:</span>{' '}
             <span className={styles.currency} > {currencyFormat(400)} </span>
           </div>
-        </div>
+        </motion.div>
         
-        <div className={styles.buttonsBlock}>
-          <Button title="Повернутись" className={styles.back}>
+        <motion.div className={styles.buttonsBlock} variants={ itemVariants }>
+          <MotionButton 
+            initial={{ color: 'var(--text-grey)' }}
+            whileHover={{
+              color: 'var(--text-dark)',
+            }}
+            transition={{ type: 'tween', duration: 0.3 }}
+            title="Повернутись" 
+            className={styles.back}
+          >
             <Image src="/next-arrow.svg" width={13} height={13} alt='arrow' style={{transform: 'scale(-1)'}}/>
             <span>Повернутись</span>
-          </Button>
+          </MotionButton>
 
-          <Button 
-            visual="default" 
-            title="Оформити замовлення" 
-            style={{
-              margin: 0,
-              background: 'hsl(var(--background-green))'
-            }}
-          >
-            Замовити
-          </Button>
-        </div>
-      </animated.div>
+          <OrderButton />
+        </motion.div>
+      </div>
     </div>
   );
-}
-
-function AnimatedBlocks({ status, children }) {
-  const items = React.Children.toArray(children);
-  const time = 200;
-  const [trail, api] = useSprings(
-    items.length,
-    (i) => ({
-      opacity: status ? 1 : 0,
-      y: status ? 0 : 15,
-      scale: status ? 1 : 0.98,
-      from: { opacity: 0, y: 15, scale: 0.98 },
-      delay: status ? delay(i) : delay((items.length - 1 ) - i),
-      config: {
-        duration: 300,
-        easing: status ? easings.easeOutQuad : easings.easeOutSine,
-      },
-    }),
-    [status]
-  );
-
-  function delay(i) {
-    const d = 100 + (time * i);
-    return d;
-  }
-
-  return (<>
-    {trail.map( ({ ...style }, index) => (
-      <animated.div key={index} style={{willChange: 'transform, opacity', ...style}}>
-        { items[index] }
-      </animated.div>
-    ))}
-  </>)
 }
 
 export default CartContent;

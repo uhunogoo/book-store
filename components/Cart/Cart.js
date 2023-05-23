@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import { motion } from 'framer-motion';
 
 import styles from './style.module.css';
 
@@ -8,7 +9,7 @@ import { CartIcon } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
 import CartContent from './CartContent';
 
-import DropContainer from './DropBlock';
+import AnimatedContent from '../DropDown/AnimatedContent';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -18,15 +19,19 @@ const linesClasses = [
 ];
 
 function Cart() {
-  const [active, setActive] = React.useState(false);
-  const ref = useClickOutside(setActive);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const ref = useClickOutside( setIsOpen );
 
   function handleClick() {
-    setActive( current => !current )
+    setIsOpen( !isOpen )
   }
   
   return (
-    <div ref={ref} className={styles.dropContainer}>
+    <motion.div 
+      ref={ref} 
+      animate={isOpen ? "open" : "closed"}
+      className={styles.dropContainer}
+    >
       <Button 
         title="Преревірити кошик" 
         type="button"
@@ -36,14 +41,14 @@ function Cart() {
         <CartIcon width="40" height="40" />
       </Button>
 
-      <DropContainer 
-        status={active} 
+      <AnimatedContent 
         className={styles.cart}
         lines={ linesClasses }
       >
-        <CartContent status={ active } />
-      </DropContainer>
-    </div>
+        <AnimatedContent.AnimatedLines linesClasses={ linesClasses } />
+        <CartContent />
+      </AnimatedContent>
+    </motion.div>
   );
 }
 

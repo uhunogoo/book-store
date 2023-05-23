@@ -1,15 +1,18 @@
+'use client';
 import React from 'react';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import styles from './button.module.css';
+import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
-function Button({ 
+const Button = React.forwardRef(({ 
   children, 
   title, 
   numOfItems = 0, 
   className, 
   visual,
   ...delegated 
-}, ref) {
+}, ref) => {
 
   const id = React.useId();
   const visualClassName = styles[visual] ? styles[visual] : '';
@@ -39,6 +42,9 @@ function Button({
       <VisuallyHidden>{title}</VisuallyHidden>
     </button>
   );
-}
+})
 
-export default React.forwardRef( Button );
+// export const MotionButton = motion( React.forwardRef(Button) );
+export const MotionButton = motion(  Button );
+
+export default Button;

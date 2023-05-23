@@ -5,10 +5,22 @@ import Counter from './Counter';
 import { currencyFormat } from '@/utils';
 import styles from './style.module.css';
 import Button from '../Button/Button';
+import { motion } from 'framer-motion'; 
 
-function CartItem({ id, ...props }) {
-  return (
-    <div className={ styles.item }>
+function CartItem({ id, variants, ...props }) {
+  const separatorVariants = {
+    open: {
+      scale: 1,
+      transition: { type: "spring", bounce: 0, duration: .6, }
+    },
+    closed: { scale: 0, transition: { duration: 0.3 } }
+  }
+
+  return (<>
+    {id > 0 && (
+      <motion.hr className={ styles.separate } variants={ separatorVariants } />
+    )}
+    <motion.div className={ styles.item } initial={{ opacity: 1 }} variants={ variants }>
       <div className={ styles['col-1'] }>
         <span style={{ fontFamily: 'var(--rochester)' }}>{id + 1}</span>
         <Button title="видалити товар" role="button">
@@ -43,8 +55,8 @@ function CartItem({ id, ...props }) {
           <div className={ styles.price } style={{ color: 'var(--text-grey)', fontFamily: 'var(--rochester)' }}>{currencyFormat(props.price)}</div>
         </div>
       </div>
-    </div>
-  );
+    </motion.div>
+  </>);
 }
 
 export default CartItem;

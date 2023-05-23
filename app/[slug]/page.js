@@ -18,9 +18,10 @@ import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import Comments from 'components/Comments/Comments';
 import { Favorite } from 'components/Icons/Icons';
-import Button from 'components/Button/Button';
+import Button, { MotionButton } from 'components/Button/Button';
 import Rating from 'components/Rating/Rating';
 import Tab from 'components/Tab/Tab';
+import OrderButton from '@/components/Button/OrderButton';
 
 const characterisctics = [
   'Код товару',
@@ -106,8 +107,7 @@ function Page({ params  }) {
         <Button title="Додати в улюблене">
           <Favorite width={32} height={32} />
         </Button>
-        <Button 
-          visual="default" 
+        <OrderButton
           title="Додати до кошика" 
           style={{ 
             paddingLeft: '5.25rem', 
@@ -115,9 +115,7 @@ function Page({ params  }) {
             maxWidth: 'none',
             flex: 0
           }}
-        >
-          Замовити
-        </Button>
+        />
       </div>
       
       { fromThisAuthor.length > 0 &&( 
