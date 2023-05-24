@@ -13,9 +13,9 @@ function OrderButton({ children, style = {}, ...delegated }) {
         filter: 'drop-shadow(2px 4px 6px #afc487)'
       }}
       whileTap={{ 
-        scale: 0.97, 
+        scale: 0.98, 
         filter: 'drop-shadow(1px 2px 3px #afc487)',
-        transition: { type: "spring", mass: 0.5, stiffness: 300 } 
+        transition: { type: "spring", mass: 0.2, damping: 1 } 
       }}
       transition={{ type: 'tween', duration: 0.3 }}
       visual="default" 
