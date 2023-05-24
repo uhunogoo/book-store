@@ -1,16 +1,21 @@
 .wrapper {
-  display: grid;
-  position: relative;
+  /* display: grid;
+  position: relative; */
 }
 .content {
-  width: 100%;
-  position: relative;
-  will-change: transform, opacity, filter;
+  /* width: 100%; */
+  /* position: relative; */
+  /* will-change: transform, opacity, filter; */
 }
-.tabsRow {
+.tabsRow ul{
+  list-style: none;
   display: flex;
   gap: var(--size-30);
   margin: 4.5rem 0 var(--size-30);
+}
+.tabsRow li {
+  display: block;
+  position: relative;
 }
 .button {
   color: var(--text-grey);
@@ -19,17 +24,17 @@
   padding-left: 0;
   position: relative;
 }
-.button::after {
-  background: var(--text-green);
-  top: 100%;
-  content: '';
+.underline {
   display: block;
+  background: var(--text-green);
   position: absolute;
-  transition: 0.2s ease-in;
-  transform: translateY(110%);
+  bottom: -1px;
+  left: 0;
+  right: 0;
   height: 1px;
   width: 100%;
 }
+
 .active,
 .button:hover,
 .button:focus {

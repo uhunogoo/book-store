@@ -1,6 +1,6 @@
 import { MotionButton } from 'components/Button/Button';
 
-function OrderButton({ style = {}, ...delegated }) {
+function OrderButton({ children, style = {}, ...delegated }) {
   return (
     <MotionButton
       {...delegated}
@@ -13,8 +13,9 @@ function OrderButton({ style = {}, ...delegated }) {
         filter: 'drop-shadow(2px 4px 6px #afc487)'
       }}
       whileTap={{ 
-        scale: 0.95, 
-        filter: 'drop-shadow(1px 2px 3px #afc487)' 
+        scale: 0.97, 
+        filter: 'drop-shadow(1px 2px 3px #afc487)',
+        transition: { type: "spring", mass: 0.5, stiffness: 300 } 
       }}
       transition={{ type: 'tween', duration: 0.3 }}
       visual="default" 
@@ -24,7 +25,7 @@ function OrderButton({ style = {}, ...delegated }) {
         ...style
       }}
     >
-      Замовити
+      { children || 'Замовити' }
     </MotionButton>
   );
 }

@@ -4,23 +4,19 @@
   backdrop-filter: blur(0.5rem);
   position: fixed;
   inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 3;
 }
 
 .DialogContent {
   background-color: white;
-  filter: drop-shadow( var(--drop-shadow) );
   position: fixed;
   top: 50%;
   left: 50%;
   text-align: center;
-  transform: translate(-50%, -50%);
   width: 90vw;
   max-width: 600px;
   max-height: 85vh;
   padding: 1.375rem;
-  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 3;
 }
 .DialogContent.succes {
@@ -64,27 +60,46 @@
   top: 1.375rem;
   right: 1.375rem;
 }
-.IconButton img {
-  height: 100%;
-  width: 100%;
+.IconButton svg {
+  transition: scale 0.2s ease-in;
+}
+.IconButton line,
+.IconButton path {
+  transition: fill 0.2s ease-in, stroke 0.2s ease-in;
 }
 
-@keyframes overlayShow {
-  from {
-    opacity: 0;
+.IconButton:hover {
+  --icon-color: var(--danger);
+}
+.IconButton:hover svg path {
+  transform-origin: 50% 50%;
+  animation: scale 0.4s ease-out 0.2s;
+  animation-fill-mode: forwards;
+}
+.IconButton:hover svg {
+  scale: 1.2;
+  animation: rotate 0.8s ease-out 0.2s;
+}
+@keyframes rotate {
+  0% {
+    rotate: 0;
   }
-  to {
-    opacity: 1;
+  100% {
+    rotate: -180deg;
   }
 }
-
-@keyframes contentShow {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
+@keyframes scale {
+  0%,
+  100% {
+    scale: 1;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    scale: 1.2;
+    opacity: 0;
+  }
+  50.00001% {
+    scale: 0;
+    opacity: 0;
   }
 }

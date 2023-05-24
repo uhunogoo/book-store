@@ -1,10 +1,10 @@
 "use client";
 
 import React from 'react';
-import Button from 'components/Button/Button';
 // import styles from './style.module.css'
 import Form from '/components/Form/Form';
-import { Fieldset, InputsRow } from '@/components/Form/Form';
+import { Fieldset, InputsRow } from 'components/Form/Form';
+import OrderButton from 'components/Button/OrderButton';
 
 function FormElement({ children, ...delegated }) {
   const form = React.useRef();
@@ -77,13 +77,13 @@ function FormElement({ children, ...delegated }) {
         }}
       />
 
-      <Button 
+      <OrderButton 
         visual="default" 
         title="відправити своє повідомлення"
         style={{ margin: '0 0 0 auto' }}
       >
         Відправити
-      </Button>
+      </OrderButton>
     </Form>
   )
 }

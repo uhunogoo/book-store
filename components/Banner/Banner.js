@@ -1,11 +1,4 @@
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
+import { rochester400 } from "@/fonts";
 
 function Banner() {
   const accent = {

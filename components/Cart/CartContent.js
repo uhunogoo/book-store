@@ -1,22 +1,14 @@
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
-
 import React from 'react';
 import Image from 'next/image';
 
 // import Scroll from 'components/Scroll/Scroll';
+import { rochester400 } from '@/fonts';
 
 import styles from './style.module.css';
 import { SITE_DATA } from '@/data';
 import { currencyFormat } from '@/utils';
 
-import Button, { MotionButton } from 'components/Button/Button';
+import { MotionButton } from 'components/Button/Button';
 import CartItem from './CartItem';
 
 

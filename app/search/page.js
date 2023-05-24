@@ -10,7 +10,11 @@ export default function Page() {
   } );
   return (
     <>
-      <BreadCrumbs array={[ 'Пошук' ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs style={{ marginBottom: '2rem' }}>
+        <BreadCrumbs.Crumb>
+          Пошук
+        </BreadCrumbs.Crumb>
+      </BreadCrumbs>
       
       <h1 style={{ color: 'var(--text-green)' }}>Результати пошуку</h1>
       <p

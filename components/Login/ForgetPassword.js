@@ -6,6 +6,7 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import Button from '../Button/Button';
 import PasswordField from '../Form/PasswordField';
 import Form, { Fieldset } from '../Form/Form';
+import OrderButton from '../Button/OrderButton';
 
 const SECURE = 1111; 
 
@@ -93,14 +94,14 @@ function StartFlow({ email, setEmail }) {
         }}
       />
   
-      <Button
+      <OrderButton
         type="submit"
-        title="search button"
+        title="до наступного кроку"
         visual="default"
-        style={{ marginTop: '-0.5rem' }}
+        style={{ margin: '-0.5rem auto 0' }}
       >
         Продовжити
-      </Button>
+      </OrderButton>
     </>
   );
 }
@@ -110,13 +111,14 @@ function ResetMessage({ email, handleMessage }) {
       <DialogDescription>
         Код підтвердження було успішно відправлено на email: { email }
       </DialogDescription>
-      <Button
+      <OrderButton
         visual="outline"
         title="прочитано"
         onClick={ handleMessage }
+        style={{ margin: '0 auto' }}
       >
         Далі
-      </Button>
+      </OrderButton>
     </>
   )
 }
@@ -159,15 +161,21 @@ function ResetPassword() {
         password={repeatPassword} 
         setPassword={setRepeatPassword} 
       />
-      <Button
+      <OrderButton
         disabled={ !isVerify }
         type="submit"
-        title="search button"
+        title="Підтвердити заміну пароля"
         visual="default"
-        style={{ marginTop: '-0.5rem' }}
+        style={{ 
+          margin: '-0.5rem auto 0', 
+          paddingLeft: '1.5rem', 
+          paddingRight: '1.5rem', 
+          width: 'auto', 
+          maxWidth: "none" 
+        }}
       >
-        Продовжити
-      </Button>
+        Замінити пароль
+      </OrderButton>
     </>
   );
 }

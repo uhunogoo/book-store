@@ -1,9 +1,9 @@
 import styles from './style.module.css';
 
 import React from 'react';
-import Button from '../Button/Button';
 import PasswordField from '../Form/PasswordField';
 import Form, { Fieldset } from '../Form/Form';
+import OrderButton from '../Button/OrderButton';
 
 function SignInForm({ handleSucces }) {
   const form = React.useRef();
@@ -65,14 +65,14 @@ function SignInForm({ handleSucces }) {
           </span>
         </PasswordField>
 
-        <Button
+        <OrderButton
           type="submit"
-          title="search button"
+          title="Зареєструватись"
           visual="default"
-          style={{ marginTop: '-0.5rem' }}
+          style={{ margin: '-0.5rem auto 0' }}
         >
           Реєстрація
-        </Button>
+        </OrderButton>
       </Form>
     </>
   );

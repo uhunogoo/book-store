@@ -1,42 +1,41 @@
-import Link from 'next/link';
 import styles from './page.module.css'
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
+import { rochester400 } from '@/fonts';
+import { NavigationItem } from '@/components/Navigation/Navigation';
 
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
 
 export default function DashboardLayout({ children }) {
+  // const 
   return (
     <section className={rochester400.variable}>
-      <BreadCrumbs array={[ {text: 'Особистий кабінет', src: '/profile'} ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs style={{ marginBottom: '2rem' }}>
+        <BreadCrumbs.Crumb>
+          Особистий кабінет
+        </BreadCrumbs.Crumb>
+      </BreadCrumbs>
+      
       <h1 style={{ color: 'var(--text-green)', margin: '2rem 0 2.5rem' }}>Особистий кабінет</h1>
       <div className={ styles.content }>
         <aside>
           <nav className={ styles.navigation }>
             <ul>
               <li>
-                <Link href="/dashboard/profile">Профіль</Link>
+                <NavigationItem chechLink link="/dashboard/profile" title="Профіль" />
               </li>
               <li>
-                <Link href="/dashboard/club-card">Клубна Картка</Link>
+                <NavigationItem chechLink link="/dashboard/club-card" title="Клубна Картка" />
               </li>
               <li>
-                <Link href="/dashboard/orders">Мої замовлення</Link>
+                <NavigationItem chechLink link="/dashboard/orders" title="Мої замовлення" />
               </li>
               <li>
-                <Link href="/dashboard/wishlist">Побажання</Link>
+                <NavigationItem chechLink link="/dashboard/wishlist" title="Побажання" />
               </li>
               <li>
-                <Link href="/dashboard/cart">Кошик</Link>
+                <NavigationItem chechLink link="/dashboard/cart" title="Кошик" />
               </li>
               <li>
-                <Link href="/dashboard/password">Пароль</Link>
+                <NavigationItem chechLink link="/dashboard/password" title="Пароль" />
               </li>
             </ul>
           </nav>

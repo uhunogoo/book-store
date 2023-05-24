@@ -1,37 +1,46 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 function AnimatedContent({ children, className }) {
+  const generatedID = React.useId();
   const apllyedClass = className ? `${ className }` : '';
+  const windowVaritans = {
+    open: {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.6,
+        delayChildren: 0.05,
+        staggerDirection: 1,
+        staggerChildren: 0.05
+      }
+    },
+    closed: {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      transition: {
+        type: "tween",
+        ease: 'easeIn',
+        bounce: 0,
+        delay: 0.1,
+        duration: 0.6,
+        staggerDirection: -1,
+        staggerChildren: 0.05
+      }
+    }
+  }
 
   return (
-    <motion.div 
+    <motion.div
+      key={generatedID} 
       className={apllyedClass}
       style={{clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"}}
-      variants={{
-        open: {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          transition: {
-            type: "spring",
-            bounce: 0,
-            duration: 0.6,
-            delayChildren: 0.05,
-            staggerDirection: 1,
-            staggerChildren: 0.05
-          }
-        },
-        closed: {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-          transition: {
-            type: "tween",
-            ease: 'easeIn',
-            bounce: 0,
-            delay: 0.1,
-            duration: 0.6,
-            staggerDirection: -1,
-            staggerChildren: 0.05
-          }
-        }
-      }}
+      
+      initial={'closed'}
+      animate={'open'}
+      exit={'closed'}
+      
+      variants={ windowVaritans }
     >
       { children }
     </motion.div>

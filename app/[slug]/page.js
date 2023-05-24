@@ -2,15 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { SITE_DATA } from '@/data';
 
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
-
+import { rochester400 } from '@/fonts';
 import styles from './style.module.css';
 
 import { currencyFormat } from '@/utils';
@@ -18,10 +10,10 @@ import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import Comments from 'components/Comments/Comments';
 import { Favorite } from 'components/Icons/Icons';
-import Button, { MotionButton } from 'components/Button/Button';
+import Button from 'components/Button/Button';
 import Rating from 'components/Rating/Rating';
 import Tab from 'components/Tab/Tab';
-import OrderButton from '@/components/Button/OrderButton';
+import OrderButton from 'components/Button/OrderButton';
 
 const characterisctics = [
   'Код товару',
@@ -56,16 +48,14 @@ function Page({ params  }) {
 
   return (
     <>
-      <BreadCrumbs array={[ 
-        {
-          text: 'Каталог',
-          src: '/catalog'
-        }, 
-        {
-          text: book.title,
-          src: '/' + book.slug 
-        }
-      ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs style={{ marginBottom: '2rem' }}>
+        <BreadCrumbs.Crumb href="/catalog">
+          Каталог
+        </BreadCrumbs.Crumb>
+        <BreadCrumbs.Crumb>
+          { book.title }
+        </BreadCrumbs.Crumb>
+      </BreadCrumbs>
     
       <h1 className={ styles.h1 }>{ book.title } </h1>
       <div className={ styles.product }>

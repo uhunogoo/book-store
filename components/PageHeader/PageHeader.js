@@ -10,23 +10,21 @@ import SearchForm from '../SearchForm/SearchForm';
 import Navigation from '../Navigation/Navigation';
 import DropDown from '../DropDown/DropDown';
 import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
-import Login from '../Login/Login';
 import DecoratedTree from './DecoratedTree';
 import { Favorite, User } from '../Icons/Icons';
 import Cart from 'components/Cart/Cart';
 import Link from 'next/link';
+import UserComponent from '../UserComponent/UserComponent';
 
 function PageHeader() {
   const { top_navigation, dropDown } = SITE_DATA;
-  const [open, setOpen] = React.useState(false);
-  
   const topLinks = top_navigation.length ? top_navigation : [];
   
   return (
     <>
       <header style={{ marginBottom: '2.5rem', position: 'relative'}}>
         <Navigation 
+          needLinkChecking={ true }
           aria-label="Navigation" 
           navigationList={ topLinks } 
         />
@@ -49,20 +47,12 @@ function PageHeader() {
               >
                 <Favorite width="40" height="40" />  
               </Button>
-              <Modal
-                open={open} setOpen={setOpen}
-                trigger={
-                  <Button title="user button" type="button">
-                    <User  width="40" height="40" />
-                  </Button>
-                }
-              >
-                <Login setOpen={setOpen}/>
-              </Modal>
+              <UserComponent/>
             </div>
 
             <DecoratedTree />
             <DecoratedTree location="right" />
+            
           </ContentWrapper>
         </div>
       </header>

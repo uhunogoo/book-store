@@ -2,15 +2,9 @@ import Image from 'next/image';
 import Rating from '../Rating/Rating';
 import styles from './style.module.css';
 import Button from 'components/Button/Button';
+import { rochester400 } from '@/fonts';
 
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
+
 
 const COMMENTS = [
   {

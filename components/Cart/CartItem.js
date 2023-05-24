@@ -6,8 +6,10 @@ import { currencyFormat } from '@/utils';
 import styles from './style.module.css';
 import Button from '../Button/Button';
 import { motion } from 'framer-motion'; 
+import React from 'react';
 
 function CartItem({ id, variants, ...props }) {
+  const generategID = React.useId();
   const separatorVariants = {
     open: {
       scale: 1,
@@ -20,7 +22,7 @@ function CartItem({ id, variants, ...props }) {
     {id > 0 && (
       <motion.hr className={ styles.separate } variants={ separatorVariants } />
     )}
-    <motion.div className={ styles.item } initial={{ opacity: 1 }} variants={ variants }>
+    <motion.div key={ generategID } className={ styles.item } variants={ variants }>
       <div className={ styles['col-1'] }>
         <span style={{ fontFamily: 'var(--rochester)' }}>{id + 1}</span>
         <Button title="видалити товар" role="button">

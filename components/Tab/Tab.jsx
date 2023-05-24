@@ -2,120 +2,64 @@
 
 import React from 'react';
 import Button from '../Button/Button';
-import { animated, config, useChain, useSpring, useSpringRef, useTransition } from '@react-spring/web';
 
 import styles from './style.module.css';
+import { AnimatePresence, LayoutGroup, motion, useWillChange } from 'framer-motion';
 
 function Tab({ tabs}) {
-  const [ currentTab, setCurrentTab ] = React.useState( 0 );
-  const [ direction, setDirection ] = React.useState('next');
-
-  const [ tabsTitles, tabsContent ] = React.useMemo(() => {
-    const titles = [];
-    const contents = [];
-
-    tabs.forEach( ({ title, content }) => {
-      titles.push(title);
-      contents.push(content);
-    });
-    return [ titles, contents ];
-  }, [tabs]);
-  
-  
-  function handleVisibleTab(newID) {
-    if ( newID === currentTab ) return;
-    setDirection(() => newID > currentTab ? 'next' : 'prev');
-    setCurrentTab( newID );
-  }
+  const [ selectedTab, setSelectedTab ] = React.useState( tabs[0] );
+  const willChange = useWillChange();
 
   return (
     <>
-      <div className={ styles.tabsRow }>
-        { tabsTitles.map((tab, id) => (
-          <TabNav
-            key={id}
-            text={ tab } 
-            title={ tab } 
-            className={ `${styles.button} ${currentTab === id ? styles.active : ''}` }
-            onClick={ () => handleVisibleTab(id) }
-          >
-            {( id > 0 ) && <span className={ styles.delimiter } /> }
-          </TabNav>
+      <nav className={ styles.tabsRow }>
+        <ul>
+        { tabs.map(( tab ) => (
+          <li key={ tab.title }>
+            <Button
+              onClick={() => setSelectedTab( tab ) }
+            >
+              { tab.title }              
+            </Button>
+            {tab === selectedTab ? (
+              <motion.div 
+                className={styles.underline} 
+                transition={{ type: 'spring', bounce: 0, duration: 0.2 }} 
+                layoutId='line'
+                style={{ willChange }} 
+              />
+            ) : null}
+          </li>
         )) }
-      </div>
-      <TabContent tabsContent={ tabsContent } currentTab={currentTab} direction={ direction }/>
+        </ul>
+      </nav>
+      
+      <TabContent currentTab={ selectedTab }/>
     </>
   )
 }
 
-function TabNav({ children, text, ...delegated }) {
-  return (
-    <>
-      { children }
-      <Button
-        {...delegated}
-      >
-        { text }
-      </Button>
-    </>
-  );
-}
-
-function TabContent({ tabsContent, currentTab, direction }) {
-  const d = direction === 'prev' ? -1 : 1;
-  const [status, setStatus] = React.useState(true); 
+function TabContent({ currentTab }) {
+  // const d = 1;
+  const willChange = useWillChange();
   
-
-  const testRef = useSpringRef();
-  const props = useSpring({
-    ref: testRef,
-    key: null,
-    from: {
-      filter: `blur(${status ? 0 : 0.5}rem)`,
-      transform: `translateX(${status ? 0 : 100 * d }px)`
-    },
-    to: {
-      filter: `blur(${status ? 0.5 : 0}rem)`,
-      transform: `translateX(${status ? 100 * d : 0 }px)` 
-    },
-  });
-  const transitionRef = useSpringRef();
-  const transitions = useTransition(currentTab, {
-    ref: transitionRef,
-    key: null,
-    from: {
-      opacity: 0,
-      transform: `translateX(${ 400 * d }px)`
-    },
-    enter: {
-      opacity: 1,
-      transform: 'translateX(0px)'
-    },
-    leave: {
-      opacity: 0,
-      transform: `translateX(${ -400 * d }px)`
-    },
-    config: config.default,
-    exitBeforeEnter: true,
-    onStart: () => {
-      setStatus( currentStatus => !currentStatus );
-    },
-    onDestroyed: () => {
-      setStatus( true );
-    }
-  });
-  
-  useChain( status ? [ testRef, transitionRef ] : [ transitionRef, testRef ], [0, 0]);
 
   return (
     <div className={styles.wrapper}>
-      {transitions((style, i) => (
-        <animated.div key={i} style={ style } className={styles.content}>
-          <animated.div style={props}>
-            { tabsContent[i] }
-          </animated.div>
-        </animated.div>
-      ))}
+      <AnimatePresence mode='wait'>
+        <motion.div
+          className={styles.content}
+          key={currentTab ? currentTab.title : "empty"}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0, transition: { duration: 0.4 } }}
+          transition={{ type: 'spring', bounce: 0, duration: 0.6 }}
+          
+          style={{ willChange }}
+        >
+          { currentTab ? currentTab.content : "😋" }
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

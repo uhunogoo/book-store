@@ -1,19 +1,11 @@
 import Image from 'next/image';
 
-import { Rochester } from 'next/font/google';
-const rochester400 = Rochester({
-  subsets: ['latin'],
-  display: 'swap',
-  style: 'normal',
-  weight: '400',
-  variable: '--rochester'
-});
-
 import styles from './style.module.css';
 import Button from '../Button/Button';
 import { Favorite } from '../Icons/Icons';
 import Link from 'next/link';
 import { currencyFormat } from '@/utils';
+import { rochester400 } from '@/styles/fonts';
 
 function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
   if (!image) {

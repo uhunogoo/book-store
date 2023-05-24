@@ -10,7 +10,12 @@ import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 export default function Page() {
   return (
     <section className={styles.main}>
-      <BreadCrumbs array={[ {text: 'Контакти', src: '/contacts'} ]} style={{ marginBottom: '2rem' }}/>
+      <BreadCrumbs style={{ marginBottom: '2rem' }}>
+        <BreadCrumbs.Crumb>
+          Контакти
+        </BreadCrumbs.Crumb>
+      </BreadCrumbs>
+
       <div className={styles.row}>
         <div className={styles.image}>
           <Image 

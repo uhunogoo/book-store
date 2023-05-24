@@ -16,7 +16,7 @@
   list-style-type: none;
   border-left: 1px solid var(--text-green);
 }
-.navigation ul a {
+.navigation ul li a {
   display: block;
   background: transparent;
   border-bottom: 1px solid var(--border-color);

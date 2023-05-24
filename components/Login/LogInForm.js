@@ -5,6 +5,7 @@ import styles from './style.module.css';
 import Button from 'components/Button/Button';
 import PasswordField from '@/components/Form/PasswordField';
 import Form, { Fieldset } from '@/components/Form/Form';
+import OrderButton from '../Button/OrderButton';
 
 function LogInForm({ handleSucces, forgetButton }) {
   const form = React.useRef();
@@ -49,14 +50,14 @@ function LogInForm({ handleSucces, forgetButton }) {
           Перевірте це поле
         </span>
       </PasswordField>
-      <Button
+      <OrderButton
         type="submit"
-        title="search button"
+        title="увійти в акаунт"
         visual="default"
-        style={{ marginTop: '-0.5rem' }}
+        style={{ margin: '-0.5rem auto 0' }}
       >
         Вхід
-      </Button>
+      </OrderButton>
     </Form>
   );
 }
