@@ -6,6 +6,7 @@ import { Favorite } from '../Icons/Icons';
 import Link from 'next/link';
 import { currencyFormat } from '@/utils';
 import { rochester400 } from '@/styles/fonts';
+import FavoriteButton from '../Button/FavoriteButton';
 
 function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
   if (!image) {
@@ -26,13 +27,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
 
         {!!price && (
           <div className={ styles.actions }>
-            <Button 
-              className={ styles.button }
-              title="Дадати в улюблене" 
-              type="button"
-            >
-              <Favorite color={ 'var(--text-green)' } />  
-            </Button>
+            <FavoriteButton className={ styles.button } />
           </div>
         )}
       </div>
