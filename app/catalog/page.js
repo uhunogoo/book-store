@@ -12,6 +12,7 @@ import ProductCard from 'components/ProductCard/ProductCard';
 import SelectBlock from 'components/SelectBlock/SelectBlock';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
+import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
 
 const SORTING = [ {title: 'Топ'}, {title: 'За новизною'}, {title: 'За популярністю'} ];
@@ -59,7 +60,7 @@ export default function Page({ perpage = 24 }) {
       </div>
       <div className={ styles.pagination }>
         <Button className={ styles.paginationButton } title="вперед">
-          <span>далі</span>
+          <UnderlinedText>далі</UnderlinedText>
           <Image src="/next-arrow.svg" height={30} width={30} alt='next'/>
         </Button>
       </div>

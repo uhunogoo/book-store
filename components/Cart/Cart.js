@@ -35,6 +35,7 @@ function Cart() {
       <MotionButton 
         title="Преревірити кошик" 
         type="button"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         onClick={ handleClick } 
         numOfItems={1}

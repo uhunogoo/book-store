@@ -11,6 +11,7 @@ import SignInForm from './SignInForm';
 import ForgetPassword from './ForgetPassword';
 import { Facebook, Google, Twitter } from '../Icons/Icons';
 import { useRouter } from 'next/navigation';
+import UnderlinedText from '../UnderlinedText/UnderlinedText';
 
 function UserForm({ setOpen }) {
   const [succes, setSucces] = React.useState( false );
@@ -56,7 +57,7 @@ function UserForm({ setOpen }) {
             className={styles.topRight} 
             onClick={ () => handleRegisterForm('forget') }
           >
-            Забули пароль?
+            <UnderlinedText>Забули пароль?</UnderlinedText>
           </a>
         }/> 
       )}

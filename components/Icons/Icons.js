@@ -26,6 +26,7 @@ export function Favorite({ color, ...props }) {
     </Icon>
   );
 }
+
 export function User({ color, ...props }) {
   return (
     <Icon viewBox="0 0 24 24" color={color} {...props}>

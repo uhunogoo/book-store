@@ -14,7 +14,7 @@ function SearchForm({ className='', ...delegated }) {
   function handleSearch(event) {
     event.preventDefault();
 
-    router.push(`/search?s=${searchTerm}`);
+    router.push(`/search?term=${searchTerm}`);
     setSearchTerm('');
   } 
   

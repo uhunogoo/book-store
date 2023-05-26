@@ -3,6 +3,7 @@ import Rating from '../Rating/Rating';
 import styles from './style.module.css';
 import Button from 'components/Button/Button';
 import { rochester400 } from '@/fonts';
+import UnderlinedText from '../UnderlinedText/UnderlinedText';
 
 
 
@@ -43,7 +44,9 @@ function Comments() {
         <CommentContainer key={id} image={image} {...props} />
       ))}
 
-      <Button title="Показати ще" className={ styles.more }>Показати ще</Button>
+      <Button title="Показати ще" className={ styles.more }>
+        <UnderlinedText>Показати ще</UnderlinedText>
+      </Button>
     </>
   );
 }

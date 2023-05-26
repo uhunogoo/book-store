@@ -28,9 +28,7 @@
   top: 0;
   transform: translateY(-1rem);
 }
-a.topRight {
-  text-decoration: underline;
-}
+
 .error {
   color: red;
   opacity: 0;

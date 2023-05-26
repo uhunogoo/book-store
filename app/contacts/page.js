@@ -6,8 +6,13 @@ import styles from './page.module.css'
 import FormElement from './Form';
 import { Clock, LocationMarker, Mail, Phone } from 'components/Icons/Icons';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
+import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
 export default function Page() {
+  const UnderlineSettings = {
+    preferMainColor: "white",
+    preferSelectionColor: "var(--text-green)"
+  }
   return (
     <section className={styles.main}>
       <BreadCrumbs style={{ marginBottom: '2rem' }}>
@@ -52,16 +57,22 @@ export default function Page() {
           
           <InformationBlock  icon={ <Phone color={'var(--text-green)'} /> }>
             <Link href={'tel:+380630000000'}>
-              +380 630 000 000
+              <UnderlinedText { ...UnderlineSettings }>
+                +380 630 000 000
+              </UnderlinedText>
             </Link>
             <Link href={'tel:+380960000000'}>
-              +380 960 000 000
+              <UnderlinedText { ...UnderlineSettings }>
+                +380 960 000 000
+              </UnderlinedText>
             </Link>
           </InformationBlock>
 
           <InformationBlock  icon={ <Mail color={'var(--text-green)'} /> }>
             <Link href={'mailto:bookway@gmail.com'}>
-              bookway@gmail.com
+              <UnderlinedText { ...UnderlineSettings }>
+                bookway@gmail.com
+              </UnderlinedText>
             </Link>
           </InformationBlock>
         </div>

@@ -53,15 +53,15 @@
   display: block;
   opacity: 0.5;
 }
-.galleryColLast span {
+.more {
   display: block;
   color: var(--border-color);
-  text-decoration: underline;
   font-size: 0.7rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+  z-index: 2;
 }
 .sliderMain {
   aspect-ratio: 230 / 315;

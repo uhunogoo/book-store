@@ -10,7 +10,7 @@ function AnimatedContent({ children, className }) {
       transition: {
         type: "spring",
         bounce: 0,
-        duration: 0.6,
+        duration: 0.9,
         delayChildren: 0.05,
         staggerDirection: 1,
         staggerChildren: 0.05

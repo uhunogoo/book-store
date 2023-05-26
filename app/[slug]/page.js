@@ -9,11 +9,12 @@ import { currencyFormat } from '@/utils';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import Comments from 'components/Comments/Comments';
-import { Favorite } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
 import Rating from 'components/Rating/Rating';
 import Tab from 'components/Tab/Tab';
 import OrderButton from 'components/Button/OrderButton';
+import UnderlinedText from 'components/UnderlinedText/UnderlinedText';
+import FavoriteButton from 'components/Button/FavoriteButton';
 
 const characterisctics = [
   'Код товару',
@@ -64,7 +65,12 @@ function Page({ params  }) {
             <Image src='/images/gallery/image-1.jpg' width={98} height={124} alt="image - 1"/>
             <Image src='/images/gallery/image-2.jpg' width={98} height={124} alt="image - 2"/>
             <div className={ styles.galleryColLast }>
-              <span>більше</span>
+              <Button 
+                className={styles.more }
+                title="Показати більше зображень"
+              >
+                <UnderlinedText>більше</UnderlinedText>
+              </Button>
               <Image src='/images/gallery/image-3.jpg' width={98} height={124} alt="image - 3"/>
             </div>
           </div>
@@ -79,8 +85,13 @@ function Page({ params  }) {
 
               <Rating rating={ book.information.rating } />
               
-              <Button title="подивитись відгуки" style={{ fontSize: '1rem',marginTop: '0.2rem', color: 'var(--text-grey)', textDecoration: 'underline' }}>
-                <span style={{fontFamily: 'var(--rochester)'}}>20</span> відгуків
+              <Button 
+                title="подивитись відгуки" 
+                style={{ fontSize: '1rem',marginTop: '0.2rem', color: 'var(--text-grey)' }}
+              >
+                <UnderlinedText>
+                  <span style={{fontFamily: 'var(--rochester)'}}>20</span> відгуків
+                </UnderlinedText>
               </Button>
             </div>
             <div>
@@ -94,9 +105,10 @@ function Page({ params  }) {
         </div>
       </div>
       <div className={ styles.actions }>
-        <Button title="Додати в улюблене">
+        <FavoriteButton title="Додати в улюблене" />
+        {/* <Button title="Додати в улюблене">
           <Favorite width={32} height={32} />
-        </Button>
+        </Button> */}
         <OrderButton
           title="Додати до кошика" 
           style={{ 

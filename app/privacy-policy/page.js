@@ -1,8 +1,13 @@
 import Link from 'next/link'
 import styles from './page.module.css'
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs'
+import UnderlinedText from '@/components/UnderlinedText/UnderlinedText'
 
 export default function Page() {
+  const UnderlineSettings = {
+    preferMainColor: "white",
+    preferSelectionColor: "var(--text-green)"
+  }
   return (
     <main className={styles.main}>
       <BreadCrumbs style={{ marginBottom: '2rem' }}>
@@ -98,7 +103,7 @@ export default function Page() {
         Зв'язатися з нами
       </h2>
       <p>
-        Якщо у вас є питання або пропозиції щодо нашої Політики конфіденційності, не соромтеся звертатися&nbsp;<Link href="/contacts">до нас</Link>.
+        Якщо у вас є питання або пропозиції щодо нашої Політики конфіденційності, не соромтеся звертатися&nbsp;<Link href="/contacts"><UnderlinedText { ...UnderlineSettings }>до нас</UnderlinedText></Link>.
       </p>
     </main>
   )

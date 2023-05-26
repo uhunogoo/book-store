@@ -1,31 +1,47 @@
+'use client'
+
+import React from 'react';
 import { MotionButton } from 'components/Button/Button';
+import { motion } from 'framer-motion';
 
 function OrderButton({ children, style = {}, ...delegated }) {
+  const variants = {
+    hover: {
+      opacity: 0.85,
+    },
+    tap: {
+      opacity: 0.7,
+      transition: { type: "spring", bounce: 0, duration: 0.3 } 
+    }
+  }
+
   return (
     <MotionButton
       {...delegated}
-      initial={{ 
-        filter: 'drop-shadow(0px 0px 0px #afc487)', 
-        color: 'var(--text-dark)' 
-      }}
-      whileHover={{
-        color: '#ffffff',
-        filter: 'drop-shadow(2px 4px 6px #afc487)'
-      }}
-      whileTap={{ 
-        scale: 0.98, 
-        filter: 'drop-shadow(1px 2px 3px #afc487)',
-        transition: { type: "spring", mass: 0.2, damping: 1 } 
-      }}
-      transition={{ type: 'tween', duration: 0.3 }}
+      whileHover="hover"
+      whileTap="tap"
       visual="default" 
       style={{
         margin: 0,
-        background: 'hsl(var(--background-green))',
+        position: 'relative',
+        background: 'transparent',
         ...style
       }}
     >
-      { children || 'Замовити' }
+      <span style={{position: 'relative', display:'inline-block', zIndex:'1'}}>
+        { children || 'Замовити' }
+      </span>
+      <motion.div 
+        variants={ variants }
+        style={{ 
+          height: '100%', 
+          left: 0, 
+          top: 0, 
+          width: '100%', 
+          background: 'hsl(var(--background-green))',
+          position: 'absolute',
+        }} 
+      />
     </MotionButton>
   );
 }

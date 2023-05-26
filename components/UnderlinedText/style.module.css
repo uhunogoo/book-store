@@ -1,0 +1,32 @@
+.underlined-text {
+  display: inline-block;
+  position: relative;
+}
+
+.underline-selection,
+.underline {
+  display: block;
+}
+.underline {
+  background: var(--prefer-main-color, var(--text-grey));
+  bottom: 0.05em;
+  overflow: hidden;
+  position: absolute;
+  height: var(--size, 1px);
+  width: 100%;
+  z-index: -1;
+}
+.underline-selection {
+  background: var(--prefer-selection-color, var(--text-dark) );
+  height: 100%;
+  min-height: 2px;
+  position: absolute;
+  top: 0;
+  transform-origin: 0% 50%;
+  scale: 0 2;
+  transition: all 0.2s ease-in;
+  width: 100%;
+}
+.underlined-text:hover .underline-selection {
+  scale: 1 2;
+}

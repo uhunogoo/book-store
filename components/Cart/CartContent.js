@@ -14,6 +14,7 @@ import CartItem from './CartItem';
 
 import { motion } from 'framer-motion';
 import OrderButton from '../Button/OrderButton';
+import UnderlinedText from '../UnderlinedText/UnderlinedText';
 
 const COUNT = 3;
 function CartContent({ status = true, ...delegated }) {
@@ -82,7 +83,7 @@ function CartContent({ status = true, ...delegated }) {
             className={styles.back}
           >
             <Image src="/next-arrow.svg" width={13} height={13} alt='arrow' style={{transform: 'scale(-1)'}}/>
-            <span>Повернутись</span>
+            <UnderlinedText preferMainColor="white">Повернутись</UnderlinedText>
           </MotionButton>
 
           <OrderButton />

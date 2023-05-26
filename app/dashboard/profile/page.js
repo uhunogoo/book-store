@@ -10,6 +10,7 @@ import Propositions from './Propositions';
 import Rating from 'components/Rating/Rating';
 import Button from 'components/Button/Button';
 import CommentsBlock from './CommentsBlock';
+import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
 
 export default function Page() {
@@ -57,9 +58,10 @@ export default function Page() {
                 alignItems: 'center',
                 color: 'var(--text-grey)',
                 fontSize: '0.75rem',
-                textDecoration: 'underline'
               }}>
-                показати
+                <UnderlinedText>
+                  показати
+                </UnderlinedText>
                 <Image 
                   src="/arrow.svg" 
                   width={10} 

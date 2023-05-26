@@ -2,7 +2,6 @@ import React from 'react';
 
 import styles from './style.module.css';
 
-import Button from 'components/Button/Button';
 import PasswordField from '@/components/Form/PasswordField';
 import Form, { Fieldset } from '@/components/Form/Form';
 import OrderButton from '../Button/OrderButton';
