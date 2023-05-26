@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 import styles from './style.module.css';
 import Button from '../Button/Button';
-import { Favorite } from '../Icons/Icons';
 import Link from 'next/link';
 import { currencyFormat } from '@/utils';
 import { rochester400 } from '@/styles/fonts';
@@ -27,7 +26,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
 
         {!!price && (
           <div className={ styles.actions }>
-            <FavoriteButton className={ styles.button } />
+            <FavoriteButton title="Додати в улюблене" className={ styles.button } />
           </div>
         )}
       </div>

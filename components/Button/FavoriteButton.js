@@ -7,9 +7,12 @@ import { range } from '@/utils';
 
 function FavoriteButton({ style = {}, ...delegated }) {
   const positions = React.useMemo(() => {
-    return range(6).map(item => {
-      const x = (Math.random() - 0.5) * 100; 
-      const y = - Math.random() * 50 - 50;
+    return range(10).map(item => {
+      const r = 40;
+      const alpha = Math.PI * 2 * Math.random();
+      const x = Math.cos(alpha) * r; 
+      const y = Math.sin(alpha) * r;
+
       const rotate = 180 * (Math.random() - 0.5)
       return { x, y, rotate };
     });
@@ -52,7 +55,7 @@ function MainIcon() {
     },
     unliked: {
       scale: [null, 0.5, null, 0.9],
-      x: [null, -5, 10, 0],
+      x: [null, -4, 8, 0],
       transition: {
         type: "tween",
         ease: 'easeOut',
@@ -76,8 +79,8 @@ function Particles({ positions = [] }) {
       y: positions[custom].y,
       rotate: positions[custom].rotate,
       transition: { 
-        duration: (1 - Math.random() * 0.5) * 0.5,
-        delay: custom * 0.075,
+        duration: (1 - Math.random() * 0.25) * 0.45,
+        delay: custom * 0.025,
       }
     })
   }), []);
@@ -90,7 +93,7 @@ function Particles({ positions = [] }) {
         variants={ variants }
         initial={{ 
           opacity: 0, 
-          scale: 0.5, 
+          scale: 0.3, 
           x: 0, 
           y: 0,
           position: "absolute",

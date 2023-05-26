@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-function AnimatedContent({ children, className }) {
+function AnimatedContent({ children, className, style = [] }) {
   const generatedID = React.useId();
   const apllyedClass = className ? `${ className }` : '';
   const windowVaritans = {
@@ -34,7 +34,7 @@ function AnimatedContent({ children, className }) {
     <motion.div
       key={generatedID} 
       className={apllyedClass}
-      style={{clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"}}
+      style={{clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", ...style}}
       
       initial={'closed'}
       animate={'open'}
