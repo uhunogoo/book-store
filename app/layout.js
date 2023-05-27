@@ -4,7 +4,7 @@ import { roboto400, roboto400_italick, roboto700 } from '@/fonts';
 import ContentWrapper from 'components/ContentWrapper/ContentWrapper';
 import PageHeader from 'components/PageHeader/PageHeader';
 import PageFooter from 'components/PageFooter/PageFooter';
-import Scroll from '@/components/Scroll/Scroll';
+import Scroll from 'components/Scroll/Scroll';
 
 
 

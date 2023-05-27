@@ -1,5 +1,7 @@
+'use client'
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 // import Scroll from 'components/Scroll/Scroll';
 import { rochester400 } from '@/fonts';
@@ -11,30 +13,23 @@ import { currencyFormat } from '@/utils';
 import { MotionButton } from 'components/Button/Button';
 import CartItem from './CartItem';
 
-
-import { motion } from 'framer-motion';
 import OrderButton from '../Button/OrderButton';
 import UnderlinedText from '../UnderlinedText/UnderlinedText';
+const CART_CONTENT = [ 0, 1, 2 ];
 
-const COUNT = 3;
 function CartContent({ status = true, ...delegated }) {
   const { books } = SITE_DATA;
-  const newBooksList = React.useMemo(() => {
-    const booksList = [];
-
-    for (let i = 0; i < COUNT; i++) {
-      const { image, price, title, subtitle, slug } = books[i];
-      booksList.push({
-        image,
-        price,
-        title,
-        subtitle,
-        slug,
-      });
-    }
-
-    return booksList;
-  }, [books]);
+  const newBooksList = CART_CONTENT.map( itemID => {
+    const { image, price, title, subtitle, slug } = books[itemID];
+    return({
+      image,
+      price,
+      title,
+      subtitle,
+      slug,
+    });
+  });
+  const subtotals = calculateSubtotal( newBooksList );
   
   const itemVariants = {
     open: {
@@ -68,7 +63,7 @@ function CartContent({ status = true, ...delegated }) {
           </div>
           <div>
             <span>Всього:</span>{' '}
-            <span className={styles.currency} > {currencyFormat(400)} </span>
+            <span className={styles.currency} > {currencyFormat( subtotals )} </span>
           </div>
         </motion.div>
         
@@ -91,6 +86,16 @@ function CartContent({ status = true, ...delegated }) {
       </div>
     </div>
   );
+}
+
+function calculateSubtotal(items) {
+  let subtotal = 0;
+
+  items.forEach((item) => {
+    subtotal += item.price;
+  });
+
+  return subtotal;
 }
 
 export default CartContent;

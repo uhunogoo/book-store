@@ -9,7 +9,8 @@ import styles from './drop-down.module.css'
 import DecoratedBooks from '../DecoratedBooks/DecoratedBooks';
 import DropDownContent from './DropDownContent';
 import Button from '../Button/Button';
-import { useClickOutside } from '@/effects/useClickOutside';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import useToggle from '@/hooks/useToggle';
 
 gsap.registerEffect({
   name: "openMenu",
@@ -97,13 +98,11 @@ gsap.registerEffect({
 function DropDown({ data }) {
   const ctx = React.useMemo( () => gsap.context(() => {}), []);
 
-  const [ dropDownStatus, setDropDownStatus ] = React.useState( false );
+  const [ dropDownStatus, setDropDownStatus ] = useToggle( false );
+  const ref = useClickOutside( dropDownStatus, setDropDownStatus );
+
   const activeClass = dropDownStatus ? styles.active : ''
   const buttonClass = `${styles.dropDownButton} ${activeClass}`;
-  
-  function handleClick() {
-    setDropDownStatus( !dropDownStatus );
-  }
 
   React.useLayoutEffect(() => {
     const animationParams = {
@@ -122,8 +121,6 @@ function DropDown({ data }) {
     return () => ctx.revert();
   }, []);
 
-  const ref = useClickOutside( setDropDownStatus );
-
   const handleOnEnter = (node) => ctx.open( node );
   const handleOnExit = (node) => ctx.close( node );
 
@@ -131,7 +128,7 @@ function DropDown({ data }) {
     <>
       <div ref={ref} className={ styles.dropContainer }>
         <Button
-          onClick={ handleClick }
+          onClick={ setDropDownStatus }
           title="user button" 
           type="button"
           className={ buttonClass }

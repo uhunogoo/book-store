@@ -1,4 +1,3 @@
-"use client";
 import React from 'react';
 import Image from 'next/image';
 
@@ -11,7 +10,7 @@ import Navigation from '../Navigation/Navigation';
 import DropDown from '../DropDown/DropDown';
 import Button from '../Button/Button';
 import DecoratedTree from './DecoratedTree';
-import { Favorite, User } from '../Icons/Icons';
+import { Favorite } from '../Icons/Icons';
 import Cart from 'components/Cart/Cart';
 import Link from 'next/link';
 import UserComponent from '../UserComponent/UserComponent';

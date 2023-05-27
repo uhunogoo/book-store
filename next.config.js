@@ -8,10 +8,7 @@ const nextConfig = {
         permanent: true,
       },
     ];
-  },
-  experimental: {
-    appDir: true,
-  },
+  }
 }
 
 module.exports = nextConfig

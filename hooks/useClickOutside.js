@@ -1,21 +1,21 @@
 import React from 'react';
 
-export function useClickOutside( set ) {
+export function useClickOutside( status, toggleStatus ) {
   const ref = React.useRef();
-
-  if (!set ) return null;
-
+  if (!toggleStatus) return null;
+  
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
+    function handleClickOutside(event) {
+      if (status === false) return null;
       if (ref.current && !ref.current.contains(event.target)) {
-        set( false );
+        toggleStatus();
       }
     };
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
-  }, []);
+  }, [status, toggleStatus]);
 
   return ref;
 }

@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from './style.module.css';
 
-import { useClickOutside } from 'effects/useClickOutside';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import Button from '../Button/Button';
 import Scroll from '../Scroll/Scroll';
 import { AnimatePresence, motion } from 'framer-motion' 

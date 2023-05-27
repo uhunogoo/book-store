@@ -4,12 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import styles from './style.module.css';
 
-import { useClickOutside } from '@/effects/useClickOutside';
-import { CartIcon } from 'components/Icons/Icons';
+import AnimatedContent from 'components/DropDown/AnimatedContent';
 import { MotionButton } from 'components/Button/Button';
+import { CartIcon } from 'components/Icons/Icons';
 import CartContent from './CartContent';
 
-import AnimatedContent from '../DropDown/AnimatedContent';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import useToggle from '@/hooks/useToggle';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -19,12 +20,8 @@ const linesClasses = [
 ];
 
 function Cart() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const ref = useClickOutside( setIsOpen );
-
-  function handleClick() {
-    setIsOpen( !isOpen )
-  }
+  const [ isOpen, setIsOpen ] = useToggle(false);
+  const ref = useClickOutside( isOpen, setIsOpen );
   
   return (
     <motion.div 
@@ -37,7 +34,7 @@ function Cart() {
         type="button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
-        onClick={ handleClick } 
+        onClick={ setIsOpen } 
         numOfItems={1}
       >
         <CartIcon 

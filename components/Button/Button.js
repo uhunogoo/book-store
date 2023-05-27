@@ -43,7 +43,6 @@ const Button = React.forwardRef(({
   );
 })
 
-// export const MotionButton = motion( React.forwardRef(Button) );
 export const MotionButton = motion(  Button );
 
 export default Button;

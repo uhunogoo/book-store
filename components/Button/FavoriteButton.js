@@ -6,18 +6,18 @@ import { Favorite } from 'components/Icons/Icons';
 import { range } from '@/utils';
 
 function FavoriteButton({ style = {}, ...delegated }) {
-  const positions = React.useMemo(() => {
-    return range(10).map(item => {
-      const r = 40;
-      const alpha = Math.PI * 2 * Math.random();
-      const x = Math.cos(alpha) * r; 
-      const y = Math.sin(alpha) * r;
-
-      const rotate = 180 * (Math.random() - 0.5)
-      return { x, y, rotate };
-    });
-  }, []);
   const [clicked, setClicked] = React.useState( false );
+  
+  const positions = range(10).map(item => {
+    const r = 40;
+    const alpha = Math.PI * 2 * Math.random();
+    const x = Math.cos(alpha) * r; 
+    const y = Math.sin(alpha) * r;
+
+    const rotate = 180 * (Math.random() - 0.5);
+    return { x, y, rotate };
+  });
+
 
   return (
     <MotionButton
@@ -41,7 +41,6 @@ function FavoriteButton({ style = {}, ...delegated }) {
 
 function MainIcon() {
   const mainIconVariants = {
-    initital: {scale: 0, rotate: 0, x: 0},
     liked: {
       // '--text-dark': '#ffe54a',
       '--text-dark': 'var(--text-green)',
@@ -72,7 +71,8 @@ function MainIcon() {
 }
 
 function Particles({ positions = [] }) {
-  const variants = React.useMemo(() => ({
+  if (positions.length === 0) return null;
+  const variants = {
     liked: (custom) => ({
       opacity: [0, 1, 0],
       x: positions[custom].x,
@@ -83,7 +83,7 @@ function Particles({ positions = [] }) {
         delay: custom * 0.025,
       }
     })
-  }), []);
+  };
 
   return (<>
     { positions.map((item, id) =>

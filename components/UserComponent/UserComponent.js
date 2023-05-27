@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { MotionButton } from '../Button/Button';
 import { User } from '../Icons/Icons';
