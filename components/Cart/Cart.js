@@ -1,16 +1,17 @@
 'use client'
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 
 import styles from './style.module.css';
-
-import AnimatedContent from 'components/DropDown/AnimatedContent';
-import { MotionButton } from 'components/Button/Button';
-import { CartIcon } from 'components/Icons/Icons';
-import CartContent from './CartContent';
-
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
+
+import { CartIcon } from '../Icons/Icons';
+import { MotionBlock } from '../MotionBlock/MotionBlock';
+import { MotionButton } from '../Button/Button';
+import { AnimatePresence } from 'framer-motion';
+import CartContent from './CartContent';
+
+import AnimatedContent from '../DropDown/AnimatedContent';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -24,12 +25,12 @@ function Cart() {
   const ref = useClickOutside( isOpen, setIsOpen );
   
   return (
-    <motion.div 
+    <MotionBlock 
       ref={ref} 
       animate={isOpen ? "open" : "closed"}
       className={styles.dropContainer}
     >
-      <MotionButton 
+      <MotionButton
         title="Преревірити кошик" 
         type="button"
         whileHover={{ scale: 1.05 }}
@@ -53,7 +54,7 @@ function Cart() {
           </AnimatedContent>
         )}
       </AnimatePresence>
-    </motion.div>
+    </MotionBlock>
   );
 }
 

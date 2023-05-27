@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 // Styles 
@@ -11,16 +10,30 @@ import { currencyFormat } from '@/utils';
 import { MotionButton } from 'components/Button/Button';
 import OrderButton from '../Button/OrderButton';
 import UnderlinedText from '../UnderlinedText/UnderlinedText';
+import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 
 
 function CartCheckout({ items = [] }) {
   if (items.length === 0) return null;
-  
+  const itemVariants = {
+    open: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: "spring", bounce: 0, duration: 0.4 }
+    },
+    closed: { opacity: 0, scale: 0.96, y: 10, transition: { type: "spring", bounce: 0, duration: 0.4 } },
+    hover: { 
+      background: 'white', 
+      transition: { type: "spring", bounce: 0, duration: 0.4 } 
+    },
+  }
+
   const subtotals = calculateSubtotal( items );
   return (<>
     {/* Cart footer */}
     <div className={ styles.cartFooter }>
-      <motion.div className={ styles.summary } variants={ itemVariants }>
+      <MotionBlock className={ styles.summary } variants={ itemVariants }>
         <div>
           <span>Кіл-ть:</span>{' '}
           <span className={styles.currency}> 3 </span>
@@ -29,9 +42,9 @@ function CartCheckout({ items = [] }) {
           <span>Всього:</span>{' '}
           <span className={styles.currency} > {currencyFormat( subtotals )} </span>
         </div>
-      </motion.div>
+      </MotionBlock>
       
-      <motion.div className={styles.buttonsBlock} variants={ itemVariants }>
+      <MotionBlock className={styles.buttonsBlock} variants={ itemVariants }>
         <MotionButton 
           initial={{ color: 'var(--text-grey)' }}
           whileHover={{
@@ -46,7 +59,7 @@ function CartCheckout({ items = [] }) {
         </MotionButton>
 
         <OrderButton />
-      </motion.div>
+      </MotionBlock>
     </div>
   </>)
 }

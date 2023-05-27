@@ -1,7 +1,8 @@
-import CartContent from "components/Cart/CartContent";
+import CartBody from "@/components/Cart/CartBody";
+// import CartContent from "components/Cart/CartContent";
 
 export default function Cart() {
   return (
-    <CartContent style={{ border: 0 }}/>
+    <CartBody style={{ border: 0 }}/>
   )
 }

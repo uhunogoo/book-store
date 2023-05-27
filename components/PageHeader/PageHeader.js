@@ -21,7 +21,9 @@ function PageHeader() {
   
   return (
     <>
-      <header style={{ marginBottom: '2.5rem', position: 'relative'}}>
+      <header style={{ 
+        marginBottom: '2.5rem', 
+      }}>
         <Navigation 
           needLinkChecking={ true }
           aria-label="Navigation" 

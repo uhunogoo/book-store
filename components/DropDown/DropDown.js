@@ -129,10 +129,11 @@ function DropDown({ data }) {
       <div ref={ref} className={ styles.dropContainer }>
         <Button
           onClick={ setDropDownStatus }
-          title="user button" 
+          ariaLabel="Подивитись каталог"
+          title="Подивитись каталог" 
           type="button"
           className={ buttonClass }
-          >
+        >
           Каталог
           {' '}
           <span className={ styles.arrow }></span>

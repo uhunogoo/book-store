@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 const Button = React.forwardRef(({ 
   children, 
   title, 
+  ariaLabel = '',
   numOfItems = 0, 
   className, 
   visual,
@@ -14,6 +15,7 @@ const Button = React.forwardRef(({
 }, ref) => {
 
   const id = React.useId();
+  // 'default' || 'outline'
   const visualClassName = styles[visual] ? styles[visual] : '';
   const delegatedClassName = className ? className : '';
   const counterClass = (numOfItems > 0) ? styles.counter : ''; 
@@ -25,6 +27,7 @@ const Button = React.forwardRef(({
       key={id}
       className={ buttonClassName }
       title={title}
+      aria-label={ ariaLabel || title }
       {...delegated} 
     >
       {children}
@@ -43,6 +46,6 @@ const Button = React.forwardRef(({
   );
 })
 
-export const MotionButton = motion(  Button );
+export const MotionButton = motion( Button );
 
 export default Button;
