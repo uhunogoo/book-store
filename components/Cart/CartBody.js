@@ -1,34 +1,24 @@
 import React from 'react';
-import CartCheckout from './CartCheckout';
-import { cookies } from 'next/headers';
-import { SITE_DATA } from '@/data';
-// import Button from '../Button/Button';
 
-const CART_CONTENT = [ 0, 1, 2 ];
-function CartBody() {
-  const { books } = SITE_DATA;
-  const newBooksList = CART_CONTENT.map( itemID => {
-    const { image, price, title, subtitle, slug } = books[itemID];
-    return({
-      image,
-      price,
-      title,
-      subtitle,
-      slug,
-    });
-  });
+import styles from './style.module.css';
+import { rochester400 } from '@/fonts';
 
-  const cookiesList = cookies();
-  const cart = cookiesList.get('user-cart');
-  const cartItems = cart ? JSON.parse(cart.value) : [];
-  const cartList = cartItems.map( slug => 
-    books.find(el => el.slug === slug)
-  )
+function CartBody({ children, ...delegated }) {
   return (
-    <>
-      <CartCheckout items={ cartList || [] }/>
-    </>
+    <div className={`${rochester400.variable} ${styles.cartContent}`} {...delegated}>
+      { children } 
+    </div>
   );
 }
+
+function ProductList({ children }) {
+  return (
+    <div className={styles.itemsList}>
+      { children }
+    </div>
+  )
+}
+
+CartBody.ProductList = ProductList;
 
 export default CartBody;

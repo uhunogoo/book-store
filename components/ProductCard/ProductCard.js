@@ -7,21 +7,27 @@ import Link from 'next/link';
 import { currencyFormat } from '@/utils';
 import { rochester400 } from '@/styles/fonts';
 import FavoriteButton from '../Button/FavoriteButton';
+import React from 'react';
 
 function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
-  // console.log( id )
+  const [ itemInCart, setItemInCart ] = React.useState( false );
   if (!image) {
     console.error( 'please check your image prop' );
     return;
   }
   const handleClick = async (id) => {
-    // console.log( id )
-    const res = await fetch('/api', { 
+    const req = await fetch('/api', { 
       method: 'POST',
       body: JSON.stringify({
-        cart: `${id}`,
+        cart: {
+          slug: id,
+          count: 1
+        },
       }) 
     });
+    const body = await req.json();
+    console.log( body )
+    setItemInCart(true);
   };
 
   return(
@@ -52,7 +58,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
           <div className={ styles.price }>
             <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat( price) }</span>
           </div>
-          <Button onClick={ () => handleClick(slug) } title="Купити" visual="outline">
+          <Button onClick={ () => handleClick(slug) } disabled={ itemInCart } title="Купити" visual="outline">
             <span>Купити</span>
           </Button>
         </div>

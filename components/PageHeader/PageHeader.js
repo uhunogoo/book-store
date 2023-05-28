@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './page-header.module.css';
@@ -12,8 +13,8 @@ import Button from '../Button/Button';
 import DecoratedTree from './DecoratedTree';
 import { Favorite } from '../Icons/Icons';
 import Cart from 'components/Cart/Cart';
-import Link from 'next/link';
 import UserComponent from '../UserComponent/UserComponent';
+
 
 function PageHeader() {
   const { top_navigation, dropDown } = SITE_DATA;

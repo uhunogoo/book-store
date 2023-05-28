@@ -29,14 +29,14 @@ function CartCheckout({ items = [] }) {
     },
   }
 
-  const subtotals = calculateSubtotal( items );
+  const [subtotals, counts] = calculateSubtotal( items );
   return (<>
     {/* Cart footer */}
     <div className={ styles.cartFooter }>
       <MotionBlock className={ styles.summary } variants={ itemVariants }>
         <div>
           <span>Кіл-ть:</span>{' '}
-          <span className={styles.currency}> 3 </span>
+          <span className={styles.currency}>{ counts }</span>
         </div>
         <div>
           <span>Всього:</span>{' '}
@@ -66,12 +66,14 @@ function CartCheckout({ items = [] }) {
 
 function calculateSubtotal(items) {
   let subtotal = 0;
-
-  items.forEach((item) => {
-    subtotal += item.price;
+  let counts = 0;
+  
+  items.forEach((item, i) => {
+    subtotal += item.price * item.count;
+    counts += item.count;
   });
 
-  return subtotal;
+  return [subtotal, counts];
 }
 
 export default CartCheckout;

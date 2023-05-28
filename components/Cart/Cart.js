@@ -12,6 +12,7 @@ import { AnimatePresence } from 'framer-motion';
 import CartContent from './CartContent';
 
 import AnimatedContent from '../DropDown/AnimatedContent';
+import { CartContext } from '../CartProvider/CartProvider';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -21,6 +22,8 @@ const linesClasses = [
 ];
 
 function Cart() {
+  const { cartItems } = React.useContext(CartContext);
+  console.log( cartItems )
   const [ isOpen, setIsOpen ] = useToggle(false);
   const ref = useClickOutside( isOpen, setIsOpen );
   

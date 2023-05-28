@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers'
-// export async function GET(request) {
-//   const token = request.cookies.get('token');
+
+// export async function getUserCart(request) {
+//   const cookiesList = cookies();
+//   const cart = cookiesList.getAll();
+//   const data = cart.value;
+//   return data;
 // }
+
 export async function POST(request) {
   const { cart, liked } = await request.json();
   const name = cart ? 'user-cart' : 'user-liked'; 
@@ -13,9 +17,10 @@ export async function POST(request) {
   // Work with previus result
   const previous = cookieStore.get( name );
   const previousValue = previous ? (previous.value.length > 0) ? JSON.parse(previous.value) : [] : [];
+  const isExist = previousValue.find( el => el.slug === value.slug );
   
   // Apply both of new and old values
-  const applyedValue = [...previousValue, value];
+  const applyedValue = !isExist ? [...previousValue, value] : previousValue;
   
   // Build cookies 
   const token = cookieStore.set({
@@ -26,7 +31,7 @@ export async function POST(request) {
     maxAge: 30 * 24 * 60 * 60
   });
 
-  return new Response('Hello, Bookway!', {
+  return new Response( JSON.stringify(applyedValue), {
     status: 200,
     headers: { 'Set-Cookie': `${token}` }
   });
