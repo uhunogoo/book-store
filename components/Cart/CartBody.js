@@ -1,9 +1,8 @@
-'use client'
-// import { cookies } from 'next/headers';
 import React from 'react';
 import CartCheckout from './CartCheckout';
-// import { cookies } from 'next/headers';
+import { cookies } from 'next/headers';
 import { SITE_DATA } from '@/data';
+// import Button from '../Button/Button';
 
 const CART_CONTENT = [ 0, 1, 2 ];
 function CartBody() {
@@ -18,20 +17,16 @@ function CartBody() {
       slug,
     });
   });
-  
-  const handleClick = async () => {
-    const res = await fetch('/api', { 
-      method: 'POST',
-      body: JSON.stringify({
-        bookId: 'text'
-      }) 
-    });
-  };
 
-
+  const cookiesList = cookies();
+  const cart = cookiesList.get('user-cart');
+  const cartItems = cart ? JSON.parse(cart.value) : [];
+  const cartList = cartItems.map( slug => 
+    books.find(el => el.slug === slug)
+  )
   return (
     <>
-      <CartCheckout items={[]}/>
+      <CartCheckout items={ cartList || [] }/>
     </>
   );
 }

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 
 import styles from './style.module.css';
@@ -8,10 +9,20 @@ import { rochester400 } from '@/styles/fonts';
 import FavoriteButton from '../Button/FavoriteButton';
 
 function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
+  // console.log( id )
   if (!image) {
     console.error( 'please check your image prop' );
     return;
   }
+  const handleClick = async (id) => {
+    // console.log( id )
+    const res = await fetch('/api', { 
+      method: 'POST',
+      body: JSON.stringify({
+        cart: `${id}`,
+      }) 
+    });
+  };
 
   return(
     <div
@@ -41,7 +52,7 @@ function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
           <div className={ styles.price }>
             <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat( price) }</span>
           </div>
-          <Button title="Купити" visual="outline">
+          <Button onClick={ () => handleClick(slug) } title="Купити" visual="outline">
             <span>Купити</span>
           </Button>
         </div>
