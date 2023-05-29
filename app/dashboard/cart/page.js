@@ -1,25 +1,14 @@
-import { cookies } from 'next/headers';
-
-import { SITE_DATA } from '@/data';
+'use client'
+import React from 'react';
 
 import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 import CartItem from 'components/Cart/CartItem';
 import CartBody from 'components/Cart/CartBody';
 import CartCheckout from '@/components/Cart/CartCheckout';
+import { CartContext } from '@/components/CartProvider/CartProvider';
 
 export default function Cart() {
-  const { books } = SITE_DATA;
-  const cookiesList = cookies();
-  const cart = cookiesList.get('user-cart');
-  const cartItems = cart ? JSON.parse(cart.value) : [];
-
-  const newBooksList = cartItems.map(({ slug: bookSlug, count }) => {
-    const { 
-      image, price, title, subtitle, slug 
-    } = books.find( book => book.slug === bookSlug );
-
-    return({image, price, title, subtitle, slug, count});
-  });
+  const { cartItems } = React.useContext(CartContext);
 
   return (
     <CartBody style={{ border: 0 }}>
@@ -28,11 +17,11 @@ export default function Cart() {
       {cartItems.length > 0 ? ( 
         <>
           <CartBody.ProductList>
-            {newBooksList.map(({id, ...props}, i) =>
+            {cartItems.map(({id, ...props}, i) =>
               <CartItem key={ id } id={i} {...props} />
             )}
           </CartBody.ProductList>
-          <CartCheckout items={newBooksList} />
+          <CartCheckout items={cartItems} />
         </> 
       ) : 'Ваш кошик порожній' }
       

@@ -11,9 +11,9 @@ function CartBody({ children, ...delegated }) {
   );
 }
 
-function ProductList({ children }) {
+function ProductList({ children, ...delegated }) {
   return (
-    <div className={styles.itemsList}>
+    <div className={styles.itemsList} {...delegated}>
       { children }
     </div>
   )

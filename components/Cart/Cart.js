@@ -1,18 +1,24 @@
 'use client'
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import styles from './style.module.css';
+
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
 
-import { CartIcon } from '../Icons/Icons';
+import { AnimatePresence } from 'framer-motion';
+
 import { MotionBlock } from '../MotionBlock/MotionBlock';
 import { MotionButton } from '../Button/Button';
-import { AnimatePresence } from 'framer-motion';
-import CartContent from './CartContent';
+import { CartIcon } from '../Icons/Icons';
 
 import AnimatedContent from '../DropDown/AnimatedContent';
 import { CartContext } from '../CartProvider/CartProvider';
+import CartCheckout from './CartCheckout';
+import CartBody from './CartBody';
+import CartItem from './CartItem';
+import Scroll from '../Scroll/Scroll';
+import { removeItem } from '@/app/actions';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -23,7 +29,9 @@ const linesClasses = [
 
 function Cart() {
   const { cartItems } = React.useContext(CartContext);
-  console.log( cartItems )
+  const [isPending, startTransition] = React.useTransition();
+
+  const [subtotal, counts] = calculateSubtotal( cartItems );
   const [ isOpen, setIsOpen ] = useToggle(false);
   const ref = useClickOutside( isOpen, setIsOpen );
   
@@ -34,12 +42,13 @@ function Cart() {
       className={styles.dropContainer}
     >
       <MotionButton
+        key={ counts }
         title="Преревірити кошик" 
         type="button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         onClick={ setIsOpen } 
-        numOfItems={1}
+        numOfItems={counts}
       >
         <CartIcon 
           width="40" height="40" 
@@ -53,12 +62,78 @@ function Cart() {
             lines={ linesClasses }
           >
             <AnimatedContent.AnimatedLines linesClasses={ linesClasses } />
-            <CartContent />
+            <CartContent/>
           </AnimatedContent>
         )}
       </AnimatePresence>
     </MotionBlock>
   );
+}
+
+function CartContent() {
+  const { cartItems,removeRenderedItems } = React.useContext( CartContext );
+  const itemVariants = {
+    open: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: "spring", bounce: 0, duration: 0.4 }
+    },
+    closed: { opacity: 0, scale: 0.96, y: 10, transition: { type: "spring", bounce: 0, duration: 0.4 } },
+    hover: { 
+      background: 'white', 
+      transition: { type: "spring", bounce: 0, duration: 0.4 } 
+    },
+  }
+
+  function handleRemove( id ) {
+    console.log( id )
+    // removeRenderedItems(id)
+  //   startTransition(async () => {
+  //     const action = { cart: { slug: sku, count: 1 } }
+  //     const data = await removeItem( action );
+      
+  //     // sortingArray( data );
+  //   })
+  } 
+
+  return(
+    <CartBody style={{ border: 0 }}>
+      <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
+      
+      {cartItems.length > 0 ? ( 
+        <>
+          <Scroll style={{ height: cartItems.length > 3 ? '480px' : '100%' }}>
+            <CartBody.ProductList>
+              {cartItems.map(({id, ...props}, i) =>
+                <CartItem 
+                  key={ id } 
+                  id={i} 
+                  {...props} 
+                  handleRemove={handleRemove} 
+                  variants={itemVariants} 
+                />
+              )}
+            </CartBody.ProductList>
+          </Scroll>
+
+          <CartCheckout items={cartItems} />
+        </> 
+      ) : 'Ваш кошик порожній' }
+    </CartBody>
+  );
+}
+
+function calculateSubtotal(items) {
+  let subtotal = 0;
+  let counts = 0;
+  
+  items.forEach((item, i) => {
+    subtotal += item.price * item.count;
+    counts += item.count;
+  });
+
+  return [subtotal, counts];
 }
 
 export default Cart;

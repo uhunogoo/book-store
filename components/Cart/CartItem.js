@@ -1,15 +1,18 @@
 'use client'
+
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Close } from 'components/Icons/Icons';
-import Counter from './Counter';
-import { currencyFormat } from '@/utils';
 import styles from './style.module.css';
-import Button from '../Button/Button';
-import { motion } from 'framer-motion'; 
-import React from 'react';
 
-function CartItem({ id, variants, ...props }) {
+import { currencyFormat } from '@/utils';
+
+import { MotionBlock } from 'components/MotionBlock/MotionBlock';
+import { Close } from 'components/Icons/Icons';
+import Button from 'components/Button/Button';
+import Counter from './Counter';
+
+function CartItem({ id, variants, handleRemove, ...props }) {
   const generategID = React.useId();
   const separatorVariants = {
     open: {
@@ -21,12 +24,12 @@ function CartItem({ id, variants, ...props }) {
 
   return (<>
     {id > 0 && (
-      <motion.hr className={ styles.separate } variants={ separatorVariants } />
+      <MotionBlock tag="hr" className={ styles.separate } variants={ separatorVariants } />
     )}
-    <motion.div key={ generategID } className={ styles.item } variants={ variants }>
+    <MotionBlock key={ generategID } className={ styles.item } variants={ variants }>
       <div className={ styles['col-1'] }>
         <span style={{ fontFamily: 'var(--rochester)' }}>{id + 1}</span>
-        <Button title="видалити товар" role="button">
+        <Button title="видалити товар" role="button" onClick={ () => handleRemove( id ) }>
           <Close height={20} width={20} color={'var(--icon-color, var(--text-dark))'} />
         </Button>
       </div>
@@ -58,7 +61,7 @@ function CartItem({ id, variants, ...props }) {
           <div className={ styles.price } style={{ color: 'var(--text-grey)', fontFamily: 'var(--rochester)' }}>{currencyFormat(props.price)}</div>
         </div>
       </div>
-    </motion.div>
+    </MotionBlock>
   </>);
 }
 

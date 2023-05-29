@@ -1,11 +1,8 @@
 import { cookies } from 'next/headers'
 
-// export async function getUserCart(request) {
-//   const cookiesList = cookies();
-//   const cart = cookiesList.getAll();
-//   const data = cart.value;
-//   return data;
-// }
+export async function GET(request) {
+  const token = request.cookies.get('user-cart');
+}
 
 export async function POST(request) {
   const { cart, liked } = await request.json();
@@ -16,7 +13,8 @@ export async function POST(request) {
   
   // Work with previus result
   const previous = cookieStore.get( name );
-  const previousValue = previous ? (previous.value.length > 0) ? JSON.parse(previous.value) : [] : [];
+  const hasCookie = cookieStore.has( name );
+  const previousValue = hasCookie ? JSON.parse(previous.value) : [];
   const isExist = previousValue.find( el => el.slug === value.slug );
   
   // Apply both of new and old values

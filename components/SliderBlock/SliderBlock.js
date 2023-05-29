@@ -32,7 +32,7 @@ function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
         className={ `gsapSwiper ${styles.row}` }
         {...delegated}
       >
-        { listOfItems?.map(({id, ...props }, i) => (
+        { listOfItems?.map(( props, i) => (
           <SwiperSlide key={ i } style={{ alignSelf: 'stretch' }}>
             <div className={ styles.rowItem } >
               <ProductCard { ...props } />

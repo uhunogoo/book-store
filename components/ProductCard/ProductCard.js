@@ -1,66 +1,50 @@
 'use client'
+import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './style.module.css';
-import Button from '../Button/Button';
-import Link from 'next/link';
+
 import { currencyFormat } from '@/utils';
 import { rochester400 } from '@/styles/fonts';
 import FavoriteButton from '../Button/FavoriteButton';
-import React from 'react';
+import AddToCart from './AddToCart';
 
-function ProductCard({ image, title, subtitle, slug, price, ...delegated }) {
-  const [ itemInCart, setItemInCart ] = React.useState( false );
-  if (!image) {
+function ProductCard({ style, ...props }) {
+  if (!props.image) {
     console.error( 'please check your image prop' );
     return;
   }
-  const handleClick = async (id) => {
-    const req = await fetch('/api', { 
-      method: 'POST',
-      body: JSON.stringify({
-        cart: {
-          slug: id,
-          count: 1
-        },
-      }) 
-    });
-    const body = await req.json();
-    console.log( body )
-    setItemInCart(true);
-  };
 
   return(
     <div
-      {...delegated} 
+      style={ style } 
       className={ `${rochester400.variable} ${styles.card}` }
     >
       <div className={styles.topContainer}>
         
-        <ProductImageWrapper slug={slug}>
-          <ProductImage image={ image }/>
+        <ProductImageWrapper slug={props.slug}>
+          <ProductImage image={ props.image }/>
         </ProductImageWrapper>
 
-        {!!price && (
+        {!!props.price && (
           <div className={ styles.actions }>
             <FavoriteButton title="Додати в улюблене" className={ styles.button } />
           </div>
         )}
       </div>
-      { !!title && (
-        <h3 className={ styles.title }>{ title }</h3>
+      { !!props.title && (
+        <h3 className={ styles.title }>{ props.title }</h3>
       )}
-      { !!subtitle && (
-        <p className={ styles.subtitle }>{ (subtitle) }</p>
+      { !!props.subtitle && (
+        <p className={ styles.subtitle }>{ props.subtitle }</p>
       )}
-      {!!price && (
+      {!!props.price && (
         <div className={ styles.footer }>
           <div className={ styles.price }>
-            <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat( price) }</span>
+            <span style={{fontFamily: 'var(--rochester)'}}>{ currencyFormat( props.price) }</span>
           </div>
-          <Button onClick={ () => handleClick(slug) } disabled={ itemInCart } title="Купити" visual="outline">
-            <span>Купити</span>
-          </Button>
+          <AddToCart sku={ props.id } />
         </div>
       )}
 
