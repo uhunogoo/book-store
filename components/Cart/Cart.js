@@ -29,7 +29,6 @@ const linesClasses = [
 
 function Cart() {
   const { cartItems } = React.useContext(CartContext);
-  const [isPending, startTransition] = React.useTransition();
 
   const [subtotal, counts] = calculateSubtotal( cartItems );
   const [ isOpen, setIsOpen ] = useToggle(false);
@@ -71,7 +70,8 @@ function Cart() {
 }
 
 function CartContent() {
-  const { cartItems,removeRenderedItems } = React.useContext( CartContext );
+  const { cartItems, handleDeleteTodo } = React.useContext( CartContext );
+  const [isPending, startTransition] = React.useTransition();
   const itemVariants = {
     open: {
       opacity: 1,
@@ -87,38 +87,34 @@ function CartContent() {
   }
 
   function handleRemove( id ) {
-    console.log( id )
-    // removeRenderedItems(id)
-  //   startTransition(async () => {
-  //     const action = { cart: { slug: sku, count: 1 } }
-  //     const data = await removeItem( action );
-      
-  //     // sortingArray( data );
-  //   })
-  } 
-
+    handleDeleteTodo(id);
+    startTransition(async () => {
+      const action = { cart: { index: id } }
+      const data = await removeItem( action );
+    });
+  }
   return(
     <CartBody style={{ border: 0 }}>
       <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
       
       {cartItems.length > 0 ? ( 
-        <>
+        <Suspense>
           <Scroll style={{ height: cartItems.length > 3 ? '480px' : '100%' }}>
             <CartBody.ProductList>
               {cartItems.map(({id, ...props}, i) =>
                 <CartItem 
                   key={ id } 
                   id={i} 
-                  {...props} 
                   handleRemove={handleRemove} 
                   variants={itemVariants} 
+                  {...props} 
                 />
               )}
             </CartBody.ProductList>
           </Scroll>
 
           <CartCheckout items={cartItems} />
-        </> 
+        </Suspense> 
       ) : 'Ваш кошик порожній' }
     </CartBody>
   );

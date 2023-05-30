@@ -5,53 +5,75 @@ import { getItem } from '@/app/actions';
 
 import { current, produce } from 'immer';
 
+const { books } = SITE_DATA; 
+
+function reducer(todos, action) {
+  return produce(todos, (draftTodos) => {
+    switch (action.type) {
+      case 'create-todo': {
+        draftTodos.push({
+          ...books[action.value.id],
+          count: action.value.count,
+        });
+        break;
+      }
+
+      case 'toggle-todo': {
+        draftTodos[action.index].isCompleted =
+          !draftTodos[action.index].isCompleted;
+        break;
+      }
+
+      case 'delete-todo': {
+        draftTodos.splice(action.index, 1);
+        break;
+      }
+    }
+  });
+}
 export const CartContext = React.createContext();
 
 function CartProvider({ children }) {
-  const { books } = SITE_DATA; 
-  const [cartItems, setCartItems] = React.useState([]);
-  
+  const [cartItems, dispatch] = React.useReducer(reducer, []);
   React.useEffect(() => {
     async function setFromCookie() {
       const data = await getItem();
-      
       if(data.length === 0) return;
-      const nextState = produce(cartItems, (draftState) => {
-        data.forEach(({id, count}) => { 
-          const nextItem = books[ id ];
-          nextItem.count = count;
-          draftState.push( nextItem );
-        })
+      data.forEach((item) => {
+        console.log( item )
+        handleCreateTodo(item)
       });
-      setCartItems( nextState );
     }
     
     setFromCookie();
   }, []);
-  
-  function addRenderedItems({ id, count }) {
-    const nextState = produce(cartItems, (draftState) => {
-      const nextItem = books[ id ];
-      nextItem.count = count;
-      draftState.push( nextItem );
+
+  function handleCreateTodo(value) {
+    dispatch({
+      type: 'create-todo',
+      value,
     });
-    setCartItems( nextState );
-  }
-  function removeRenderedItems( id ) {
-    const nextState = produce(cartItems, (draftState) => {
-      draftState;
-      console.log(current(draftState));
-    });
-    setCartItems( nextState );
   }
 
+  function handleToggleTodo(index) {
+    dispatch({
+      type: 'toggle-todo',
+      index,
+    });
+  }
+
+  function handleDeleteTodo(index) {
+    dispatch({
+      type: 'delete-todo',
+      index,
+    });
+  }
   
   const value = React.useMemo(() => {
     return {
       cartItems, 
-      setCartItems,
-      removeRenderedItems,
-      addRenderedItems
+      handleDeleteTodo,
+      handleCreateTodo
     };
   }, [ cartItems ]);
   

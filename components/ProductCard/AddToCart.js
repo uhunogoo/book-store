@@ -6,7 +6,7 @@ import { CartContext } from '../CartProvider/CartProvider';
 
 
 function AddToCart({ sku = null }) {
-  const { addRenderedItems } = React.useContext( CartContext );
+  const { handleCreateTodo } = React.useContext( CartContext );
   const [ itemInCart, setItemInCart ] = React.useState( false );
   const [isPending, startTransition] = React.useTransition();
 
@@ -15,7 +15,7 @@ function AddToCart({ sku = null }) {
       const action = { cart: { id: sku, count: 1 } }
       const data = await addItem( action );
       
-      data && addRenderedItems( data );
+      data && handleCreateTodo( data );
       setItemInCart( true );
     })
   }

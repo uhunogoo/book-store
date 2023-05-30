@@ -10,15 +10,19 @@ export async function removeItem(data) {
   
   // Build cookies 
   const cookieStore = cookies();
+  const values = cookieStore.get( name ).value;
+  const parsed = JSON.parse( values );
+  parsed.splice( value.index, 1 );
+
   cookieStore.set({
     name: name, 
-    value: JSON.stringify( value ),
+    value: JSON.stringify( parsed ),
     path: '/',
     sameSite: 'lax',
     maxAge: 30 * 24 * 60 * 60
   });
 
-  return value;
+  return parsed;
 }
 export async function addItem(data) {
   const { cart, liked } = data;
