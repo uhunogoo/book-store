@@ -1,29 +1,32 @@
 import  React from 'react';
 
-import { addItem } from '@/app/actions';
+// import { addItem } from '@/app/actions';
 import Button from 'components/Button/Button';
 import { CartContext } from '../CartProvider/CartProvider';
 
 
 function AddToCart({ sku = null }) {
   const { handleCreateTodo } = React.useContext( CartContext );
-  const [ itemInCart, setItemInCart ] = React.useState( false );
-  const [isPending, startTransition] = React.useTransition();
-
   function handleClick() {
-    startTransition(async () => {
-      const action = { cart: { id: sku, count: 1 } }
-      const data = await addItem( action );
+    const value = { id: sku, count: 1 };
+    
+    if (typeof window !== "undefined") {
+      const storedValue = window.localStorage.getItem('user-cart');
+      const token = JSON.parse(storedValue) || [];
       
-      data && handleCreateTodo( data );
-      setItemInCart( true );
-    })
+      const isExist = token.find(item => item.id === sku );
+      if (isExist) return null;
+      
+      const pushedData = [...token, value];
+      
+      handleCreateTodo( value );
+      return window.localStorage.setItem('user-cart', JSON.stringify(pushedData));
+    }
   }
 
   return (
     <Button 
       onClick={ handleClick }
-      disabled={ itemInCart }
       title="Купити" 
       visual="outline"
     >

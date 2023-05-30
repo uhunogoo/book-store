@@ -1,16 +1,14 @@
 'use client'
 import React from 'react';
 import { SITE_DATA } from '@/data';
-import { getItem } from '@/app/actions';
-
-import { current, produce } from 'immer';
+import { produce } from 'immer';
 
 const { books } = SITE_DATA; 
 
 function reducer(todos, action) {
   return produce(todos, (draftTodos) => {
     switch (action.type) {
-      case 'create-todo': {
+      case 'create-cart': {
         draftTodos.push({
           ...books[action.value.id],
           count: action.value.count,
@@ -18,13 +16,12 @@ function reducer(todos, action) {
         break;
       }
 
-      case 'toggle-todo': {
-        draftTodos[action.index].isCompleted =
-          !draftTodos[action.index].isCompleted;
+      case 'change-count': {
+        draftTodos[action.value.index].count = action.value.count
         break;
       }
 
-      case 'delete-todo': {
+      case 'delete-cart-item': {
         draftTodos.splice(action.index, 1);
         break;
       }
@@ -36,35 +33,31 @@ export const CartContext = React.createContext();
 function CartProvider({ children }) {
   const [cartItems, dispatch] = React.useReducer(reducer, []);
   React.useEffect(() => {
-    async function setFromCookie() {
-      const data = await getItem();
-      if(data.length === 0) return;
-      data.forEach((item) => {
-        console.log( item )
-        handleCreateTodo(item)
-      });
-    }
-    
-    setFromCookie();
+    const storedValue = window.localStorage.getItem('user-cart');
+    const token = JSON.parse(storedValue) || false;
+    if ( !token ) return;
+    token.forEach((item) => {
+      handleCreateTodo(item)
+    });
   }, []);
 
   function handleCreateTodo(value) {
     dispatch({
-      type: 'create-todo',
+      type: 'create-cart',
       value,
     });
   }
 
-  function handleToggleTodo(index) {
+  function handleCountItem(value) {
     dispatch({
-      type: 'toggle-todo',
-      index,
+      type: 'change-count',
+      value,
     });
   }
 
   function handleDeleteTodo(index) {
     dispatch({
-      type: 'delete-todo',
+      type: 'delete-cart-item',
       index,
     });
   }
@@ -73,7 +66,8 @@ function CartProvider({ children }) {
     return {
       cartItems, 
       handleDeleteTodo,
-      handleCreateTodo
+      handleCreateTodo,
+      handleCountItem,
     };
   }, [ cartItems ]);
   

@@ -2,27 +2,26 @@
 import React from 'react';
 import Button from '../Button/Button';
 
-function Counter({ exist = 1, className}) {
-  const [ count, setCount ] = React.useState( exist );
+function Counter({ exist = 1, handleCount, className}) {
   function incrementCount() {
-    setCount(count + 1);
+    handleCount( exist + 1 )
   }
   function decrementCount() {
-    const newCount = count - 1;
+    const newCount = exist - 1;
     if (newCount < 1) return;
-
-    setCount(newCount);
+    handleCount( newCount );
   }
   return (
     <div className={className} >
       <Button
         title='Менше'
+        style={{ opacity: exist === 1 ? 0.7 : 1 }}
         onClick={decrementCount}
         >
         -
       </Button>
-      <div style={{ fontFamily: 'var(--rochester)' }}>
-        { count }
+      <div style={{ fontFamily: 'var(--rochester)', textAlign: 'center', width: '1rem'}}>
+        { exist }
       </div>
       <Button
         title='Більше'

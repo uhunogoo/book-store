@@ -21,7 +21,6 @@
   padding: 5px 2px;
   padding: 2px;
   background: hsla(0, 0%, 100%, 0.123);
-  backdrop-filter: blur(0.25rem);
   transition: background 160ms ease-out;
   width: 4px;
   z-index: 2;
@@ -38,8 +37,7 @@
   background: var(--mauve10);
   border-radius: var(--scrollbar-size);
   position: relative;
-  opacity: 0.7;
-  background: var(--scroll-thumb-color, hsla(0, 0%, 0%, 0.3));
+  background: var(--scroll-thumb-color, hsl(0, 0%, 33%));
   backdrop-filter: blur(0.25rem);
   border-radius: 30px;
 }

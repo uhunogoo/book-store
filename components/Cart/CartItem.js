@@ -11,8 +11,12 @@ import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 import { Close } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
 import Counter from './Counter';
+import { CartContext } from '../CartProvider/CartProvider';
+// import { changeItem, removeItem } from '@/app/actions';
 
-function CartItem({ id, variants, handleRemove, ...props }) {
+function CartItem({ id, variants, ...props }) {
+  const { handleDeleteTodo, handleCountItem } = React.useContext( CartContext );
+  // const [isPending, startTransition] = React.useTransition();
   const generategID = React.useId();
   const separatorVariants = {
     open: {
@@ -20,6 +24,27 @@ function CartItem({ id, variants, handleRemove, ...props }) {
       transition: { type: "spring", bounce: 0, duration: .6, }
     },
     closed: { scale: 0, transition: { duration: 0.3 } }
+  }
+  function handleRemove( id ) {
+    handleDeleteTodo(id);
+
+    if (typeof window !== "undefined") {
+      const storedValue = window.localStorage.getItem('user-cart');
+      const token = JSON.parse(storedValue) || false;
+      if ( !token ) return;
+      token.splice(id, 1);
+      return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    }
+  }
+  function handleCount(count) {
+    handleCountItem({index: id, count});
+    if (typeof window !== "undefined") {
+      const storedValue = window.localStorage.getItem('user-cart');
+      const token = JSON.parse(storedValue) || false;
+      if ( !token ) return;
+      token[id].count = count;
+      return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    }
   }
 
   return (<>
@@ -52,7 +77,7 @@ function CartItem({ id, variants, handleRemove, ...props }) {
 
           <div className={styles.count}>
             <span>Кіл-ть:</span>
-            <Counter className={ styles.counter }/>
+            <Counter handleCount={handleCount} exist={ props.count } className={ styles.counter }/>
           </div>
         </div>
 
@@ -65,4 +90,4 @@ function CartItem({ id, variants, handleRemove, ...props }) {
   </>);
 }
 
-export default CartItem;
+export default React.memo( CartItem );

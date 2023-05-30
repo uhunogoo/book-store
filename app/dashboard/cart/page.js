@@ -6,18 +6,10 @@ import CartItem from 'components/Cart/CartItem';
 import CartBody from 'components/Cart/CartBody';
 import CartCheckout from '@/components/Cart/CartCheckout';
 import { CartContext } from '@/components/CartProvider/CartProvider';
-import { removeItem } from '@/app/actions';
+import { LayoutGroup } from 'framer-motion';
 
 export default function Cart() {
-  const { cartItems, handleDeleteTodo } = React.useContext(CartContext);
-  const [isPending, startTransition] = React.useTransition();
-  function handleRemove( id ) {
-    handleDeleteTodo(id)
-    startTransition(async () => {
-      const action = { cart: { index: id } }
-      const data = await removeItem( action );
-    });
-  }
+  const { cartItems } = React.useContext(CartContext);
 
   return (
     <CartBody style={{ border: 0 }}>
@@ -26,9 +18,11 @@ export default function Cart() {
       {cartItems.length > 0 ? ( 
         <>
           <CartBody.ProductList>
-            {cartItems.map(({id, ...props}, i) =>
-              <CartItem key={ id } id={i} handleRemove={handleRemove} {...props} />
-            )}
+            <LayoutGroup>
+              {cartItems.map(({id, ...props}, i) =>
+                <CartItem key={ id } id={i} {...props} />
+              )}
+            </LayoutGroup>
           </CartBody.ProductList>
           <CartCheckout items={cartItems} />
         </> 

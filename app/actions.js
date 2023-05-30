@@ -51,6 +51,28 @@ export async function addItem(data) {
 
   return isExist ? false : value;
 }
+export async function changeItem(data) {
+  const { cart, liked } = data;
+  const name = cart ? 'user-cart' : 'user-liked'; 
+  const value = cart || liked;
+  
+  
+  // Build cookies 
+  const cookieStore = cookies();
+  const values = cookieStore.get( name ).value;
+  const parsed = JSON.parse( values );
+  parsed[value.index].count = value.count; 
+
+  cookieStore.set({
+    name: name, 
+    value: JSON.stringify( parsed ),
+    path: '/',
+    sameSite: 'lax',
+    maxAge: 30 * 24 * 60 * 60
+  });
+
+  return parsed;
+}
 export async function getItem(name = '') {
   const searchName = name || 'user-cart';
   const cartId = cookies().get( searchName );

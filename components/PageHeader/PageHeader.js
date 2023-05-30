@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ import DecoratedTree from './DecoratedTree';
 import { Favorite } from '../Icons/Icons';
 import Cart from 'components/Cart/Cart';
 import UserComponent from '../UserComponent/UserComponent';
+// import CartProvider from '../CartProvider/CartProvider';
 
 
 function PageHeader() {
@@ -41,7 +43,9 @@ function PageHeader() {
 
             <div className={ styles.middleMenuButtons }>
               <SearchForm className={ styles.headerSearch }/>
+              
               <Cart />
+              
               <Button 
                 title="favorite button" 
                 type="button"
@@ -61,5 +65,13 @@ function PageHeader() {
     </>
   );
 }
+
+// function CartContainer({children}) {
+//   return (
+//     <CartProvider>
+//       { children }
+//     </CartProvider>
+//   );
+// }
 
 export default PageHeader;

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={ fontsVariables }>
         <CartProvider>
-          <Scroll style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
+          <Scroll type='scroll' style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
             <PageHeader />
 
             <ContentWrapper style={{ minHeight: '60vh' }}>

@@ -18,7 +18,6 @@ import CartCheckout from './CartCheckout';
 import CartBody from './CartBody';
 import CartItem from './CartItem';
 import Scroll from '../Scroll/Scroll';
-import { removeItem } from '@/app/actions';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -70,8 +69,7 @@ function Cart() {
 }
 
 function CartContent() {
-  const { cartItems, handleDeleteTodo } = React.useContext( CartContext );
-  const [isPending, startTransition] = React.useTransition();
+  const { cartItems } = React.useContext( CartContext );
   const itemVariants = {
     open: {
       opacity: 1,
@@ -86,35 +84,29 @@ function CartContent() {
     },
   }
 
-  function handleRemove( id ) {
-    handleDeleteTodo(id);
-    startTransition(async () => {
-      const action = { cart: { index: id } }
-      const data = await removeItem( action );
-    });
-  }
   return(
     <CartBody style={{ border: 0 }}>
       <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
       
       {cartItems.length > 0 ? ( 
-        <Suspense>
-          <Scroll style={{ height: cartItems.length > 3 ? '480px' : '100%' }}>
+        <>
+          <Scroll type='always' style={{ 
+            height: cartItems.length > 3 ? '480px' : '100%', 
+            margin: '0 -0.8rem', 
+            padding: '0 0.8rem', 
+            width: 'auto',
+            '--scroll-thumb-color': 'var(--text-dark)',
+            '--scrollbar-size': '0.5rem'
+          }}>
             <CartBody.ProductList>
               {cartItems.map(({id, ...props}, i) =>
-                <CartItem 
-                  key={ id } 
-                  id={i} 
-                  handleRemove={handleRemove} 
-                  variants={itemVariants} 
-                  {...props} 
-                />
+                <CartItem key={ id } id={i} variants={itemVariants} {...props} />
               )}
             </CartBody.ProductList>
           </Scroll>
 
           <CartCheckout items={cartItems} />
-        </Suspense> 
+        </> 
       ) : 'Ваш кошик порожній' }
     </CartBody>
   );
@@ -132,4 +124,4 @@ function calculateSubtotal(items) {
   return [subtotal, counts];
 }
 
-export default Cart;
+export default React.memo(Cart);
