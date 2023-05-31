@@ -56,7 +56,7 @@ function ProductImageWrapper({ slug, children}) {
   const isSlug = !!slug;
   if (isSlug) {
     return (
-      <Link href={`/${ slug }`}>
+      <Link href={`/${ slug }`} style={{display: 'block'}}>
         { children }
       </Link>
     );

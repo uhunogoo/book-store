@@ -11,7 +11,7 @@ export default function Page() {
         </BreadCrumbs.Crumb>
       </BreadCrumbs>
       
-      <Image src="/images/content/image-1.jpg" width={2338} height={878} alt='image' />
+      <Image src="/images/content/image-1.jpg" priority width={2338} height={878} alt='image' />
       <h1>
         Про наш Клуб
       </h1>

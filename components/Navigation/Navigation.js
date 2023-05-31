@@ -32,7 +32,7 @@ export function NavigationItem({ title, link, chechLink = false, children }) {
       <Link
         href={link} 
         className={ applyedCalss }
-        prefetch={false}
+        // prefetch={false}
       >
         { title }
       </Link>

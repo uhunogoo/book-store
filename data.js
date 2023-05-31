@@ -380,7 +380,7 @@ export const SITE_DATA = {
   ],
   series: [
     {
-      id: 1,
+      id: 8,
       image: {
         src: '/images/series/image-1.jpg',
         title: 'Відьмак',
@@ -392,7 +392,7 @@ export const SITE_DATA = {
       price: 850
     },
     {
-      id: 2,
+      id: 9,
       image: {
         src: '/images/series/image-2.jpg',
         title: 'Таймлесс',
@@ -404,7 +404,7 @@ export const SITE_DATA = {
       price: 400
     },
     {
-      id: 3,
+      id: 10,
       image: {
         src: '/images/series/image-3.jpg',
         title: 'Гаррі Поттер',

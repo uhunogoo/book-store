@@ -114,24 +114,24 @@ function CartContent() {
 }
 
 function EmptyStatus({ variants }) {
-  return (
+  return (<>
+    <MotionBlock 
+      tag="h2" 
+      variants={variants}
+      style={{ textAlign: 'center' }}
+    >
+      Ваш кошик порожній
+    </MotionBlock>
     <MotionBlock variants={variants}>
-      <MotionBlock 
-        tag="h2" 
-        variants={variants}
-        style={{ textAlign: 'center' }}
-      >
-        Ваш кошик порожній
-      </MotionBlock>
       <Image 
         src="/owl-default.svg" 
-        style={{ margin: '0 auto', opacity: 0.7 }}
+        style={{ margin: '0 auto', opacity: 1 }}
         width={350} 
         height={350} 
         alt="owl" 
       />
     </MotionBlock>
-  )
+  </>)
 }
 
 function calculateSubtotal(items) {

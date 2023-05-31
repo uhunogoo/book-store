@@ -22,7 +22,7 @@ function UserComponent() {
         open={open} 
         setOpen={ setOpen }
       >
-        <Login setOpen={setOpen}/>
+        { open && <Login setOpen={setOpen}/> }
       </Modal>
     </>
   )

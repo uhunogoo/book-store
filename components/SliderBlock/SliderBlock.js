@@ -29,11 +29,11 @@ function SliderBlock({ title, listOfItems, countInView = 4, ...delegated }) {
         modules={[Navigation]}
         navigation={true}
         autoHeight
-        className={ `gsapSwiper ${styles.row}` }
+        className={ styles.row }
         {...delegated}
       >
         { listOfItems?.map(( props, i) => (
-          <SwiperSlide key={ i } style={{ alignSelf: 'stretch' }}>
+          <SwiperSlide key={ i } style={{ alignSelf: 'stretch', maxWidth: `${100 / countInView}%` }}>
             <div className={ styles.rowItem } >
               <ProductCard { ...props } />
             </div>

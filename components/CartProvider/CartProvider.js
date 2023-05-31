@@ -3,14 +3,15 @@ import React from 'react';
 import { SITE_DATA } from '@/data';
 import { produce } from 'immer';
 
-const { books } = SITE_DATA; 
+const { books, series } = SITE_DATA; 
+const combinedBooks = books.concat( series );
 
 function reducer(todos, action) {
   return produce(todos, (draftTodos) => {
     switch (action.type) {
       case 'create-cart': {
         draftTodos.push({
-          ...books[action.value.id],
+          ...combinedBooks[action.value.id],
           count: Number(action.value.count),
         });
         break;

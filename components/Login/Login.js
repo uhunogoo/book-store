@@ -13,10 +13,12 @@ import { Facebook, Google, Twitter } from '../Icons/Icons';
 import { useRouter } from 'next/navigation';
 import UnderlinedText from '../UnderlinedText/UnderlinedText';
 
+const DASHBOAR_LINK = '/dashboard/profile';
 function UserForm({ setOpen }) {
   const [succes, setSucces] = React.useState( false );
   const [formType, setFormType] = React.useState( 'login' );
   const router = useRouter();
+  router.prefetch( DASHBOAR_LINK );
 
   function handleRegisterForm( value ) {
     const newValue = value === 'register' ? 'register' : 'resetPassword';
@@ -29,7 +31,7 @@ function UserForm({ setOpen }) {
   }
   function handleLogin(e) {
     e.preventDefault();
-    router.push('/dashboard/profile');
+    router.push( DASHBOAR_LINK );
     setOpen( false );
   }
 
