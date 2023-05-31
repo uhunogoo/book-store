@@ -1,0 +1,250 @@
+.dropContainer {
+  position: relative;
+}
+.dropMenu {
+  background: hsla(0, 0%, 100%, 0.95);
+  padding: 0.5rem 0.5rem;
+  backdrop-filter: blur(0.5rem);
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  translate: 0 100%;
+  max-width: 475px;
+  width: 100vw;
+  z-index: 2;
+}
+
+.summary {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.currency {
+  color: var(--text-green); 
+  font-size: var(--text-size);
+  font-family: var(--rochester);
+}
+
+.lineRight,
+.lineLeft,
+.lineTop,
+.lineBottom {
+  background: var(--text-green);
+  position: absolute;
+}
+
+.lineTop,
+.lineBottom {
+  height: 1px;
+  left: 0.5rem;
+  right: 0.5rem;
+}
+.lineRight,
+.lineLeft {
+  background: var(--text-green);
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+}
+
+.lineTop {
+  top: 0.5rem;
+  transform-origin: 0% 50%;
+}
+.lineBottom {
+  bottom: 0.5rem;
+  transform-origin: 0% 50%;
+}
+
+.lineRight {
+  right: 0.5rem;
+  transform-origin: 50% 0%;
+}
+.lineLeft {
+  left: 0.5rem;
+  transform-origin: 50% 0%;
+}
+
+.cartContent {
+  position: relative;
+  padding: 1rem 1rem;
+}
+.cartContent h2,
+.cartContent h4{
+  color: var(--text-green);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.itemsList {
+  container-type: inline-size;
+  container-name: card;
+}
+.itemsList .item ~ .item {
+  padding-top: var(--text-size);
+}
+.separate {
+  border: 0;
+  background: var(--text-grey);
+  transform-origin: 0% 50%;
+  margin: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1rem 19% 1fr;
+  gap: 1rem;
+  padding: var(--text-size) 0;
+  transition: background 0.2s ease-in;
+  padding-top: 0;
+  position: relative;
+}
+@container card (min-width: 600px) {
+  .item {
+    grid-template-columns: 1rem 110px 1fr;
+  }
+}
+
+.col-1 {
+  align-items: center;
+  display: grid;
+  position: relative;
+}
+.col-1 span{
+  color: var(--text-green);
+  display: block;
+  position: absolute;
+  top: 0;
+}
+.col-2 img {
+  width: 100%;
+  transform-origin: 100% 100%;
+  transition: 0.3s ease-out;
+}
+.col-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  width: auto;
+}
+.row {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.row > div:last-of-type {
+  justify-self: end;
+}
+.titles span {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+}
+.titles span::after {
+  background: linear-gradient(90deg, transparent 0%, white 100%);
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2em;
+}
+.titles span + span{
+  color: var(--text-green);
+  margin-top: 0.3em;
+}
+.productSKU,
+.count span {
+  font-size: 0.75rem;
+}
+.count,
+.counter {
+  display: flex;
+}
+.count {
+  align-self: start;
+  align-items: center;
+  gap: 0.3rem;
+  transform-origin: 100% 0%;
+}
+.price {
+  font-size: 2rem;
+}
+.counter button {
+  font-size: 0.9rem;
+  transition: color 0.2s ease-in;
+  text-align: center;
+  vertical-align: center;
+  height: 1rem;
+  width: 1rem;
+}
+.counter div,
+.counter button:hover {
+  color: var(--text-green);
+}
+.item svg line,
+.item svg path {
+  transition: fill 0.2s ease-in, stroke 0.2s ease-in;
+}
+
+/* animations */
+.item:hover {
+  --icon-color: var(--danger);
+}
+.item:hover svg path {
+  transform-origin: 50% 50%;
+  animation: scale 0.4s ease-out 0.2s;
+  animation-fill-mode: forwards;
+}
+.item:hover svg {
+  animation: rotate 0.8s ease-out 0.2s;
+}
+.item:hover img {
+  scale: 1.02;
+  translate: -5% 0;
+}
+@keyframes rotate {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: -180deg;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+  50% {
+    scale: 1.2;
+    opacity: 0;
+  }
+  50.00001% {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
+
+/* Cart bottom */
+.buttonsBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.back {
+  display: flex;
+  gap: 0.5em;
+  color: var(--text-grey);
+}

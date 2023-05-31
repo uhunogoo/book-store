@@ -10,11 +10,12 @@ import ContentWrapper from '../ContentWrapper/ContentWrapper';
 import SearchForm from '../SearchForm/SearchForm';
 import Navigation from '../Navigation/Navigation';
 import DropDown from '../DropDown/DropDown';
-import Button from '../Button/Button';
+// import Button from '../Button/Button';
 import DecoratedTree from './DecoratedTree';
-import { Favorite } from '../Icons/Icons';
+// import { Favorite } from '../Icons/Icons';
 import Cart from 'components/Cart/Cart';
 import UserComponent from '../UserComponent/UserComponent';
+import FavoriteBlock from '../Favorite/Favorite';
 // import CartProvider from '../CartProvider/CartProvider';
 
 
@@ -45,14 +46,14 @@ function PageHeader() {
               <SearchForm className={ styles.headerSearch }/>
               
               <Cart />
-              
-              <Button 
+              <FavoriteBlock />
+              {/* <Button 
                 title="favorite button" 
                 type="button"
                 numOfItems={15}
               >
                 <Favorite width="40" height="40" />  
-              </Button>
+              </Button> */}
               <UserComponent/>
             </div>
 
@@ -65,13 +66,5 @@ function PageHeader() {
     </>
   );
 }
-
-// function CartContainer({children}) {
-//   return (
-//     <CartProvider>
-//       { children }
-//     </CartProvider>
-//   );
-// }
 
 export default PageHeader;

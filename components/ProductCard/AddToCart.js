@@ -2,7 +2,7 @@ import  React from 'react';
 
 // import { addItem } from '@/app/actions';
 import Button from 'components/Button/Button';
-import { CartContext } from '../CartProvider/CartProvider';
+import { CartContext } from '../Providers/CartProvider';
 
 
 function AddToCart({ sku = null }) {

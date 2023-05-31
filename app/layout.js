@@ -5,7 +5,7 @@ import ContentWrapper from 'components/ContentWrapper/ContentWrapper';
 import PageHeader from 'components/PageHeader/PageHeader';
 import PageFooter from 'components/PageFooter/PageFooter';
 import Scroll from 'components/Scroll/Scroll';
-import CartProvider from '@/components/CartProvider/CartProvider';
+import Providers from 'components/Providers/Providers';
 
 export const metadata = {
   title: 'Bookway - книжковий клуб',
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={ fontsVariables }>
-        <CartProvider>
+        <Providers>
           <Scroll type='scroll' style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
             <PageHeader />
 
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
             <PageFooter/>
           </Scroll>
-        </CartProvider>
+        </Providers>
       </body>
     </html>
   );

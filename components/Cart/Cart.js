@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import styles from './style.module.css';
 
@@ -13,7 +13,7 @@ import { MotionButton } from '../Button/Button';
 import { CartIcon } from '../Icons/Icons';
 
 import AnimatedContent from '../DropDown/AnimatedContent';
-import { CartContext } from '../CartProvider/CartProvider';
+import { CartContext } from '../Providers/CartProvider';
 import CartCheckout from './CartCheckout';
 import CartBody from './CartBody';
 import CartItem from './CartItem';
@@ -61,7 +61,7 @@ function Cart() {
             lines={ linesClasses }
           >
             <AnimatedContent.AnimatedLines linesClasses={ linesClasses } />
-            <CartContent/>
+            <CartContent cartItems={cartItems}/>
           </AnimatedContent>
         )}
       </AnimatePresence>
@@ -69,8 +69,7 @@ function Cart() {
   );
 }
 
-function CartContent() {
-  const { cartItems } = React.useContext( CartContext );
+function CartContent({ cartItems }) {
   const itemVariants = {
     open: {
       opacity: 1,

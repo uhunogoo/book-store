@@ -11,7 +11,7 @@ import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 import { Close } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
 import Counter from './Counter';
-import { CartContext } from '../CartProvider/CartProvider';
+import { CartContext } from '../Providers/CartProvider';
 // import { changeItem, removeItem } from '@/app/actions';
 
 function CartItem({ id, variants, ...props }) {

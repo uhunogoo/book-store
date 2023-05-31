@@ -1,34 +1,7 @@
 'use client'
 import React from 'react';
-import { SITE_DATA } from '@/data';
-import { produce } from 'immer';
+import { reducer } from './reducer';
 
-const { books, series } = SITE_DATA; 
-const combinedBooks = books.concat( series );
-
-function reducer(todos, action) {
-  return produce(todos, (draftTodos) => {
-    switch (action.type) {
-      case 'create-cart': {
-        draftTodos.push({
-          ...combinedBooks[action.value.id],
-          count: Number(action.value.count),
-        });
-        break;
-      }
-
-      case 'change-count': {
-        draftTodos[action.value.index].count = action.value.count
-        break;
-      }
-
-      case 'delete-cart-item': {
-        draftTodos.splice(action.index, 1);
-        break;
-      }
-    }
-  });
-}
 export const CartContext = React.createContext();
 
 function CartProvider({ children }) {

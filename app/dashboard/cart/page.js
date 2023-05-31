@@ -5,7 +5,7 @@ import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 import CartItem from 'components/Cart/CartItem';
 import CartBody from 'components/Cart/CartBody';
 import CartCheckout from '@/components/Cart/CartCheckout';
-import { CartContext } from '@/components/CartProvider/CartProvider';
+import { CartContext } from '@/components/Providers/CartProvider';
 import { LayoutGroup } from 'framer-motion';
 
 export default function Cart() {
