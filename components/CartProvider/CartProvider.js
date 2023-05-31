@@ -11,7 +11,7 @@ function reducer(todos, action) {
       case 'create-cart': {
         draftTodos.push({
           ...books[action.value.id],
-          count: action.value.count,
+          count: Number(action.value.count),
         });
         break;
       }
@@ -33,12 +33,24 @@ export const CartContext = React.createContext();
 function CartProvider({ children }) {
   const [cartItems, dispatch] = React.useReducer(reducer, []);
   React.useEffect(() => {
-    const storedValue = window.localStorage.getItem('user-cart');
-    const token = JSON.parse(storedValue) || false;
-    if ( !token ) return;
-    token.forEach((item) => {
-      handleCreateTodo(item)
-    });
+    const getItems = async () => {
+      const req = await fetch('/api', { method: 'GET' });
+      const data = await req.json();
+      if (!data) return;
+      const parse = JSON.parse( data.value )
+      parse.forEach(item => {
+        handleCreateTodo(item);
+      });
+      console.log( parse )
+    }
+    getItems()
+
+    // const storedValue = window.localStorage.getItem('user-cart');
+    // const token = JSON.parse(storedValue) || false;
+    // if ( !token ) return;
+    // token.forEach((item) => {
+    //   handleCreateTodo(item)
+    // });
   }, []);
 
   function handleCreateTodo(value) {

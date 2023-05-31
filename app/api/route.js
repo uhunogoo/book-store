@@ -1,7 +1,62 @@
 import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server';
 
 export async function GET(request) {
   const token = request.cookies.get('user-cart');
+  return NextResponse.json( token )
+}
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const name = searchParams.get('name');
+  const id = searchParams.get('id');
+  
+  // Work with previus result
+  const cookieStore = cookies();
+  const cart = cookieStore.get( name );
+  const previousValue = JSON.parse(cart.value);
+  previousValue.splice(id, 1);
+  
+  // Build cookies 
+  const token = cookieStore.set({
+    name: name, 
+    value: JSON.stringify(previousValue),
+    path: '/',
+    sameSite: 'lax',
+    maxAge: 30 * 24 * 60 * 60
+  });
+
+  return new Response( JSON.stringify(previousValue), {
+    status: 200,
+    headers: { 'Set-Cookie': `${token}` }
+  });
+}
+
+export async function PUT(request) {
+  const { searchParams } = new URL(request.url);
+  const name = searchParams.get('name');
+  const id = searchParams.get('id');
+  const count = searchParams.get('count');
+  
+  const cookieStore = cookies();
+  
+  // Work with previus result
+  const previous = cookieStore.get( name );
+  const previousValue = JSON.parse(previous.value);
+  previousValue[id].count = count;
+  
+  // Build cookies 
+  const token = cookieStore.set({
+    name: name, 
+    value: JSON.stringify(previousValue),
+    path: '/',
+    sameSite: 'lax',
+    maxAge: 30 * 24 * 60 * 60
+  });
+
+  return new Response( JSON.stringify(previousValue), {
+    status: 200,
+    headers: { 'Set-Cookie': `${token}` }
+  });
 }
 
 export async function POST(request) {
@@ -13,9 +68,8 @@ export async function POST(request) {
   
   // Work with previus result
   const previous = cookieStore.get( name );
-  const hasCookie = cookieStore.has( name );
-  const previousValue = hasCookie ? JSON.parse(previous.value) : [];
-  const isExist = previousValue.find( el => el.slug === value.slug );
+  const previousValue = previous ? JSON.parse(previous.value) : [];
+  const isExist = previousValue.find( el => el.id === value.id );
   
   // Apply both of new and old values
   const applyedValue = !isExist ? [...previousValue, value] : previousValue;
@@ -29,7 +83,7 @@ export async function POST(request) {
     maxAge: 30 * 24 * 60 * 60
   });
 
-  return new Response( JSON.stringify(applyedValue), {
+  return new Response( JSON.stringify(!isExist ? applyedValue : false), {
     status: 200,
     headers: { 'Set-Cookie': `${token}` }
   });

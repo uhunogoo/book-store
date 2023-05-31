@@ -28,23 +28,32 @@ function CartItem({ id, variants, ...props }) {
   function handleRemove( id ) {
     handleDeleteTodo(id);
 
-    if (typeof window !== "undefined") {
-      const storedValue = window.localStorage.getItem('user-cart');
-      const token = JSON.parse(storedValue) || false;
-      if ( !token ) return;
-      token.splice(id, 1);
-      return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    const deleteItem = async (v) => {
+      const req = await fetch(`/api?name=user-cart&id=${id}`, { method: 'DELETE' });
     }
+    deleteItem();
+
+    // if (typeof window !== "undefined") {
+    //   const storedValue = window.localStorage.getItem('user-cart');
+    //   const token = JSON.parse(storedValue) || false;
+    //   if ( !token ) return;
+    //   token.splice(id, 1);
+    //   return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    // }
   }
   function handleCount(count) {
     handleCountItem({index: id, count});
-    if (typeof window !== "undefined") {
-      const storedValue = window.localStorage.getItem('user-cart');
-      const token = JSON.parse(storedValue) || false;
-      if ( !token ) return;
-      token[id].count = count;
-      return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    const changeCount = async () => {
+      const req = await fetch(`/api?name=user-cart&id=${id}&count=${count}`, { method: 'PUT' });
     }
+    changeCount()
+    // if (typeof window !== "undefined") {
+    //   const storedValue = window.localStorage.getItem('user-cart');
+    //   const token = JSON.parse(storedValue) || false;
+    //   if ( !token ) return;
+    //   token[id].count = count;
+    //   return window.localStorage.setItem('user-cart', JSON.stringify(token));
+    // }
   }
 
   return (<>
