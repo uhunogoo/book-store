@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request) {
   const token = request.cookies.get('user-cart');
-  return NextResponse.json( token )
+  return NextResponse.json( token || false );
 }
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);

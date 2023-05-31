@@ -5,6 +5,7 @@ import Form, { Fieldset } from '@/components/Form/Form';
 
 import styles from './style.module.css';
 import { currencyFormat } from '@/utils';
+import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
 export default function Page() {
   const form = React.useRef(); 
@@ -60,7 +61,7 @@ export default function Page() {
               color: 'var(--text-grey)' 
             }}
           >
-            Додати коментар
+            <UnderlinedText>Додати коментар</UnderlinedText>
           </Button>
         </div>
       </div>
@@ -99,7 +100,7 @@ export default function Page() {
               color: 'var(--text-grey)' 
             }}
           >
-            Додати коментар
+            <UnderlinedText>Додати коментар</UnderlinedText>
           </Button>
         </div>
       </div>
@@ -139,7 +140,7 @@ export default function Page() {
               color: 'var(--text-grey)' 
             }}
           >
-            Додати коментар
+            <UnderlinedText>Додати коментар</UnderlinedText>
           </Button>
         </div>
       </div>

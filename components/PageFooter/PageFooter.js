@@ -12,7 +12,7 @@ function PageFooter() {
       <footer style={{ backgroundColor: 'hsl(var(--background-green))' }}>
         <ContentWrapper main={false} className={styles.footer}>
           <div style={{ gridArea: 'column1' }}>
-            <h3 className={ styles.title }>Спосіб доставки</h3>
+            <div className={ styles.title }>Спосіб доставки</div>
             <ul>
               <li>Нова Пошта</li>
               <li>Укрпошта</li>
@@ -21,7 +21,7 @@ function PageFooter() {
             </ul>
           </div>
           <div style={{ gridArea: 'column2' }}>
-            <h3 className={ styles.title }>Допомога?</h3>
+            <div className={ styles.title }>Допомога?</div>
             <ul>
               <li><Link href="/delivery">Доставка, оплата</Link></li>
               <li>Правила Клубу</li>
@@ -30,7 +30,7 @@ function PageFooter() {
             </ul>
           </div>
           <div style={{ gridArea: 'column3' }}>
-            <h3 className={ styles.title }>Про Клуб</h3>
+            <div className={ styles.title }>Про Клуб</div>
             <ul>
               <li>Наші магазини</li>
               <li>Істория Клубу</li>
@@ -39,7 +39,7 @@ function PageFooter() {
             </ul>
           </div>
           <div style={{ gridArea: 'column4' }}>
-            <h3 className={ styles.title }>Контакти</h3>
+            <div className={ styles.title }>Контакти</div>
             <ul>
               <li>Адреса:  вул. Шевченка 16а</li>
               <li>T: +380 000 000 000</li>

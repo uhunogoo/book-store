@@ -35,13 +35,12 @@ function CartProvider({ children }) {
   React.useEffect(() => {
     const getItems = async () => {
       const req = await fetch('/api', { method: 'GET' });
-      const data = await req.json();
+      const data = await req?.json();
       if (!data) return;
       const parse = JSON.parse( data.value )
       parse.forEach(item => {
         handleCreateTodo(item);
       });
-      console.log( parse )
     }
     getItems()
 

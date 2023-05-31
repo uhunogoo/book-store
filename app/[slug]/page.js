@@ -106,9 +106,7 @@ function Page({ params  }) {
       </div>
       <div className={ styles.actions }>
         <FavoriteButton title="Додати в улюблене" />
-        {/* <Button title="Додати в улюблене">
-          <Favorite width={32} height={32} />
-        </Button> */}
+
         <OrderButton
           title="Додати до кошика" 
           style={{ 
