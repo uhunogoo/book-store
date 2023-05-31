@@ -34,7 +34,7 @@ function CartProvider({ children }) {
   const [cartItems, dispatch] = React.useReducer(reducer, []);
   React.useEffect(() => {
     const getItems = async () => {
-      const req = await fetch('/api', { method: 'GET' });
+      const req = await fetch('/api?target=user-cart', { method: 'GET' });
       const data = await req?.json();
       if (!data) return;
       const parse = JSON.parse( data.value )
@@ -42,14 +42,7 @@ function CartProvider({ children }) {
         handleCreateTodo(item);
       });
     }
-    getItems()
-
-    // const storedValue = window.localStorage.getItem('user-cart');
-    // const token = JSON.parse(storedValue) || false;
-    // if ( !token ) return;
-    // token.forEach((item) => {
-    //   handleCreateTodo(item)
-    // });
+    getItems();
   }, []);
 
   function handleCreateTodo(value) {

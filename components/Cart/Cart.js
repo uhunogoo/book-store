@@ -18,6 +18,7 @@ import CartCheckout from './CartCheckout';
 import CartBody from './CartBody';
 import CartItem from './CartItem';
 import Scroll from '../Scroll/Scroll';
+import Image from 'next/image';
 
 const linesClasses = [ 
   styles.lineTop, 
@@ -86,10 +87,10 @@ function CartContent() {
 
   return(
     <CartBody style={{ border: 0 }}>
-      <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
       
       {cartItems.length > 0 ? ( 
         <>
+          <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
           <Scroll type='always' style={{ 
             height: cartItems.length > 3 ? '480px' : '100%', 
             margin: '0 -0.8rem', 
@@ -107,9 +108,30 @@ function CartContent() {
 
           <CartCheckout items={cartItems} />
         </> 
-      ) : 'Ваш кошик порожній' }
+      ) : <EmptyStatus variants={itemVariants} /> }
     </CartBody>
   );
+}
+
+function EmptyStatus({ variants }) {
+  return (
+    <MotionBlock variants={variants}>
+      <MotionBlock 
+        tag="h2" 
+        variants={variants}
+        style={{ textAlign: 'center' }}
+      >
+        Ваш кошик порожній
+      </MotionBlock>
+      <Image 
+        src="/owl-default.svg" 
+        style={{ margin: '0 auto', opacity: 0.7 }}
+        width={350} 
+        height={350} 
+        alt="owl" 
+      />
+    </MotionBlock>
+  )
 }
 
 function calculateSubtotal(items) {

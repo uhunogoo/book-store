@@ -2,7 +2,9 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
-  const token = request.cookies.get('user-cart');
+  const { searchParams } = new URL(request.url);
+  const target = searchParams.get('target');
+  const token = request.cookies.get(target);
   return NextResponse.json( token || false );
 }
 export async function DELETE(request) {
