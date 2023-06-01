@@ -48,11 +48,11 @@ function Cart() {
       <AnimatePresence>
         {isOpen && (
           <DropMenu className={ rochester400.variable }>
-            <DropMenu.DropMenuTitle variants={scaleInOut}>
-              Кошик:
-            </DropMenu.DropMenuTitle>
             { cartItems.length > 0 ? (
               <>
+                <DropMenu.DropMenuTitle variants={scaleInOut}>
+                  Кошик:
+                </DropMenu.DropMenuTitle>
                 <DropMenu.DropMenuContent scrolled={cartItems.length > 3}>
                   {cartItems.map(({id, ...props}, i) =>
                     <CartItem key={ id } id={i} variants={scaleInOut} {...props} />
