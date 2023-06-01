@@ -48,7 +48,7 @@ function FavoriteBlock({}) {
             { favoriteItems.length > 0 ? (
               <>
                 <DropMenu.DropMenuTitle variants={scaleInOut}>
-                  Список бажань
+                  Список бажань:
                 </DropMenu.DropMenuTitle>
                 <DropMenu.DropMenuContent columns scrolled={favoriteItems.length > 6}>
                   { favoriteItems.map(item => (
@@ -73,7 +73,7 @@ function EmptyStatus({ variants }) {
       variants={variants}
       style={{ textAlign: 'center' }}
     >
-      Ви нічого не додали до списку
+      На жаль, тут порожньо
     </DropMenu.DropMenuTitle>
     {/* <MotionBlock variants={variants}>
       <Image 
