@@ -11,12 +11,17 @@ export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
   const name = searchParams.get('name');
   const id = searchParams.get('id');
+
   
   // Work with previus result
   const cookieStore = cookies();
   const cart = cookieStore.get( name );
-  const previousValue = JSON.parse(cart.value);
-  previousValue.splice(id, 1);
+  let previousValue = JSON.parse(cart.value);
+  if(name === 'user-cart') {
+    previousValue.splice(id, 1);
+  } else {
+    previousValue = previousValue.filter(item => item.id !== Number(id));
+  }
   
   // Build cookies 
   const token = cookieStore.set({

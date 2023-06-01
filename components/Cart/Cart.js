@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
-
-import styles from './style.module.css';
+import Image from 'next/image';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
@@ -12,20 +11,12 @@ import { MotionBlock } from '../MotionBlock/MotionBlock';
 import { MotionButton } from '../Button/Button';
 import { CartIcon } from '../Icons/Icons';
 
-import AnimatedContent from '../DropDown/AnimatedContent';
 import { CartContext } from '../Providers/CartProvider';
-import CartCheckout from './CartCheckout';
-import CartBody from './CartBody';
-import CartItem from './CartItem';
-import Scroll from '../Scroll/Scroll';
-import Image from 'next/image';
-
-const linesClasses = [ 
-  styles.lineTop, 
-  styles.lineLeft,
-  styles.lineRight, 
-  styles.lineBottom
-];
+import CartItem from '../CartItem/CartItem';
+import DropMenu from '../DropMenu/DropMenu';
+import CartCheckout from '../CartCheckout/CartCheckout';
+import { scaleInOut } from '@/app/lib/animationsVariants';
+import { rochester400 } from '@/styles/fonts';
 
 function Cart() {
   const { cartItems } = React.useContext(CartContext);
@@ -38,7 +29,7 @@ function Cart() {
     <MotionBlock 
       ref={ref} 
       animate={isOpen ? "open" : "closed"}
-      className={styles.dropContainer}
+      style={{ position: 'relative' }}
     >
       <MotionButton
         key={ counts }
@@ -56,59 +47,27 @@ function Cart() {
       </MotionButton>
       <AnimatePresence>
         {isOpen && (
-          <AnimatedContent 
-            className={styles.cart}
-            lines={ linesClasses }
-          >
-            <AnimatedContent.AnimatedLines linesClasses={ linesClasses } />
-            <CartContent cartItems={cartItems}/>
-          </AnimatedContent>
-        )}
+          <DropMenu className={ rochester400.variable }>
+            <DropMenu.DropMenuTitle variants={scaleInOut}>
+              Кошик:
+            </DropMenu.DropMenuTitle>
+            { cartItems.length > 0 ? (
+              <>
+                <DropMenu.DropMenuContent scrolled={cartItems.length > 3}>
+                  {cartItems.map(({id, ...props}, i) =>
+                    <CartItem key={ id } id={i} variants={scaleInOut} {...props} />
+                  )}
+                </DropMenu.DropMenuContent>
+                <CartCheckout items={cartItems} />
+              </>
+            ) : (
+              <EmptyStatus/>
+            )}
+
+          </DropMenu>
+        ) }
       </AnimatePresence>
     </MotionBlock>
-  );
-}
-
-function CartContent({ cartItems }) {
-  const itemVariants = {
-    open: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { type: "spring", bounce: 0, duration: 0.4 }
-    },
-    closed: { opacity: 0, scale: 0.96, y: 10, transition: { type: "spring", bounce: 0, duration: 0.4 } },
-    hover: { 
-      background: 'white', 
-      transition: { type: "spring", bounce: 0, duration: 0.4 } 
-    },
-  }
-
-  return(
-    <CartBody style={{ border: 0 }}>
-      
-      {cartItems.length > 0 ? ( 
-        <>
-          <MotionBlock tag="h2" variants={itemVariants}>Кошик:</MotionBlock>
-          <Scroll type='always' style={{ 
-            height: cartItems.length > 3 ? '480px' : '100%', 
-            margin: '0 -0.8rem', 
-            padding: '0 0.8rem', 
-            width: 'auto',
-            '--scroll-thumb-color': 'var(--text-dark)',
-            '--scrollbar-size': '0.5rem'
-          }}>
-            <CartBody.ProductList>
-              {cartItems.map(({id, ...props}, i) =>
-                <CartItem key={ id } id={i} variants={itemVariants} {...props} />
-              )}
-            </CartBody.ProductList>
-          </Scroll>
-
-          <CartCheckout items={cartItems} />
-        </> 
-      ) : <EmptyStatus variants={itemVariants} /> }
-    </CartBody>
   );
 }
 

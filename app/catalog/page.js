@@ -3,8 +3,8 @@ import React from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 
-import { range } from '@/utils';
-import { SITE_DATA } from '@/data';
+import { range } from '@/app/lib/utils';
+import { SITE_DATA } from '@/app/lib/data';
 
 import styles from './page.module.css'
 import Button from 'components/Button/Button'

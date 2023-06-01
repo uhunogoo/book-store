@@ -1,8 +1,5 @@
-.card {
-}
 .card h2 {
   font-size: 1.8rem;
-  text-align: center;
 }
 
 .row {
@@ -12,34 +9,4 @@
   row-gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 4.5rem;
-}
-.wish {
-  position: relative;
-}
-.close {
-  position: absolute;
-  right: 0;
-  z-index: 2;
-} 
-.image {
-  position: relative;
-}
-.image button {
-  background: white;
-  bottom: 0.5rem;
-  border-radius: 200rem;
-  filter: drop-shadow(var(--drop-shadow-md));
-  padding: 0.3rem;
-  position: absolute;
-  scale: 0;
-  transition: scale 0.2s ease-in;
-  right: 0.5rem;
-  height: 1.7rem;
-  width: 1.7rem;
-}
-.wish:hover .image button {
-  scale: 1;
-}
-.title {
-  font-size: 0.75rem;
 }

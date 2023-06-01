@@ -1,22 +1,23 @@
 'use client'
 import React from 'react';
+import Image from 'next/image';
+import { AnimatePresence } from 'framer-motion';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
 
-import { AnimatePresence } from 'framer-motion';
 
 import { MotionBlock } from '../MotionBlock/MotionBlock';
 import { Favorite } from '../Icons/Icons';
 
-import Image from 'next/image';
 import { FavoriteContext } from '../Providers/FavoriteProvider';
-import DropMenu from '../DropMenu/DropMenu';
 import { MotionButton } from '../Button/Button';
+import DropMenu from '../DropMenu/DropMenu';
+import Wishlist from '../Wishlist/Wishlist';
+import { scaleInOut } from '@/app/lib/animationsVariants';
 
-function FavoriteBlock({ counts = 0 }) {
+function FavoriteBlock({}) {
   const { favoriteItems } = React.useContext(FavoriteContext);
-
   const [ isOpen, setIsOpen ] = useToggle(false);
   const ref = useClickOutside( isOpen, setIsOpen );
   
@@ -27,13 +28,13 @@ function FavoriteBlock({ counts = 0 }) {
       style={{ position: 'relative' }}
     >
       <MotionButton
-        key={ counts }
-        title="Список обраного" 
+        key={ favoriteItems.length }
+        title="Список бажань" 
         type="button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         onClick={ setIsOpen } 
-        numOfItems={counts}
+        numOfItems={favoriteItems.length}
       >
         <Favorite 
           width="40" height="40" 
@@ -44,19 +45,21 @@ function FavoriteBlock({ counts = 0 }) {
       <AnimatePresence>
         {isOpen && (
           <DropMenu>
-            <DropMenu.DropMenuContent
-              title="Обране"
-              isExist={ favoriteItems.length > 0 }
-              emptyStatus={
-                <EmptyStatus/>
-              }
-            >
-              { favoriteItems.map(item => {
-                <div>
-                  { item.status }
-                </div>
-              })}
-            </DropMenu.DropMenuContent>
+            { favoriteItems.length > 0 ? (
+              <>
+                <DropMenu.DropMenuTitle variants={scaleInOut}>
+                  Список бажань
+                </DropMenu.DropMenuTitle>
+                <DropMenu.DropMenuContent columns scrolled={favoriteItems.length > 6}>
+                  { favoriteItems.map(item => (
+                    <Wishlist key={ item.id } variants={scaleInOut} book={ item }/>
+                  ))}
+                </DropMenu.DropMenuContent>
+              </>
+            ) : (
+              <EmptyStatus/>
+            )}
+
           </DropMenu>
         ) }
       </AnimatePresence>
@@ -66,13 +69,12 @@ function FavoriteBlock({ counts = 0 }) {
 
 function EmptyStatus({ variants }) {
   return (<>
-    <MotionBlock 
-      tag="h2" 
+    <DropMenu.DropMenuTitle 
       variants={variants}
       style={{ textAlign: 'center' }}
     >
       Ви нічого не додали до списку
-    </MotionBlock>
+    </DropMenu.DropMenuTitle>
     <MotionBlock variants={variants}>
       <Image 
         src="/owl-default.svg" 

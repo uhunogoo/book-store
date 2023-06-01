@@ -8,36 +8,36 @@ function FavoriteProvider({ children }) {
   const [favoriteItems, dispatch] = React.useReducer(reducer, []);
   React.useEffect(() => {
     const getItems = async () => {
-      const req = await fetch('/api?target=user-favorite', { method: 'GET' });
+      const req = await fetch('/api?target=user-liked', { method: 'GET' });
       const data = await req?.json();
       if (!data) return;
       const parse = JSON.parse( data.value )
       parse.forEach(item => {
-        handleCreateTodo(item);
+        handleCreate(item);
       });
     }
     getItems();
   }, []);
 
-  function handleCreateTodo(value) {
+  function handleCreate(value) {
     dispatch({
       type: 'create-cart',
       value,
     });
   }
 
-  function handleDeleteTodo(index) {
+  function handleDelete(id) {
     dispatch({
-      type: 'delete-cart-item',
-      index,
+      type: 'delete-fav-item',
+      id,
     });
   }
   
   const value = React.useMemo(() => {
     return {
       favoriteItems, 
-      handleDeleteTodo,
-      handleCreateTodo
+      handleDelete,
+      handleCreate
     };
   }, [ favoriteItems ]);
   

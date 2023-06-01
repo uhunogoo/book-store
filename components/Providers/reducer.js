@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { SITE_DATA } from '@/data';
+import { SITE_DATA } from '@/app/lib/data';
 const { books, series } = SITE_DATA; 
 const combinedBooks = books.concat( series );
 
@@ -22,6 +22,11 @@ export function reducer(todos, action) {
 
       case 'delete-cart-item': {
         draftTodos.splice(action.index, 1);
+        break;
+      }
+      case 'delete-fav-item': {
+        const index = draftTodos.findIndex( item => item.id === action.id );
+        draftTodos.splice(index, 1);
         break;
       }
     }

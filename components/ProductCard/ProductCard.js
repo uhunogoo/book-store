@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 import styles from './style.module.css';
 
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/app/lib/utils';
 import { rochester400 } from '@/styles/fonts';
-import FavoriteButton from '../Button/FavoriteButton';
-import AddToCart from './AddToCart';
+import AddToCart from '../AddTo/AddToCart';
+import AddToFavorite from '../AddTo/AddToFavorite';
 
 function ProductCard({ style, ...props }) {
   if (!props.image) {
@@ -29,7 +29,7 @@ function ProductCard({ style, ...props }) {
 
         {!!props.price && (
           <div className={ styles.actions }>
-            <FavoriteButton title="Додати в улюблене" className={ styles.button } />
+            <AddToFavorite id={ props.id } className={ styles.button } />
           </div>
         )}
       </div>

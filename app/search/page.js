@@ -1,6 +1,6 @@
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs'
 import SliderBlock from 'components/SliderBlock/SliderBlock'
-import { SITE_DATA } from '@/data';
+import { SITE_DATA } from '@/app/lib/data';
 
 export default function Page({ searchParams }) {
   const searchResult = [];

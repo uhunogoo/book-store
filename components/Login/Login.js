@@ -18,7 +18,10 @@ function UserForm({ setOpen }) {
   const [succes, setSucces] = React.useState( false );
   const [formType, setFormType] = React.useState( 'login' );
   const router = useRouter();
-  router.prefetch( DASHBOAR_LINK );
+
+  React.useEffect(() => {
+    router.prefetch( DASHBOAR_LINK );
+  }, [])
 
   function handleRegisterForm( value ) {
     const newValue = value === 'register' ? 'register' : 'resetPassword';

@@ -5,18 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './style.module.css';
 
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/app/lib/utils';
 
-import { MotionBlock } from 'components/MotionBlock/MotionBlock';
-import { Close } from 'components/Icons/Icons';
 import Button from 'components/Button/Button';
-import Counter from './Counter';
+import { MotionBlock } from 'components/MotionBlock/MotionBlock';
 import { CartContext } from '../Providers/CartProvider';
-// import { changeItem, removeItem } from '@/app/actions';
+import { Close } from 'components/Icons/Icons';
+import Counter from './Counter';
 
 function CartItem({ id, variants, ...props }) {
   const { handleDeleteTodo, handleCountItem } = React.useContext( CartContext );
-  // const [isPending, startTransition] = React.useTransition();
   const generategID = React.useId();
   const separatorVariants = {
     open: {
@@ -32,14 +30,6 @@ function CartItem({ id, variants, ...props }) {
       const req = await fetch(`/api?name=user-cart&id=${id}`, { method: 'DELETE' });
     }
     deleteItem();
-
-    // if (typeof window !== "undefined") {
-    //   const storedValue = window.localStorage.getItem('user-cart');
-    //   const token = JSON.parse(storedValue) || false;
-    //   if ( !token ) return;
-    //   token.splice(id, 1);
-    //   return window.localStorage.setItem('user-cart', JSON.stringify(token));
-    // }
   }
   function handleCount(count) {
     handleCountItem({index: id, count});
@@ -47,13 +37,6 @@ function CartItem({ id, variants, ...props }) {
       const req = await fetch(`/api?name=user-cart&id=${id}&count=${count}`, { method: 'PUT' });
     }
     changeCount()
-    // if (typeof window !== "undefined") {
-    //   const storedValue = window.localStorage.getItem('user-cart');
-    //   const token = JSON.parse(storedValue) || false;
-    //   if ( !token ) return;
-    //   token[id].count = count;
-    //   return window.localStorage.setItem('user-cart', JSON.stringify(token));
-    // }
   }
 
   return (<>

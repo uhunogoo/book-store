@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SITE_DATA } from '@/data';
+import { SITE_DATA } from './lib/data'; 
 
 import Navigation from 'components/Navigation/Navigation';
 import SliderBlock from 'components/SliderBlock/SliderBlock';

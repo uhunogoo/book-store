@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './style.module.css';
 
 // Utils
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/app/lib/utils';
 
 // Components
 import { MotionButton } from 'components/Button/Button';

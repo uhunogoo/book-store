@@ -3,9 +3,9 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MotionButton } from './Button';
 import { Favorite } from 'components/Icons/Icons';
-import { range } from '@/utils';
+import { range } from '@/app/lib/utils';
 
-function FavoriteButton({ style = {}, ...delegated }) {
+function FavoriteButton({ style = {}, action, ...delegated }) {
   const [clicked, setClicked] = React.useState( false );
   
   const positions = range(10).map(item => {
@@ -18,12 +18,17 @@ function FavoriteButton({ style = {}, ...delegated }) {
     return { x, y, rotate };
   });
 
+  function handleClick() {
+    setClicked( !clicked );
+    action( !clicked );
+  }
+
 
   return (
     <MotionButton
       {...delegated}
       animate={ clicked ? 'liked' : 'unliked' }
-      onClick={ () => setClicked( !clicked ) }
+      onClick={ handleClick }
       initial={ false }
       style={{
         margin: 0,

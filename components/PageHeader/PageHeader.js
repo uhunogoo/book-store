@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './page-header.module.css';
-import { SITE_DATA } from '@/data';
+import { SITE_DATA } from '@/app/lib/data';
 
 import ContentWrapper from '../ContentWrapper/ContentWrapper';
 import SearchForm from '../SearchForm/SearchForm';

@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import { SITE_DATA } from '@/data';
+import { SITE_DATA } from '../lib/data'; 
 
 import { rochester400 } from '@/fonts';
 import styles from './style.module.css';
 
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/app/lib/utils';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import Comments from 'components/Comments/Comments';
@@ -14,7 +14,7 @@ import Rating from 'components/Rating/Rating';
 import Tab from 'components/Tab/Tab';
 import OrderButton from 'components/Button/OrderButton';
 import UnderlinedText from 'components/UnderlinedText/UnderlinedText';
-import FavoriteButton from 'components/Button/FavoriteButton';
+import AddToFavorite from '@/components/AddTo/AddToFavorite';
 
 const characterisctics = [
   'Код товару',
@@ -75,7 +75,7 @@ function Page({ params  }) {
             </div>
           </div>
           <div className={styles.sliderMain}>
-            <ProductImage  image={book.image} />
+            <ProductImage image={book.image} />
           </div>
         </div>
         <div className={ rochester400.variable }>
@@ -105,8 +105,8 @@ function Page({ params  }) {
         </div>
       </div>
       <div className={ styles.actions }>
-        <FavoriteButton title="Додати в улюблене" />
-
+        <AddToFavorite id={ book.id } />
+        
         <OrderButton
           title="Додати до кошика" 
           style={{ 

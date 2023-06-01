@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { range } from '@/utils';
-import { SITE_DATA } from '@/data';
+import { range } from '@/app/lib/utils';
+import { SITE_DATA } from '@/app/lib/data';
 
 import { CommentContainer } from 'components/Comments/Comments';
 

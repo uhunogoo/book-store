@@ -4,7 +4,7 @@ import Button from 'components/Button/Button';
 import Form, { Fieldset } from '@/components/Form/Form';
 
 import styles from './style.module.css';
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/app/lib/utils';
 import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
 export default function Page() {
