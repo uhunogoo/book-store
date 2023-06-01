@@ -61,7 +61,7 @@ function Cart() {
                 <CartCheckout items={cartItems} />
               </>
             ) : (
-              <EmptyStatus/>
+              <EmptyStatus variants={scaleInOut}/>
             )}
 
           </DropMenu>

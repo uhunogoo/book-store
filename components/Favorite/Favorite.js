@@ -57,7 +57,7 @@ function FavoriteBlock({}) {
                 </DropMenu.DropMenuContent>
               </>
             ) : (
-              <EmptyStatus/>
+              <EmptyStatus variants={scaleInOut}/>
             )}
 
           </DropMenu>
@@ -75,7 +75,7 @@ function EmptyStatus({ variants }) {
     >
       Ви нічого не додали до списку
     </DropMenu.DropMenuTitle>
-    <MotionBlock variants={variants}>
+    {/* <MotionBlock variants={variants}>
       <Image 
         src="/owl-default.svg" 
         style={{ margin: '0 auto', opacity: 1 }}
@@ -83,7 +83,7 @@ function EmptyStatus({ variants }) {
         height={350} 
         alt="owl" 
       />
-    </MotionBlock>
+    </MotionBlock> */}
   </>)
 }
 
