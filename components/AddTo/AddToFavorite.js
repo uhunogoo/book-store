@@ -4,7 +4,10 @@ import FavoriteButton from '../Button/FavoriteButton';
 import { FavoriteContext } from '../Providers/FavoriteProvider';
 
 function AddToFavorite({ id = 0, ...delegated}) {
-  const { handleCreate, handleDelete } = React.useContext( FavoriteContext );
+  const { handleCreate, handleDelete, favoriteItems } = React.useContext( FavoriteContext );
+  const itemIndex = favoriteItems?.findIndex(item => item.id === id);
+  const exist = itemIndex >= 0;
+  
   function handleClick(status) {
     const value = {
       liked: { id },
@@ -31,9 +34,10 @@ function AddToFavorite({ id = 0, ...delegated}) {
     }
   }
   return (
-    <FavoriteButton 
+    <FavoriteButton
+      initial={exist}
       action={ handleClick }
-      title="Додати в улюблене" 
+      title={exist ? "Прибрати з улюбленого" : "Додати в улюблене"} 
       {...delegated}
     />
   );

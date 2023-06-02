@@ -6,7 +6,9 @@ import { CartContext } from '../Providers/CartProvider';
 
 
 function AddToCart({ sku = null, ...delegated}) {
-  const { handleCreateTodo } = React.useContext( CartContext );
+  const { handleCreateTodo, cartItems } = React.useContext( CartContext );
+  const itemIndex = cartItems?.findIndex(item => item.id === sku);
+  const exist = itemIndex >= 0;
   function handleClick() {
     const value = {
       cart: { id: sku, count: 1 },
@@ -31,7 +33,9 @@ function AddToCart({ sku = null, ...delegated}) {
       title="Купити" 
       visual="outline"
     >
-      <span>Купити</span>
+      <span>
+        {exist ? 'У кошику' : 'Купити' }
+      </span>
     </Button>
   );
 }

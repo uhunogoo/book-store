@@ -5,9 +5,12 @@ import { MotionButton } from './Button';
 import { Favorite } from 'components/Icons/Icons';
 import { range } from '@/app/lib/utils';
 
-function FavoriteButton({ style = {}, action, ...delegated }) {
+function FavoriteButton({ style = {}, initial = false, action, ...delegated }) {
   const [clicked, setClicked] = React.useState( false );
   
+  React.useEffect(() => {
+    setClicked( initial );
+  }, [initial]);
   const positions = range(10).map(item => {
     const r = 40;
     const alpha = Math.PI * 2 * Math.random();

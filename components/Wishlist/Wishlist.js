@@ -24,7 +24,7 @@ function Wishlist({ book, variants }) {
         title="remove"
         onClick={ handleClick }
       >
-        <Close width={14} height={14} />
+        <Close width={14} height={14} color={'var(--icon-color, var(--text-dark))'} />
       </Button>
       <div className={ styles.image }>
         <Image 

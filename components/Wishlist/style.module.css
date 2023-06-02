@@ -9,6 +9,9 @@
 .image {
   position: relative;
 }
+.image img {
+  transition: 0.3s ease-in;
+}
 .image button {
   background: white !important;
   bottom: 0.5rem;
@@ -27,4 +30,49 @@
 }
 .title {
   font-size: 0.75rem;
+}
+
+.wish svg line,
+.wish svg path {
+  transition: fill 0.2s ease-in, stroke 0.2s ease-in;
+}
+
+/* animations */
+.wish:hover {
+  --icon-color: var(--danger);
+}
+.wish:hover .close svg path {
+  transform-origin: 50% 50%;
+  animation: scale 0.4s ease-out 0.2s;
+  animation-fill-mode: forwards;
+}
+.wish:hover .close svg {
+  animation: rotate 0.8s ease-out 0.2s;
+}
+.wish:hover img {
+  scale: 1.02;
+  translate: -5% 0;
+}
+@keyframes rotate {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: -180deg;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+  50% {
+    scale: 1.2;
+    opacity: 0;
+  }
+  50.00001% {
+    scale: 0;
+    opacity: 0;
+  }
 }
