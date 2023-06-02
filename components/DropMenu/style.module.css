@@ -2,10 +2,10 @@
   background: hsla(0, 0%, 100%, 0.95);
   padding: 1.5rem;
   backdrop-filter: blur(0.5rem);
-  position: absolute;
+  /* position: absolute; */
   bottom: -1.5rem;
   right: 0;
-  translate: 0 100%;
+  /* translate: 0 100%; */
   max-width: 475px;
   width: 100vw;
   z-index: 2;

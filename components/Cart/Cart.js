@@ -32,7 +32,6 @@ function Cart() {
       style={{ position: 'relative' }}
     >
       <MotionButton
-        key={ counts }
         title="Преревірити кошик" 
         type="button"
         whileHover={{ scale: 1.05 }}
@@ -46,29 +45,34 @@ function Cart() {
         />
       </MotionButton>
       <AnimatePresence>
-        {isOpen && (
-          <DropMenu className={ rochester400.variable }>
-            { cartItems.length > 0 ? (
-              <>
-                <DropMenu.DropMenuTitle variants={scaleInOut}>
-                  Кошик:
-                </DropMenu.DropMenuTitle>
-                <DropMenu.DropMenuContent scrolled={cartItems.length > 3}>
-                  {cartItems.map(({id, ...props}, i) =>
-                    <CartItem key={ id } id={i} variants={scaleInOut} {...props} />
-                  )}
-                </DropMenu.DropMenuContent>
-                <CartCheckout items={cartItems} />
-              </>
-            ) : (
-              <EmptyStatus variants={scaleInOut}/>
-            )}
-
-          </DropMenu>
-        ) }
+        { isOpen && <CartContent /> }
       </AnimatePresence>
     </MotionBlock>
   );
+}
+
+export function CartContent() {
+  const { cartItems } = React.useContext(CartContext);
+  return(
+    <DropMenu className={ rochester400.variable }>
+      { cartItems.length > 0 ? (
+        <>
+          <DropMenu.DropMenuTitle variants={scaleInOut}>
+            Кошик:
+          </DropMenu.DropMenuTitle>
+          <DropMenu.DropMenuContent scrolled={cartItems.length > 3}>
+            {cartItems.map(({id, ...props}, i) =>
+              <CartItem key={ id } id={i} variants={scaleInOut} {...props} />
+            )}
+          </DropMenu.DropMenuContent>
+          <CartCheckout items={cartItems} />
+        </>
+      ) : (
+        <EmptyStatus variants={scaleInOut}/>
+      )}
+
+    </DropMenu>
+  )
 }
 
 function EmptyStatus({ variants }) {

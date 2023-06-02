@@ -6,6 +6,7 @@ import PageHeader from 'components/PageHeader/PageHeader';
 import PageFooter from 'components/PageFooter/PageFooter';
 import Scroll from 'components/Scroll/Scroll';
 import Providers from 'components/Providers/Providers';
+import ButtonGroup from '@/components/DropMenu/ButtonsGroup';
 
 export const metadata = {
   title: 'Bookway - книжковий клуб',
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Scroll type='scroll' style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
             <PageHeader />
-
+            <ButtonGroup />
             <ContentWrapper style={{ minHeight: '60vh' }}>
               {children}
             </ContentWrapper>

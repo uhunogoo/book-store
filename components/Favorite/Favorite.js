@@ -1,11 +1,10 @@
 'use client'
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
-
 
 import { MotionBlock } from '../MotionBlock/MotionBlock';
 import { Favorite } from '../Icons/Icons';
@@ -28,7 +27,6 @@ function FavoriteBlock({}) {
       style={{ position: 'relative' }}
     >
       <MotionButton
-        key={ favoriteItems.length }
         title="Список бажань" 
         type="button"
         whileHover={{ scale: 1.05 }}
@@ -43,28 +41,33 @@ function FavoriteBlock({}) {
       </MotionButton>
 
       <AnimatePresence>
-        {isOpen && (
-          <DropMenu>
-            { favoriteItems.length > 0 ? (
-              <>
-                <DropMenu.DropMenuTitle variants={scaleInOut}>
-                  Список бажань:
-                </DropMenu.DropMenuTitle>
-                <DropMenu.DropMenuContent columns scrolled={favoriteItems.length > 6}>
-                  { favoriteItems.map(item => (
-                    <Wishlist key={ item.id } variants={scaleInOut} book={ item }/>
-                  ))}
-                </DropMenu.DropMenuContent>
-              </>
-            ) : (
-              <EmptyStatus variants={scaleInOut}/>
-            )}
-
-          </DropMenu>
-        ) }
+        { isOpen && <FavoriteContent /> }
       </AnimatePresence>
     </MotionBlock>
   );
+}
+
+export function FavoriteContent() {
+  const { favoriteItems } = React.useContext(FavoriteContext);
+  return (
+    <DropMenu>
+      { favoriteItems.length > 0 ? (
+        <>
+          <DropMenu.DropMenuTitle variants={scaleInOut}>
+            Список бажань:
+          </DropMenu.DropMenuTitle>
+          <DropMenu.DropMenuContent columns scrolled={favoriteItems.length > 6}>
+            { favoriteItems.map(item => (
+              <Wishlist key={ item.id } variants={scaleInOut} book={ item }/>
+            ))}
+          </DropMenu.DropMenuContent>
+        </>
+      ) : (
+        <EmptyStatus variants={scaleInOut}/>
+      )}
+
+    </DropMenu>
+  )
 }
 
 function EmptyStatus({ variants }) {

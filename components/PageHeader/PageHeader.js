@@ -14,6 +14,7 @@ import DecoratedTree from './DecoratedTree';
 import Cart from 'components/Cart/Cart';
 import UserComponent from '../UserComponent/UserComponent';
 import FavoriteBlock from '../Favorite/Favorite';
+import ButtonGroup from '../DropMenu/ButtonsGroup';
 
 
 function PageHeader() {
@@ -42,8 +43,9 @@ function PageHeader() {
             <div className={ styles.middleMenuButtons }>
               <SearchForm className={ styles.headerSearch }/>
               
-              <Cart />
-              <FavoriteBlock />
+              {/* <Cart />
+              <FavoriteBlock /> */}
+              <ButtonGroup />
               <UserComponent/>
             </div>
 
