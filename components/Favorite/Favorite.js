@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-// import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -37,6 +36,7 @@ export const FavoriteButton = React.forwardRef( ({ isOpen, clickHandle }, ref) =
   const { favoriteItems } = React.useContext(FavoriteContext);
   return (
     <MotionButton
+      ref={ref}
       title="Список бажань" 
       type="button"
       whileHover={{ scale: 1.05 }}
