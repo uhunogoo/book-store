@@ -19,9 +19,6 @@ import { scaleInOut } from '@/app/lib/animationsVariants';
 import { rochester400 } from '@/styles/fonts';
 
 function Cart() {
-  const { cartItems } = React.useContext(CartContext);
-
-  const [subtotal, counts] = calculateSubtotal( cartItems );
   const [ isOpen, setIsOpen ] = useToggle(false);
   const ref = useClickOutside( isOpen, setIsOpen );
   
@@ -31,19 +28,7 @@ function Cart() {
       animate={isOpen ? "open" : "closed"}
       style={{ position: 'relative' }}
     >
-      <MotionButton
-        title="Преревірити кошик" 
-        type="button"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={ setIsOpen } 
-        numOfItems={counts}
-      >
-        <CartIcon 
-          width="40" height="40" 
-          color={ isOpen ? 'white' : 'var(--text-dark)' }
-        />
-      </MotionButton>
+      <CartButton isOpen={isOpen} clickHandle={ () => setIsOpen(!isOpen) } />
       <AnimatePresence>
         { isOpen && <CartContent /> }
       </AnimatePresence>
@@ -51,6 +36,27 @@ function Cart() {
   );
 }
 
+export const CartButton = React.forwardRef( ({ isOpen, clickHandle }, ref) => {
+  const { cartItems } = React.useContext(CartContext);
+  const [subtotal, counts] = calculateSubtotal( cartItems );
+  return (
+    <MotionButton
+      ref={ref}
+      title="Преревірити кошик" 
+      type="button"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={ clickHandle } 
+      numOfItems={counts}
+    >
+      <CartIcon 
+        width="40" height="40" 
+        style={{ pointerEvents: 'none' }}
+        color={ isOpen ? 'white' : 'var(--text-dark)' }
+      />
+    </MotionButton>
+  );
+})
 export function CartContent() {
   const { cartItems } = React.useContext(CartContext);
   return(

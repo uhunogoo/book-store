@@ -16,7 +16,6 @@ import Wishlist from '../Wishlist/Wishlist';
 import { scaleInOut } from '@/app/lib/animationsVariants';
 
 function FavoriteBlock({}) {
-  const { favoriteItems } = React.useContext(FavoriteContext);
   const [ isOpen, setIsOpen ] = useToggle(false);
   const ref = useClickOutside( isOpen, setIsOpen );
   
@@ -26,20 +25,7 @@ function FavoriteBlock({}) {
       animate={isOpen ? "open" : "closed"}
       style={{ position: 'relative' }}
     >
-      <MotionButton
-        title="Список бажань" 
-        type="button"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={ setIsOpen } 
-        numOfItems={favoriteItems.length}
-      >
-        <Favorite 
-          width="40" height="40" 
-          color={ isOpen ? 'white' : 'var(--text-dark)' }
-        />
-      </MotionButton>
-
+      <FavoriteButton isOpen={isOpen} clickHandle={setIsOpen(!isOpen)} />
       <AnimatePresence>
         { isOpen && <FavoriteContent /> }
       </AnimatePresence>
@@ -47,6 +33,25 @@ function FavoriteBlock({}) {
   );
 }
 
+export const FavoriteButton = React.forwardRef( ({ isOpen, clickHandle }, ref) => {
+  const { favoriteItems } = React.useContext(FavoriteContext);
+  return (
+    <MotionButton
+      title="Список бажань" 
+      type="button"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={ clickHandle } 
+      numOfItems={favoriteItems.length}
+    >
+      <Favorite 
+        width="40" height="40"
+        style={{ pointerEvents: 'none' }} 
+        color={ isOpen ? 'white' : 'var(--text-dark)' }
+      />
+    </MotionButton>
+  );
+})
 export function FavoriteContent() {
   const { favoriteItems } = React.useContext(FavoriteContext);
   return (
