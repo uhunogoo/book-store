@@ -67,7 +67,8 @@ function ButtonGroup() {
         left: left, 
         translate: '-100% 100%',
         position: 'absolute',
-        width: '475px'
+        width: '475px',
+        zIndex: 2,
       }}
     >
       <AnimatePresence mode='wait'>
