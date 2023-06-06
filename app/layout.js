@@ -6,6 +6,8 @@ import PageHeader from 'components/PageHeader/PageHeader';
 import PageFooter from 'components/PageFooter/PageFooter';
 import Scroll from 'components/Scroll/Scroll';
 import Providers from 'components/Providers/Providers';
+import AnimatedLayout from './AnimatedLayout';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Bookway - книжковий клуб',
@@ -22,9 +24,13 @@ export default function RootLayout({ children }) {
           <Scroll type='scroll' style={{ '--scroll-thumb-color': 'var(--text-dark)' }}>
             <PageHeader />
             
-            <ContentWrapper style={{ minHeight: '60vh' }}>
-              {children}
-            </ContentWrapper>
+            {/* <Suspense fallback={null}> */}
+              <ContentWrapper style={{ minHeight: '60vh' }}>
+                <AnimatedLayout>
+                  {children}
+                </AnimatedLayout>
+              </ContentWrapper>
+            {/* </Suspense> */}
 
             <PageFooter/>
           </Scroll>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
@@ -14,10 +13,9 @@ import SliderBlock from 'components/SliderBlock/SliderBlock';
 import BreadCrumbs from 'components/BreadCrumbs/BreadCrumbs';
 import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
 
-
 const SORTING = [ {title: 'Топ'}, {title: 'За новизною'}, {title: 'За популярністю'} ];
-
-export default function Page({ perpage = 24 }) {
+const perpage = 24;
+export default function Page() {
   const { books, dropDown,recently_view } =  SITE_DATA;
   const count = books.length;
   const wrap = gsap.utils.wrap(0, count);
@@ -25,15 +23,15 @@ export default function Page({ perpage = 24 }) {
     const { image } = books[book.id];
     return { image };
   } );
-
+  
   return (
-    <main className={styles.main}>
+    <>
       <BreadCrumbs>
         <BreadCrumbs.Crumb>
           Каталог
         </BreadCrumbs.Crumb>
       </BreadCrumbs>
-      
+
       <div className={ styles.topBar }>
         <h1>
           Каталог
@@ -71,6 +69,6 @@ export default function Page({ perpage = 24 }) {
         title={ recently_view.title } 
         listOfItems={recentlyView} 
       />
-    </main>
+    </>
   )
 }

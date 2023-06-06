@@ -4,6 +4,7 @@ import { SITE_DATA } from './lib/data';
 import Navigation from 'components/Navigation/Navigation';
 import SliderBlock from 'components/SliderBlock/SliderBlock';
 import Banner from 'components/Banner/Banner';
+import React from 'react';
 
 export default function Page() {
   const { 

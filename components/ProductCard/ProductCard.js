@@ -9,16 +9,22 @@ import { currencyFormat } from '@/app/lib/utils';
 import { rochester400 } from '@/styles/fonts';
 import AddToCart from '../AddTo/AddToCart';
 import AddToFavorite from '../AddTo/AddToFavorite';
+import { MotionBlock } from '../MotionBlock/MotionBlock';
+import { fadeIn } from '@/app/lib/animationsVariants';
+import { useWillChange } from 'framer-motion';
 
 function ProductCard({ style, ...props }) {
   if (!props.image) {
     console.error( 'please check your image prop' );
     return;
   }
-
+  
+  const willChange = useWillChange()
+  
   return(
-    <div
-      style={ style } 
+    <MotionBlock
+      style={{ willChange, ...style }} 
+      variants={fadeIn}
       className={ `${rochester400.variable} ${styles.card}` }
     >
       <div className={styles.topContainer}>
@@ -48,7 +54,7 @@ function ProductCard({ style, ...props }) {
         </div>
       )}
 
-    </div>
+    </MotionBlock>
   );
 }
 

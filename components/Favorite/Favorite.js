@@ -83,15 +83,6 @@ function EmptyStatus({ variants }) {
     >
       На жаль, тут порожньо
     </DropMenu.DropMenuTitle>
-    {/* <MotionBlock variants={variants}>
-      <Image 
-        src="/owl-default.svg" 
-        style={{ margin: '0 auto', opacity: 1 }}
-        width={350} 
-        height={350} 
-        alt="owl" 
-      />
-    </MotionBlock> */}
   </>)
 }
 

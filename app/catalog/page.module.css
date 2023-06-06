@@ -1,40 +1,7 @@
-.main {
-  max-width: var(--max-width);
-  min-height: 100vh;
-}
-
-.main h1,
-.main h2 {
+.topBar h1 {
   color: var(--text-green);
-}
-.main h1 {
   font-size: 2.5rem;
   margin: 4rem 0;
-}
-.main h2 {
-  font-size: 1.7rem;
-  margin-top: 3rem;
-}
-
-.main li, 
-.main p { 
-  font-size: var(--text-size);
-  line-height: 1.5;
-}
-.main h2 + *,
-.main ul + p,
-.main p + p {
-  margin-top: 1.5rem;
-} 
-
-.main ul {
-  margin-left: 2.5rem;
-}
-.main ul li {
-  padding-left: 0.5rem;
-}
-.main ul li + li {
-  margin-top: 0.2em;
 }
 
 .topBar {
