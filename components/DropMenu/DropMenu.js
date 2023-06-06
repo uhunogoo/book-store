@@ -46,7 +46,7 @@ function DropMenuContent({ children, scrolled = false, columns = false }) {
         </div>
       </BlockWithScroll>
     ) : (
-        <div style={ columns ? columnStyle : {} }>
+        <div className={styles.itemsList}  style={ columns ? columnStyle : {} }>
           { children }
         </div>
     )
