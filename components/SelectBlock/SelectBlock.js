@@ -14,7 +14,7 @@ function SelectBlock({ data }) {
   const [open, setOpen] = React.useState( false );
   const [genre, setGenre] = React.useState( data[0].title );
   const buttonClass = open ? `${ styles.IconButton } ${ styles.opened }` : styles.IconButton;
-  const ref = useClickOutside( setOpen );
+  const ref = useClickOutside( open, setOpen );
 
   function handleOpen() {
     setOpen( current => !current );
@@ -23,8 +23,9 @@ function SelectBlock({ data }) {
   if (!data) return null;
 
   return (
-    <div ref={ref} style={{ position: 'relative' }}>
-      <Button 
+    <div style={{ position: 'relative' }}>
+      <Button
+        ref={ref} 
         onClick={ handleOpen } 
         className={ buttonClass } 
         aria-label="Customise options"

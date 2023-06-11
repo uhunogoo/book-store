@@ -35,20 +35,22 @@
   transition: 0.3s ease-in-out;
 }
 .arrow {
-  background: url('/arrow.svg') no-repeat center;
-  background-size: 100% auto;
   display: inline-block;
   height: 0.85rem;
   position: absolute;
   right: 0.2rem;
   top: 50%;
-  transform: translateY(-25%) rotate(0);
-  transform-origin: 50% 10%;
+  transform: translateY(-25%);
+  transition: 0.2s ease-in;
+  pointer-events: none;
   width: 0.85rem;
 }
 
 .dropDownButton.active {
   color: #fefefe;
+}
+.dropDownButton.active .arrow {
+  transform: translateY(-45%) rotate(0);
 }
 
 .dropDownButton:hover {

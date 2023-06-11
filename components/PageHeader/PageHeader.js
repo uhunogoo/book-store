@@ -11,9 +11,7 @@ import ContentWrapper from '../ContentWrapper/ContentWrapper';
 import SearchForm from '../SearchForm/SearchForm';
 import Navigation from '../Navigation/Navigation';
 import DecoratedTree from './DecoratedTree';
-import Cart from 'components/Cart/Cart';
 import UserComponent from '../UserComponent/UserComponent';
-import FavoriteBlock from '../Favorite/Favorite';
 import ButtonGroup from '../DropMenu/ButtonsGroup';
 
 
@@ -43,8 +41,6 @@ function PageHeader() {
             <div className={ styles.middleMenuButtons }>
               <SearchForm className={ styles.headerSearch }/>
               
-              {/* <Cart />
-              <FavoriteBlock /> */}
               <ButtonGroup />
               <UserComponent/>
             </div>

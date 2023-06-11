@@ -11,6 +11,7 @@ import DropDownContent from './DropDownContent';
 import Button from '../Button/Button';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useToggle from '@/hooks/useToggle';
+import DropDownArrow from './DropDownArrow';
 
 gsap.registerEffect({
   name: "openMenu",
@@ -96,10 +97,10 @@ gsap.registerEffect({
 });
 
 function DropDown({ data }) {
-  const ctx = React.useMemo( () => gsap.context(() => {}), []);
-
   const [ dropDownStatus, setDropDownStatus ] = useToggle( false );
   const ref = useClickOutside( dropDownStatus, setDropDownStatus );
+  const ctx = React.useMemo( () => gsap.context(() => {}), []);
+
 
   const activeClass = dropDownStatus ? styles.active : ''
   const buttonClass = `${styles.dropDownButton} ${activeClass}`;
@@ -136,7 +137,9 @@ function DropDown({ data }) {
         >
           Каталог
           {' '}
-          <span className={ styles.arrow }></span>
+          <span className={ styles.arrow }>
+            <DropDownArrow opened={ dropDownStatus } />
+          </span>
         </Button>
 
         <CSSTransition
