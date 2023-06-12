@@ -35,7 +35,10 @@ function FavoriteButton({ style = {}, initial = false, action, ...delegated }) {
       initial={ false }
       style={{
         margin: 0,
+        display: 'block',
         position: 'relative',
+        height: '35px',
+        width: '35px',
         ...style,
       }}
       >
@@ -72,7 +75,7 @@ function MainIcon() {
     },
   }
   return (
-    <motion.div variants={mainIconVariants} >
+    <motion.div variants={mainIconVariants}>
       <Favorite width={32} height={32} />
     </motion.div>
   )

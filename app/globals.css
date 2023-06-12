@@ -113,15 +113,20 @@ p {
 }
 
 button {
-  cursor: pointer !important;
   background: none;
   border: 0;
+  color: var(--text-dark);
+  cursor: pointer !important;
+  padding: 0; 
 }
 
 a:hover {
   color: var(--text-green);
 }
 
+input {
+  border-radius: 0;
+}
 input:focus {
   outline: 1px solid nsl(var(--background-green));
 }

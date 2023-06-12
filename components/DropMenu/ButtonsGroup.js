@@ -60,34 +60,34 @@ function ButtonGroup() {
         isOpen={ active === 'fav' && isOpen} 
         clickHandle={(e) => handleClick(e, 'fav')} 
       />
-    </div>
-    <div 
-      style={{ 
-        bottom:0, 
-        left: left, 
-        translate: '-100% 100%',
-        position: 'absolute',
-        width: '475px',
-        zIndex: 2,
-      }}
-    >
-      <AnimatePresence mode='wait'>
-        {isOpen &&
-          <MotionBlock
-            layout
-            animate={ isOpen ? "open" : "closed" }
-            transition={{ type: 'spring', bounce: 0, duration: 0.5, delayChildren: 0 }}
-          >
-            <MotionBlock 
-              style={{ position: 'absolute', height: '100%', width: '100%' }}
-              initial={{background: 'rgba(255 ,255 ,255, 0)'}}
-              animate={{background: 'rgba(255 ,255 ,255, 1)', transition: {delay: 0.5}}}
-              exit={{background: 'rgba(255 ,255 ,255, 0)'}}
-            />
-            { dropContent[active] }
-          </MotionBlock>
-        }
-      </AnimatePresence>
+      <div 
+        style={{ 
+          bottom:0, 
+          left: left, 
+          translate: '-100% 100%',
+          position: 'absolute',
+          width: '475px',
+          zIndex: 2,
+        }}
+      >
+        <AnimatePresence mode='wait'>
+          {isOpen &&
+            <MotionBlock
+              layout
+              animate={ isOpen ? "open" : "closed" }
+              transition={{ type: 'spring', bounce: 0, duration: 0.5, delayChildren: 0 }}
+            >
+              <MotionBlock 
+                style={{ position: 'absolute', height: '100%', width: '100%' }}
+                initial={{background: 'rgba(255 ,255 ,255, 0)'}}
+                animate={{background: 'rgba(255 ,255 ,255, 1)', transition: {delay: 0.5}}}
+                exit={{background: 'rgba(255 ,255 ,255, 0)'}}
+              />
+              { dropContent[active] }
+            </MotionBlock>
+          }
+        </AnimatePresence>
+      </div>
     </div>
   </>);
 }

@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/fonts": ["./styles/fonts"]
+      "@/*": ["/*"],
+      "@/fonts": ["/styles/fonts"]
     }
   }
 }

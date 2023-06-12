@@ -4,7 +4,7 @@ import FavoriteButton from '../Button/FavoriteButton';
 import { FavoriteContext } from '../Providers/FavoriteProvider';
 
 function AddToFavorite({ id = 0, ...delegated}) {
-  const { handleCreate, handleDelete, favoriteItems } = React.useContext( FavoriteContext );
+  const { handleAddItem, handleDelete, favoriteItems } = React.useContext( FavoriteContext );
   const itemIndex = favoriteItems?.findIndex(item => item.id === id);
   const exist = itemIndex >= 0;
   
@@ -20,7 +20,7 @@ function AddToFavorite({ id = 0, ...delegated}) {
       const parsed = await req.json();
       
       if( !parsed ) return;
-      handleCreate( value.liked );
+      handleAddItem( value.liked );
     }
     
     const deleteItem = async () => {

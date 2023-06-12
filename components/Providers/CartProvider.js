@@ -11,17 +11,19 @@ function CartProvider({ children }) {
       const req = await fetch('/api?target=user-cart', { method: 'GET' });
       const data = await req?.json();
       if (!data) return;
-      const parse = JSON.parse( data.value )
-      parse.forEach(item => {
-        handleCreateTodo(item);
+      const parse = JSON.parse( data.value );
+      dispatch({
+        type: 'create-list',
+        value: parse,
       });
+
     }
     getItems();
-  }, []);
+  }, [ dispatch ]);
 
-  function handleCreateTodo(value) {
+  function handleAddItem(value) {
     dispatch({
-      type: 'create-cart',
+      type: 'add-to-list',
       value,
     });
   }
@@ -44,7 +46,7 @@ function CartProvider({ children }) {
     return {
       cartItems, 
       handleDeleteTodo,
-      handleCreateTodo,
+      handleAddItem,
       handleCountItem,
     };
   }, [ cartItems ]);

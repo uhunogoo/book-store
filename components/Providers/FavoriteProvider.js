@@ -12,16 +12,17 @@ function FavoriteProvider({ children }) {
       const data = await req?.json();
       if (!data) return;
       const parse = JSON.parse( data.value )
-      parse.forEach(item => {
-        handleCreate(item);
+      dispatch({
+        type: 'create-list',
+        value: parse,
       });
     }
     getItems();
-  }, []);
+  }, [dispatch]);
 
-  function handleCreate(value) {
+  function handleAddItem(value) {
     dispatch({
-      type: 'create-cart',
+      type: 'add-to-list',
       value,
     });
   }
@@ -37,7 +38,7 @@ function FavoriteProvider({ children }) {
     return {
       favoriteItems, 
       handleDelete,
-      handleCreate
+      handleAddItem
     };
   }, [ favoriteItems ]);
   

@@ -45,7 +45,6 @@ function DropDownArrow({ opened }) {
           pathLength="1"
           stroke="var(--text-dark)" 
           strokeWidth={2} 
-          strokeLinecap="round"
           initial={ false }
           animate={status ? "animate" : "initial" }
           variants={ arrow } 
@@ -56,7 +55,6 @@ function DropDownArrow({ opened }) {
           pathLength="1"
           stroke="var(--text-dark)" 
           strokeWidth={2} 
-          strokeLinecap="round"
           initial="initial"
           animate={status ? "animate" : "initial" }
           variants={ lines }
@@ -66,7 +64,6 @@ function DropDownArrow({ opened }) {
           x1={38} y1={2} x2={2} y2={38} 
           stroke="var(--text-dark)" 
           strokeWidth={2} 
-          strokeLinecap="round"
           initial="initial"
           animate={status ? "animate" : "initial" }
           variants={ lines }

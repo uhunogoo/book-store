@@ -6,7 +6,7 @@ import { CartContext } from '../Providers/CartProvider';
 
 
 function AddToCart({ sku = null, ...delegated}) {
-  const { handleCreateTodo, cartItems } = React.useContext( CartContext );
+  const { handleAddItem, cartItems } = React.useContext( CartContext );
   const itemIndex = cartItems?.findIndex(item => item.id === sku);
   const exist = itemIndex >= 0;
   function handleClick() {
@@ -22,7 +22,7 @@ function AddToCart({ sku = null, ...delegated}) {
       const parsed = await req.json();
       
       if( !parsed ) return;
-      handleCreateTodo( value.cart );
+      handleAddItem( value.cart );
     }
     addItem( value );
   }

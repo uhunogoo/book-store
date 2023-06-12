@@ -7,7 +7,18 @@ const combinedBooks = books.concat( series );
 export function reducer(todos, action) {
   return produce(todos, (draftTodos) => {
     switch (action.type) {
-      case 'create-cart': {
+      case 'create-list': {
+        const generated = action.value.map( item => {
+          return ({
+            ...combinedBooks[item.id],
+            count: Number(item.count)
+          });
+        });
+        draftTodos.splice(0, draftTodos.length);
+        draftTodos.push( ...generated );
+        break;
+      }
+      case 'add-to-list': {
         draftTodos.push({
           ...combinedBooks[action.value.id],
           count: Number(action.value.count),
