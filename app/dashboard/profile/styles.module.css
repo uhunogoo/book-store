@@ -3,3 +3,15 @@
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
+.moreComments {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--text-grey);
+  font-size: 0.75rem;
+}
+.moreComments > div {
+  height: 10px;
+  transition: 0.2s ease-in;
+  width: 10px;
+}

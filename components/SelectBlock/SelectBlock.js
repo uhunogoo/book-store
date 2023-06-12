@@ -8,6 +8,7 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import Button from '../Button/Button';
 import Scroll from '../Scroll/Scroll';
 import { AnimatePresence, motion } from 'framer-motion' 
+import DropDownArrow from 'components/DropDown/DropDownArrow';
 
 function SelectBlock({ data }) {
   const generatedID = React.useId();
@@ -31,6 +32,7 @@ function SelectBlock({ data }) {
         aria-label="Customise options"
       >
         { genre }
+        <DropDownArrow opened={ open } type="options" />
       </Button>
       <AnimatePresence mode='wait'>
         {open && (  

@@ -11,6 +11,7 @@ import Rating from 'components/Rating/Rating';
 import Button from 'components/Button/Button';
 import CommentsBlock from './CommentsBlock';
 import UnderlinedText from '@/components/UnderlinedText/UnderlinedText';
+import DropDownArrow from 'components/DropDown/DropDownArrow';
 
 
 export default function Page() {
@@ -52,22 +53,18 @@ export default function Page() {
             <Button 
               title="показати" 
               onClick={handleClick}
-              style={{
-                display: 'flex',
-                gap: '0.5em',
-                alignItems: 'center',
-                color: 'var(--text-grey)',
-                fontSize: '0.75rem',
-              }}>
+              className={ styles.moreComments }
+            >
                 <UnderlinedText>
                   показати
                 </UnderlinedText>
-                <Image 
-                  src="/arrow.svg" 
-                  width={10} 
-                  height={10} 
-                  style={{ scale: showComments ? -1 : 1, translate: showComments ? '0 -25%' : '0 25%' }} 
-                  alt="arrow" 
+                <DropDownArrow 
+                  opened={ showComments } 
+                  type="options" 
+                  style={{
+                    position: 'relative',
+                    translate: showComments ? '0 -30%' : '0 30%'
+                  }}
                 />
               </Button>
           </div>

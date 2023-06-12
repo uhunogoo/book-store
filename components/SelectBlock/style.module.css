@@ -25,22 +25,18 @@
   text-align: left;
   width: 220px;
 }
-.IconButton::after {
-  border: 1px solid var(--text-grey);
-  border-top: transparent;
-  border-right: transparent;
+.IconButton > div {
   display: block;
-  content: '';
   right: 0.5em;
   position: absolute;
   top: 50%;
-  transform: translateY(-85%) rotate(-45deg);
+  transform: translateY(-35%);
   transition: transform 0.2s ease-in;
   height: 0.6em;
   width: 0.6em;
 }
-.opened::after {
-  transform: translateY(-15%) rotate(135deg);
+.opened > div {
+  transform: translateY(-65%);
 } 
 .drop {
   border: 1px solid var(--text-grey);
