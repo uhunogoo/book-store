@@ -3,6 +3,10 @@ import React from 'react';
 
 function DropDownArrow({ opened }) {
   const status = opened || false;
+  const stroke = {
+    stroke: status ? 'white' : "var(--text-dark)", 
+    strokeWidth: 2
+  }
   const arrow = {
     initial: {
       pathLength: 1,
@@ -39,36 +43,28 @@ function DropDownArrow({ opened }) {
 
   return (
     <svg viewBox='0 0 40 40' height={100} width={100} fill='none'>
-      <g>
+      <motion.g animate={status ? "animate" : "initial" }>
         <motion.path 
           d="M2 2 L20 20 L38 2" 
           pathLength="1"
-          stroke="var(--text-dark)" 
-          strokeWidth={2} 
-          initial={ false }
-          animate={status ? "animate" : "initial" }
+          {...stroke}
           variants={ arrow } 
         />
         {/* top-right / bottom-left */}
         <motion.line 
           x1={2} y1={2} x2={38} y2={38} 
-          pathLength="1"
-          stroke="var(--text-dark)" 
-          strokeWidth={2} 
-          initial="initial"
-          animate={status ? "animate" : "initial" }
+          pathLength="0"
+          {...stroke}
           variants={ lines }
-        />
+          />
         {/* top-left / bottom-right */}
         <motion.line 
           x1={38} y1={2} x2={2} y2={38} 
-          stroke="var(--text-dark)" 
-          strokeWidth={2} 
-          initial="initial"
-          animate={status ? "animate" : "initial" }
+          pathLength="0"
+          {...stroke}
           variants={ lines }
         />
-      </g>
+      </motion.g>
     </svg>
   )
 }
